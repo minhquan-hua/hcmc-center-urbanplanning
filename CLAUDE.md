@@ -93,6 +93,42 @@ data/
 - 13/11/2026: `window.banDo` là đối tượng bản đồ dùng chung cho các giai đoạn sau. Chỉ bật/tắt lớp sau sự kiện `load` (đừng dùng `isStyleLoaded()`, nó trả về sai khi đang tải ô bản đồ).
 - Xem thử khi phát triển: `.claude/launch.json` cấu hình "xem-thu" (py -m http.server 8000).
 
+## Kết quả tra cứu giai đoạn 2 (13/11/2026)
+
+Nguồn pháp lý: Nghị quyết 1685/NQ-UBTVQH15 ngày 16/6/2025, toàn văn trên cổng Chính phủ:
+https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-quyet-so-1685-nq-ubtvqh15-sap-xep-cac-dvhc-cap-xa-cua-thanh-pho-ho-chi-minh-nam-2025-119250616211341304.htm
+Hiệu lực từ ngày thông qua; chính quyền mới hoạt động từ 1/7/2025. Toàn TP: 168 đơn vị (113 phường, 54 xã, 1 đặc khu).
+
+18 phường mới trong phạm vi (số khoản của Điều 1; "mp" = một phần, "pcl" = phần còn lại):
+- k1 Sài Gòn: Bến Nghé + mp Đa Kao + mp Nguyễn Thái Bình
+- k2 Tân Định: Tân Định + pcl Đa Kao
+- k3 Bến Thành: Bến Thành, Phạm Ngũ Lão + mp Cầu Ông Lãnh + pcl Nguyễn Thái Bình
+- k4 Cầu Ông Lãnh: Nguyễn Cư Trinh, Cầu Kho, Cô Giang + pcl Cầu Ông Lãnh
+- k5 Bàn Cờ: P1, P2, P3, P5 + mp P4 (Quận 3)
+- k6 Xuân Hòa: Võ Thị Sáu + pcl P4 (Quận 3)
+- k7 Nhiêu Lộc: P9, P11, P12, P14 (Quận 3)
+- k8 Xóm Chiếu: P13, P16, P18 + mp P15 (Quận 4)
+- k9 Khánh Hội: P8, P9 + mp P2 + mp P4 + pcl P15 (Quận 4)
+- k10 Vĩnh Hội: P1, P3 + pcl P2 + pcl P4 (Quận 4)
+- k42 Gia Định: P1, P2, P7, P17 (Bình Thạnh)
+- k43 Bình Thạnh: P12, P14 (Bình Thạnh), P26
+- k44 Bình Lợi Trung: P5, P11, P13 (Bình Thạnh)
+- k45 Thạnh Mỹ Tây: P19, P22, P25
+- k46 Bình Quới: P27, P28
+- k75 Cát Lái: Thạnh Mỹ Lợi, Cát Lái
+- k76 Bình Trưng: Bình Trưng Đông, Bình Trưng Tây + mp An Phú (TP Thủ Đức)
+- k78 An Khánh: Thủ Thiêm, An Lợi Đông, Thảo Điền, An Khánh + pcl An Phú
+Lưu ý: nghị quyết không ghi tên quận cho P26, P19/22/25, P27/28 (suy ra là Bình Thạnh; phải ghi rõ là suy luận).
+Phải đọc lại nguyên văn từ link trên khi nhập dữ liệu, không chép từ ghi chú này.
+
+Nguồn hình dạng ranh giới (đã kiểm tra bằng Overpass API, chưa tải hình dạng về):
+- Phường mới: OpenStreetMap hiện có đủ 18 phường dạng relation `admin_level=6` (vd. Phường Sài Gòn = relation 19260504). Do cộng đồng vẽ, không ghi nguồn hình dạng, KHÔNG phải địa giới pháp lý.
+- Quận/phường cũ: OSM hiện tại đã xóa; lấy bằng truy vấn lịch sử `[date:"2025-05-01T00:00:00Z"]` (quận = admin_level 6, phường = 8; 114 phường trong khung).
+- Máy chủ Overpass chạy được: https://overpass-api.de/api/interpreter (hay lỗi 502, cần thử lại). Truy vấn lịch sử chỉ chạy trên máy chủ này.
+- Chưa tìm thấy file ranh giới mới do cơ quan nhà nước công bố mở.
+
 ## Việc còn mở
+
+- Chờ chủ dự án chọn nguồn ranh giới cho giai đoạn 2 (đề xuất: OSM cho cả cũ và mới, gắn nhãn "ranh giới tham khảo").
 
 - Chưa có tài khoản GitHub (cần ở giai đoạn 7).
