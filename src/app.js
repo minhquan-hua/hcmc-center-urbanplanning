@@ -1,0 +1,188 @@
+/* Sa bàn quy hoạch TP.HCM - giai đoạn 1: bản đồ nền 3D và khung giao diện */
+(function () {
+  'use strict';
+
+  var TEP_CHU = 'data/ngon_ngu/giao_dien.csv';
+  var NEN_BAN_DO = 'https://tiles.openfreemap.org/styles/liberty';
+
+  // Góc nhìn ban đầu: sông Sài Gòn giữa Quận 1 cũ và Thủ Thiêm
+  var GOC_NHIN_DAU = { center: [106.7135, 10.7790], zoom: 14.2, pitch: 55, bearing: -18 };
+  // Giới hạn vùng xem: Quận 1, 3, 4, Bình Thạnh, Quận 2 cũ và vùng đệm
+  var GIOI_HAN = [[106.62, 10.70], [106.83, 10.86]];
+
+  var tuDien = {};
+  var ngonNgu = 'vi';
+  try { ngonNgu = localStorage.getItem('ngon_ngu') === 'en' ? 'en' : 'vi'; } catch (e) {}
+
+  // ---------- Báo lỗi dễ hiểu ----------
+  function baoLoi(loiVi, loiEn) {
+    var o = document.getElementById('bao-loi');
+    o.textContent = ngonNgu === 'en' && loiEn ? loiEn : loiVi;
+    o.hidden = false;
+  }
+
+  // ---------- Đọc file CSV (chịu được dấu phẩy trong ngoặc kép, file lưu từ Excel) ----------
+  function docCSV(vanBan) {
+    vanBan = vanBan.replace(/^﻿/, '');
+    var dong = [], o = [], chu = '', trongNgoac = false;
+    for (var i = 0; i < vanBan.length; i++) {
+      var c = vanBan[i];
+      if (trongNgoac) {
+        if (c === '"' && vanBan[i + 1] === '"') { chu += '"'; i++; }
+        else if (c === '"') trongNgoac = false;
+        else chu += c;
+      } else if (c === '"') trongNgoac = true;
+      else if (c === ',') { o.push(chu); chu = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && vanBan[i + 1] === '\n') i++;
+        o.push(chu); chu = '';
+        if (o.some(function (x) { return x.trim() !== ''; })) dong.push(o);
+        o = [];
+      } else chu += c;
+    }
+    o.push(chu);
+    if (o.some(function (x) { return x.trim() !== ''; })) dong.push(o);
+    if (!dong.length) return [];
+    var cot = dong[0].map(function (x) { return x.trim(); });
+    return dong.slice(1).map(function (d) {
+      var muc = {};
+      cot.forEach(function (ten, k) { muc[ten] = (d[k] || '').trim(); });
+      return muc;
+    });
+  }
+
+  // ---------- Ngôn ngữ ----------
+  function chu(ma) {
+    var m = tuDien[ma];
+    if (!m) return null;
+    return (ngonNgu === 'en' && m.en) ? m.en : m.vi;
+  }
+
+  function apDungNgonNgu() {
+    document.documentElement.lang = ngonNgu;
+    document.querySelectorAll('[data-chu]').forEach(function (el) {
+      var v = chu(el.getAttribute('data-chu'));
+      if (v) el.textContent = v;
+    });
+    var tieuDe = chu('tieu_de');
+    if (tieuDe) document.title = tieuDe;
+    // Nút hiện ngôn ngữ sẽ chuyển sang
+    document.getElementById('nut-ngon-ngu').textContent = ngonNgu === 'vi' ? 'EN' : 'VI';
+  }
+
+  function taiChu() {
+    return fetch(TEP_CHU)
+      .then(function (r) {
+        if (!r.ok) throw new Error('khong_tim_thay');
+        return r.text();
+      })
+      .then(function (vb) {
+        var ds = docCSV(vb);
+        if (!ds.length || !('ma' in ds[0]) || !('vi' in ds[0])) throw new Error('sai_cot');
+        ds.forEach(function (m) { if (m.ma) tuDien[m.ma] = m; });
+        apDungNgonNgu();
+      })
+      .catch(function (e) {
+        if (e.message === 'sai_cot') {
+          baoLoi('File data/ngon_ngu/giao_dien.csv sai định dạng.\nDòng đầu tiên phải là: ma,vi,en',
+                 'The file data/ngon_ngu/giao_dien.csv is malformed.\nIts first line must be: ma,vi,en');
+        } else {
+          baoLoi('Không đọc được file data/ngon_ngu/giao_dien.csv.\nHãy mở website bằng cách bấm đúp xem_thu.bat, không mở trực tiếp index.html.',
+                 'Could not read data/ngon_ngu/giao_dien.csv.\nOpen the site by double-clicking xem_thu.bat, not index.html directly.');
+        }
+        apDungNgonNgu();
+      });
+  }
+
+  // ---------- Bản đồ ----------
+  if (!window.maplibregl) {
+    baoLoi('Không tải được thư viện bản đồ. Hãy kiểm tra kết nối mạng rồi tải lại trang.',
+           'Could not load the map library. Check your internet connection and reload.');
+    taiChu();
+    return;
+  }
+
+  var banDo = new maplibregl.Map({
+    container: 'ban-do',
+    style: NEN_BAN_DO,
+    center: GOC_NHIN_DAU.center,
+    zoom: GOC_NHIN_DAU.zoom,
+    pitch: GOC_NHIN_DAU.pitch,
+    bearing: GOC_NHIN_DAU.bearing,
+    maxBounds: GIOI_HAN,
+    minZoom: 11.5,
+    maxPitch: 70,
+    attributionControl: { compact: true }
+  });
+  window.banDo = banDo; // để các giai đoạn sau và việc kiểm tra dùng lại
+
+  banDo.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right');
+  banDo.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left');
+
+  // Bản đồ luôn khớp kích thước khung, kể cả khi xoay điện thoại
+  if (window.ResizeObserver) {
+    new ResizeObserver(function () { banDo.resize(); }).observe(document.getElementById('ban-do'));
+  }
+
+  var daBaoLoiNen = false;
+  banDo.on('error', function (e) {
+    if (daBaoLoiNen || banDo.isStyleLoaded()) return;
+    daBaoLoiNen = true;
+    console.error(e && e.error);
+    baoLoi('Không tải được bản đồ nền. Hãy kiểm tra kết nối mạng rồi tải lại trang.',
+           'Could not load the base map. Check your internet connection and reload.');
+  });
+
+  function lop3D() {
+    return banDo.getStyle().layers.filter(function (l) { return l.type === 'fill-extrusion'; });
+  }
+
+  function bat3D(bat) {
+    lop3D().forEach(function (l) {
+      banDo.setLayoutProperty(l.id, 'visibility', bat ? 'visible' : 'none');
+    });
+  }
+
+  var nenDaSanSang = false;
+  banDo.on('load', function () {
+    nenDaSanSang = true;
+    bat3D(document.getElementById('bat-3d').checked);
+  });
+
+  // ---------- Nút bấm ----------
+  document.getElementById('bat-3d').addEventListener('change', function (e) {
+    if (nenDaSanSang) bat3D(e.target.checked);
+  });
+
+  document.getElementById('nut-ve-dau').addEventListener('click', function () {
+    banDo.flyTo(Object.assign({ duration: 1200 }, GOC_NHIN_DAU));
+  });
+
+  document.getElementById('nut-ngon-ngu').addEventListener('click', function () {
+    ngonNgu = ngonNgu === 'vi' ? 'en' : 'vi';
+    try { localStorage.setItem('ngon_ngu', ngonNgu); } catch (e) {}
+    apDungNgonNgu();
+  });
+
+  var bang = document.getElementById('bang');
+  var nutBang = document.getElementById('nut-bang');
+  function datBang(mo) {
+    bang.classList.toggle('dong-lai', !mo);
+    nutBang.setAttribute('aria-expanded', String(mo));
+  }
+  nutBang.addEventListener('click', function () {
+    datBang(bang.classList.contains('dong-lai'));
+  });
+  // Trên điện thoại: thu bảng lại lúc đầu để thấy bản đồ
+  if (window.matchMedia('(max-width: 767px)').matches) datBang(false);
+
+  var nutTrinhChieu = document.getElementById('nut-trinh-chieu');
+  nutTrinhChieu.addEventListener('click', function () {
+    var bat = document.documentElement.classList.toggle('trinh-chieu');
+    nutTrinhChieu.setAttribute('aria-pressed', String(bat));
+    datBang(!bat);
+    setTimeout(function () { banDo.resize(); }, 50);
+  });
+
+  taiChu();
+})();

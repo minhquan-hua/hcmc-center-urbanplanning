@@ -4,3 +4,4 @@ __pycache__/
 data/_tam/
 .DS_Store
 Thumbs.db
+.claude/

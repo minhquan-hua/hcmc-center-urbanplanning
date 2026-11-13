@@ -74,7 +74,7 @@ data/
 ## Giai đoạn
 
 - [x] 0. Chuẩn bị: hỏi chủ dự án, cài Git/Python, khung dự án, CLAUDE.md
-- [ ] 1. Bản đồ nền 3D + khung giao diện (có nút đổi ngôn ngữ và chế độ trình chiếu)
+- [x] 1. Bản đồ nền 3D + khung giao diện (có nút đổi ngôn ngữ và chế độ trình chiếu). Xong 13/11/2026; chưa thử trên điện thoại thật.
 - [ ] 2. Lớp hành chính Trước/Sau 2025 (tra cứu dữ liệu ranh giới TRƯỚC khi viết code, báo kết quả)
 - [ ] 3. Lớp dự án quy hoạch + bộ lọc
 - [ ] 4. Giao thông đường bộ
@@ -87,6 +87,11 @@ data/
 - 13/11/2026: Không dùng bước build hay Node, để chủ dự án ít phải cài đặt và dễ đưa lên mạng.
 - 13/11/2026: Song ngữ Việt + Anh theo yêu cầu chủ dự án; tiếng Việt là bản gốc.
 - 13/11/2026: Rủi ro lớn nhất là ranh giới phường mới. Phương án dự phòng: ghép từ ranh giới phường cũ theo nghị quyết, phường bị chia tách đánh dấu "cần kiểm chứng". Phải hỏi chủ dự án trước khi chọn.
+
+- 13/11/2026: Nền bản đồ dùng style "liberty" của OpenFreeMap (có sẵn lớp tòa nhà 3D `building-3d`). MapLibre 4.7.1 từ unpkg.
+- 13/11/2026: Chữ giao diện nằm trong một file `data/ngon_ngu/giao_dien.csv` (cột `ma,vi,en`); trong HTML gắn bằng thuộc tính `data-chu`. Tên biến, tên file trong code dùng tiếng Việt không dấu.
+- 13/11/2026: `window.banDo` là đối tượng bản đồ dùng chung cho các giai đoạn sau. Chỉ bật/tắt lớp sau sự kiện `load` (đừng dùng `isStyleLoaded()`, nó trả về sai khi đang tải ô bản đồ).
+- Xem thử khi phát triển: `.claude/launch.json` cấu hình "xem-thu" (py -m http.server 8000).
 
 ## Việc còn mở
 

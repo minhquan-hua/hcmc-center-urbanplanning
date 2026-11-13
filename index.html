@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sa bàn quy hoạch TP.HCM</title>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <div id="ban-do" aria-label="Bản đồ"></div>
+
+  <header class="thanh-tren">
+    <h1 data-chu="tieu_de">Sa bàn quy hoạch TP.HCM</h1>
+    <div class="nut-tren">
+      <button id="nut-ngon-ngu" type="button" aria-label="Đổi ngôn ngữ">EN</button>
+      <button id="nut-trinh-chieu" type="button" data-chu="trinh_chieu">Trình chiếu</button>
+    </div>
+  </header>
+
+  <section class="bang" id="bang">
+    <button class="bang-tay-nam" id="nut-bang" type="button" aria-expanded="true">
+      <span data-chu="lop_ban_do">Lớp bản đồ</span><span class="mui-ten" aria-hidden="true">▾</span>
+    </button>
+    <div class="bang-noi-dung">
+      <label class="dong">
+        <input type="checkbox" id="bat-3d" checked>
+        <span data-chu="toa_nha_3d">Tòa nhà 3D</span>
+      </label>
+      <div class="dong mo"><span data-chu="lop_hanh_chinh">Hành chính trước / sau 2025</span><em data-chu="sap_co">sắp có</em></div>
+      <div class="dong mo"><span data-chu="lop_du_an">Dự án quy hoạch</span><em data-chu="sap_co">sắp có</em></div>
+      <div class="dong mo"><span data-chu="lop_duong_bo">Giao thông đường bộ</span><em data-chu="sap_co">sắp có</em></div>
+      <div class="dong mo"><span data-chu="lop_duong_thuy">Giao thông thủy</span><em data-chu="sap_co">sắp có</em></div>
+      <div class="dong mo"><span data-chu="che_do_hoc">Chế độ học (tour)</span><em data-chu="sap_co">sắp có</em></div>
+      <button id="nut-ve-dau" type="button" class="nut-phu" data-chu="ve_goc_nhin_dau">Về góc nhìn ban đầu</button>
+      <p class="ghi-chu" data-chu="nguon_ban_do">Bản đồ nền: © OpenStreetMap (giấy phép ODbL), OpenMapTiles, OpenFreeMap.</p>
+    </div>
+  </section>
+
+  <div class="bao-loi" id="bao-loi" role="alert" hidden></div>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
