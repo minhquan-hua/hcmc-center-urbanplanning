@@ -1,0 +1,80 @@
+# Hướng dẫn cập nhật nội dung
+
+Viết cho người không biết lập trình. Bạn chỉ sửa các file trong thư mục `data/`.
+Đừng sửa gì trong `src/` và `scripts/`.
+
+## Ba việc cần nhớ
+
+1. **Xem website trên máy:** bấm đúp `xem_thu.bat`. Một cửa sổ đen hiện ra và trình duyệt tự mở. Giữ cửa sổ đen mở trong lúc xem; đóng nó để tắt.
+2. **Sau khi sửa file trong `data/hanh_chinh/`:** bấm đúp `cap_nhat_du_lieu.bat`. Chương trình kiểm tra file bạn vừa sửa và báo lỗi bằng tiếng Việt nếu có.
+3. **Xem lại thay đổi:** quay lại trình duyệt và bấm Ctrl + F5.
+
+## Cách mở và lưu file CSV
+
+File `.csv` là bảng, mở bằng Excel.
+
+- Khi lưu, chọn kiểu **CSV UTF-8 (Comma delimited)**. Nếu chọn kiểu CSV thường, chữ tiếng Việt sẽ bị lỗi.
+- Không đổi tên cột ở dòng đầu tiên. Không xóa cột.
+- Mỗi dòng là một mục. Thêm mục mới thì thêm một dòng ở cuối.
+
+## Sửa chữ trên giao diện
+
+File: `data/ngon_ngu/giao_dien.csv`
+
+| Cột | Ý nghĩa |
+|---|---|
+| `ma` | Tên nội bộ của dòng chữ. **Không sửa.** |
+| `vi` | Chữ tiếng Việt |
+| `en` | Chữ tiếng Anh. Để trống thì website hiện tiếng Việt. |
+
+Sửa file này không cần chạy `cap_nhat_du_lieu.bat`.
+
+## Sửa thông tin phường mới
+
+File: `data/hanh_chinh/phuong_moi.csv` (mỗi dòng là một phường mới)
+
+| Cột | Ý nghĩa |
+|---|---|
+| `ma` | Mã phường, viết thường không dấu, nối bằng gạch ngang (ví dụ `sai-gon`). **Không sửa** mã đã có. |
+| `ten_vi` | Tên phường, không có chữ "Phường" (ví dụ `Sài Gòn`). Phải đúng tên trên OpenStreetMap. |
+| `ten_en` | Tên tiếng Anh |
+| `khu_cu` | Quận cũ, dùng để tô màu. Một trong: `Quận 1`, `Quận 3`, `Quận 4`, `Quận Bình Thạnh`, `Thành phố Thủ Đức` |
+| `khoan` | Số khoản trong Điều 1 của nghị quyết |
+| `nguon` | Đường link nguồn, bắt đầu bằng `http` |
+| `ngay_cap_nhat` | Ngày bạn kiểm tra lần cuối, dạng `2026-11-13` |
+| `da_kiem_chung` | Thông tin gộp phường: `có` hoặc `cần kiểm chứng` |
+| `hinh_dang_kiem_chung` | Hình dạng ranh giới: `có` hoặc `cần kiểm chứng` |
+| `ghi_chu_vi`, `ghi_chu_en` | Ghi chú hiện trong thẻ thông tin (có thể để trống) |
+
+Khi bạn đã đối chiếu hình dạng một phường với bản đồ chính thức, đổi `hinh_dang_kiem_chung` thành `có`. Nhãn đỏ trên website sẽ đổi thành nhãn xanh.
+
+## Sửa bảng gộp phường
+
+File: `data/hanh_chinh/gop_phuong.csv` (mỗi dòng là một phường cũ nhập vào một phường mới)
+
+| Cột | Ý nghĩa |
+|---|---|
+| `phuong_moi` | Mã phường mới, phải có trong `phuong_moi.csv` |
+| `phuong_cu` | Tên phường cũ đúng như nghị quyết (ví dụ `Bến Nghé`, `Phường 4`) |
+| `quan_cu` | Quận cũ của phường đó |
+| `phan` | Một trong: `toàn bộ`, `một phần`, `phần còn lại` |
+| `ghi_chu` | Ghi chú (có thể để trống) |
+
+Một phường cũ bị chia cho hai phường mới thì có hai dòng.
+
+## Ví dụ: thêm một phường mới vào bản đồ
+
+1. Mở `phuong_moi.csv`, thêm một dòng với đủ các cột. Lưu.
+2. Mở `gop_phuong.csv`, thêm các dòng phường cũ gộp thành phường đó. Lưu.
+3. Mở cửa sổ lệnh trong thư mục dự án và chạy `py scripts\cap_nhat.py --tai-lai` để tải ranh giới phường mới từ OpenStreetMap. Việc này cần mạng và có thể mất vài phút.
+4. Đọc phần "CẢNH BÁO" trong kết quả. Không có cảnh báo nghĩa là bảng gộp khớp với ranh giới.
+
+## Những file do máy tạo, đừng sửa tay
+
+- `data/hanh_chinh/*.geojson`: hình dạng ranh giới
+- `data/hanh_chinh/goc_osm/`: dữ liệu thô tải từ OpenStreetMap
+- `data/hanh_chinh/BAO_CAO_KIEM_TRA.txt`: kết quả kiểm tra lần chạy gần nhất, kèm danh sách mục cần kiểm chứng
+
+## Khi website báo lỗi
+
+Website hiện một ô đỏ ghi tên file có vấn đề. Mở file đó, kiểm tra dòng đầu tiên còn đủ tên cột không, rồi chạy lại `cap_nhat_du_lieu.bat`. Nếu vẫn lỗi, chụp màn hình ô đỏ và gửi cho Claude.

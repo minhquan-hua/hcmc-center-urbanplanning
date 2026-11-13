@@ -1,0 +1,47 @@
+BÁO CÁO KIỂM TRA DỮ LIỆU HÀNH CHÍNH
+Tạo lúc: 14/11/2026 00:44 (file này do máy tạo, đừng sửa tay)
+
+Phường mới: 18. Phường cũ: 54. Dòng gộp phường: 62.
+Ranh giới cũ lấy từ bản lưu OpenStreetMap ngày 2025-05-01.
+
+CẢNH BÁO: không có.
+
+SO SÁNH DIỆN TÍCH (ranh giới mới so với tổng các phường cũ):
+  - Sài Gòn: mới 3.02 km² (có phường bị chia tách, không so được)
+  - Tân Định: mới 1.24 km² (có phường bị chia tách, không so được)
+  - Bến Thành: mới 1.86 km² (có phường bị chia tách, không so được)
+  - Cầu Ông Lãnh: mới 1.59 km² (có phường bị chia tách, không so được)
+  - Bàn Cờ: mới 1.00 km² (có phường bị chia tách, không so được)
+  - Xuân Hòa: mới 2.22 km² (có phường bị chia tách, không so được)
+  - Nhiêu Lộc: mới 1.71 km², tổng các phường cũ 1.71 km², lệch 0.4%
+  - Xóm Chiếu: mới 1.92 km² (có phường bị chia tách, không so được)
+  - Khánh Hội: mới 1.05 km² (có phường bị chia tách, không so được)
+  - Vĩnh Hội: mới 1.18 km² (có phường bị chia tách, không so được)
+  - Gia Định: mới 2.76 km², tổng các phường cũ 2.76 km², lệch 0.1%
+  - Bình Thạnh: mới 3.32 km², tổng các phường cũ 3.32 km², lệch 0.1%
+  - Bình Lợi Trung: mới 3.90 km², tổng các phường cũ 3.90 km², lệch 0.1%
+  - Thạnh Mỹ Tây: mới 4.44 km², tổng các phường cũ 4.44 km², lệch 0.0%
+  - Bình Quới: mới 6.36 km², tổng các phường cũ 6.35 km², lệch 0.0%
+  - Cát Lái: mới 19.69 km², tổng các phường cũ 19.70 km², lệch 0.0%
+  - Bình Trưng: mới 14.79 km² (có phường bị chia tách, không so được)
+  - An Khánh: mới 15.26 km² (có phường bị chia tách, không so được)
+
+MỤC CẦN KIỂM CHỨNG (18):
+  - Sài Gòn: hình dạng ranh giới
+  - Tân Định: hình dạng ranh giới
+  - Bến Thành: hình dạng ranh giới
+  - Cầu Ông Lãnh: hình dạng ranh giới
+  - Bàn Cờ: hình dạng ranh giới
+  - Xuân Hòa: hình dạng ranh giới
+  - Nhiêu Lộc: hình dạng ranh giới
+  - Xóm Chiếu: hình dạng ranh giới
+  - Khánh Hội: hình dạng ranh giới
+  - Vĩnh Hội: hình dạng ranh giới
+  - Gia Định: hình dạng ranh giới
+  - Bình Thạnh: hình dạng ranh giới
+  - Bình Lợi Trung: hình dạng ranh giới
+  - Thạnh Mỹ Tây: hình dạng ranh giới
+  - Bình Quới: hình dạng ranh giới
+  - Cát Lái: hình dạng ranh giới
+  - Bình Trưng: hình dạng ranh giới
+  - An Khánh: hình dạng ranh giới

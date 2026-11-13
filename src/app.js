@@ -11,6 +11,7 @@
   var GIOI_HAN = [[106.62, 10.70], [106.83, 10.86]];
 
   var tuDien = {};
+  var nguoiNghe = []; // các hàm được gọi lại mỗi khi đổi ngôn ngữ
   var ngonNgu = 'vi';
   try { ngonNgu = localStorage.getItem('ngon_ngu') === 'en' ? 'en' : 'vi'; } catch (e) {}
 
@@ -24,6 +25,9 @@
   // ---------- Đọc file CSV (chịu được dấu phẩy trong ngoặc kép, file lưu từ Excel) ----------
   function docCSV(vanBan) {
     vanBan = vanBan.replace(/^﻿/, '');
+    // Excel ở Việt Nam đôi khi lưu bằng dấu chấm phẩy thay cho dấu phẩy
+    var dongDau = vanBan.split(/\r?\n/)[0] || '';
+    var phanCach = (dongDau.split(';').length > dongDau.split(',').length) ? ';' : ',';
     var dong = [], o = [], chu = '', trongNgoac = false;
     for (var i = 0; i < vanBan.length; i++) {
       var c = vanBan[i];
@@ -32,7 +36,7 @@
         else if (c === '"') trongNgoac = false;
         else chu += c;
       } else if (c === '"') trongNgoac = true;
-      else if (c === ',') { o.push(chu); chu = ''; }
+      else if (c === phanCach) { o.push(chu); chu = ''; }
       else if (c === '\n' || c === '\r') {
         if (c === '\r' && vanBan[i + 1] === '\n') i++;
         o.push(chu); chu = '';
@@ -68,6 +72,7 @@
     if (tieuDe) document.title = tieuDe;
     // Nút hiện ngôn ngữ sẽ chuyển sang
     document.getElementById('nut-ngon-ngu').textContent = ngonNgu === 'vi' ? 'EN' : 'VI';
+    nguoiNghe.forEach(function (f) { f(ngonNgu); });
   }
 
   function taiChu() {
@@ -126,7 +131,10 @@
 
   var daBaoLoiNen = false;
   banDo.on('error', function (e) {
-    if (daBaoLoiNen || banDo.isStyleLoaded()) return;
+    // Chỉ báo khi chính bản mô tả nền chưa tải được; lỗi lẻ của từng ô bản đồ thì bỏ qua
+    var coNen = false;
+    try { coNen = !!(banDo.getStyle() && banDo.getStyle().layers.length); } catch (loi) {}
+    if (daBaoLoiNen || coNen) return;
     daBaoLoiNen = true;
     console.error(e && e.error);
     baoLoi('Không tải được bản đồ nền. Hãy kiểm tra kết nối mạng rồi tải lại trang.',
@@ -183,6 +191,18 @@
     datBang(!bat);
     setTimeout(function () { banDo.resize(); }, 50);
   });
+
+  // Phần dùng chung cho các lớp bản đồ (src/hanh_chinh.js và các giai đoạn sau)
+  window.SaBan = {
+    banDo: banDo,
+    docCSV: docCSV,
+    chu: chu,
+    baoLoi: baoLoi,
+    datBang: datBang,
+    ngonNgu: function () { return ngonNgu; },
+    khiDoiNgonNgu: function (f) { nguoiNghe.push(f); },
+    khiNenSanSang: function (f) { if (nenDaSanSang) f(); else banDo.once('load', f); }
+  };
 
   taiChu();
 })();

@@ -27,7 +27,19 @@
         <input type="checkbox" id="bat-3d" checked>
         <span data-chu="toa_nha_3d">Tòa nhà 3D</span>
       </label>
-      <div class="dong mo"><span data-chu="lop_hanh_chinh">Hành chính trước / sau 2025</span><em data-chu="sap_co">sắp có</em></div>
+      <label class="dong">
+        <input type="checkbox" id="bat-hanh-chinh" checked>
+        <span data-chu="lop_hanh_chinh">Ranh giới hành chính</span>
+      </label>
+      <div class="hanh-chinh" id="khoi-hanh-chinh">
+        <div class="chon-ky" role="group">
+          <button type="button" data-ky="truoc" aria-pressed="false" data-chu="truoc_2025">Trước 2025</button>
+          <button type="button" data-ky="sau" aria-pressed="true" data-chu="sau_2025">Sau 2025</button>
+        </div>
+        <p class="ghi-chu" id="mo-ta-ky"></p>
+        <ul class="chu-giai" id="chu-giai"></ul>
+        <p class="ghi-chu canh-bao" data-chu="ranh_gioi_tham_khao">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý.</p>
+      </div>
       <div class="dong mo"><span data-chu="lop_du_an">Dự án quy hoạch</span><em data-chu="sap_co">sắp có</em></div>
       <div class="dong mo"><span data-chu="lop_duong_bo">Giao thông đường bộ</span><em data-chu="sap_co">sắp có</em></div>
       <div class="dong mo"><span data-chu="lop_duong_thuy">Giao thông thủy</span><em data-chu="sap_co">sắp có</em></div>
@@ -37,9 +49,15 @@
     </div>
   </section>
 
+  <aside class="the" id="the" hidden aria-live="polite">
+    <button type="button" class="the-dong" id="the-dong" aria-label="Đóng">×</button>
+    <div id="the-noi-dung"></div>
+  </aside>
+
   <div class="bao-loi" id="bao-loi" role="alert" hidden></div>
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="src/app.js"></script>
+  <script src="src/hanh_chinh.js"></script>
 </body>
 </html>

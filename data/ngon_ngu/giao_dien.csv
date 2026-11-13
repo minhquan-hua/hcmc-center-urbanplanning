@@ -3,7 +3,29 @@ tieu_de,Sa bàn quy hoạch TP.HCM,Ho Chi Minh City Planning Model
 trinh_chieu,Trình chiếu,Present
 lop_ban_do,Lớp bản đồ,Map layers
 toa_nha_3d,Tòa nhà 3D,3D buildings
-lop_hanh_chinh,Hành chính trước / sau 2025,Administrative units before / after 2025
+lop_hanh_chinh,Ranh giới hành chính,Administrative boundaries
+truoc_2025,Trước 2025,Before 2025
+sau_2025,Sau 2025,After 2025
+mo_ta_sau,Phường mới từ 1/7/2025. Màu cho biết phường thuộc quận nào trước đây. Nhấp vào một phường để xem chi tiết.,New wards since 1 July 2025. Colours show the former district. Tap a ward for details.
+mo_ta_truoc,Quận và phường trước 1/7/2025. Nhấp vào một phường để xem nay thuộc phường mới nào.,Districts and wards before 1 July 2025. Tap a ward to see which new ward it belongs to.
+ranh_gioi_tham_khao,"Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý.","Indicative boundaries from OpenStreetMap, not legal boundaries."
+ranh_gioi_cu_nguon,"Ranh giới cũ: bản lưu OpenStreetMap ngày 1/5/2025, chỉ để tham khảo.","Former boundaries: OpenStreetMap snapshot of 1 May 2025, indicative only."
+loai_phuong_moi,Phường mới (từ 1/7/2025),New ward (since 1 July 2025)
+loai_phuong_cu,Phường cũ (trước 1/7/2025),Former ward (before 1 July 2025)
+truoc_day_thuoc,Trước đây thuộc,Formerly part of
+thuoc,Thuộc,Part of
+gop_tu,Được gộp từ,Formed from
+nay_thuoc,Từ 1/7/2025 thuộc,Since 1 July 2025 part of
+phan_toan_bo,toàn bộ,whole ward
+phan_mot_phan,một phần,part
+phan_con_lai,phần còn lại,remaining part
+nguon,Nguồn,Source
+can_cu,"Nghị quyết 1685/NQ-UBTVQH15, Điều 1, khoản {khoan}","Resolution 1685/NQ-UBTVQH15, Article 1, clause {khoan}"
+thong_tin_gop,Thông tin gộp phường,Merger information
+hinh_dang,Hình dạng ranh giới,Boundary shape
+da_kiem_chung,đã kiểm chứng,verified
+can_kiem_chung,cần kiểm chứng,needs verification
+ngay_cap_nhat,Cập nhật,Updated
 lop_du_an,Dự án quy hoạch,Planning projects
 lop_duong_bo,Giao thông đường bộ,Road traffic
 lop_duong_thuy,Giao thông thủy,Waterway traffic

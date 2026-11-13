@@ -75,7 +75,7 @@ data/
 
 - [x] 0. Chuẩn bị: hỏi chủ dự án, cài Git/Python, khung dự án, CLAUDE.md
 - [x] 1. Bản đồ nền 3D + khung giao diện (có nút đổi ngôn ngữ và chế độ trình chiếu). Xong 13/11/2026; chưa thử trên điện thoại thật.
-- [ ] 2. Lớp hành chính Trước/Sau 2025 (tra cứu dữ liệu ranh giới TRƯỚC khi viết code, báo kết quả)
+- [x] 2. Lớp hành chính Trước/Sau 2025. Xong 14/11/2026; chủ dự án chưa duyệt danh sách "cần kiểm chứng" (18 hình dạng ranh giới).
 - [ ] 3. Lớp dự án quy hoạch + bộ lọc
 - [ ] 4. Giao thông đường bộ
 - [ ] 5. Giao thông thủy
@@ -129,6 +129,16 @@ Nguồn hình dạng ranh giới (đã kiểm tra bằng Overpass API, chưa t�
 
 ## Việc còn mở
 
-- Chờ chủ dự án chọn nguồn ranh giới cho giai đoạn 2 (đề xuất: OSM cho cả cũ và mới, gắn nhãn "ranh giới tham khảo").
+- Hình dạng 18 phường mới vẫn là "cần kiểm chứng" cho đến khi chủ dự án đối chiếu với bản đồ chính thức.
+- Chưa thử bấm đúp `xem_thu.bat` và `cap_nhat_du_lieu.bat` (mới chạy script qua dòng lệnh).
+
+## Giai đoạn 2 đã làm gì (14/11/2026)
+
+- Chủ dự án chọn dùng OpenStreetMap cho cả ranh giới cũ và mới, gắn nhãn "ranh giới tham khảo, không phải địa giới pháp lý".
+- `scripts/cap_nhat.py` (chỉ dùng thư viện có sẵn): đọc `phuong_moi.csv` + `gop_phuong.csv`, tải Overpass vào `data/hanh_chinh/goc_osm/` (đã commit, chạy lại không cần mạng; `--tai-lai` để tải mới), ghi `phuong_moi.geojson`, `phuong_cu.geojson`, `quan_cu.geojson`, `BAO_CAO_KIEM_TRA.txt`.
+- Đối chiếu tự động: 62 dòng gộp khớp 54 phường cũ, 0 cảnh báo; 7 phường mới gộp nguyên vẹn có diện tích lệch dưới 0,5% so với tổng phường cũ.
+- `src/hanh_chinh.js`: lớp `hc-*`, nút Trước/Sau, thẻ thông tin. Dùng `window.SaBan` do `src/app.js` cung cấp (`banDo`, `docCSV`, `chu`, `baoLoi`, `datBang`, `ngonNgu`, `khiDoiNgonNgu`, `khiNenSanSang`). Các lớp sau nên theo cùng mẫu: một file JS riêng, chèn dưới `building-3d`.
+- Màu theo quận cũ, dùng chung hai thời kỳ. Khu Quận 2 cũ ghi là "Thành phố Thủ Đức" (đúng tên trong dữ liệu tháng 5/2025); chưa đưa thông tin lịch sử Quận 2 vì chưa tra nguồn.
+- Khung trình duyệt của ứng dụng bị ẩn thì bản đồ không vẽ: gọi `show_pane preview` trước khi kiểm tra. Trình duyệt giữ bản cũ của CSS/JS: tải lại bằng `fetch(url, {cache: 'reload'})` rồi `location.reload()`.
 
 - Chưa có tài khoản GitHub (cần ở giai đoạn 7).
