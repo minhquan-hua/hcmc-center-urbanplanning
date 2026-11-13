@@ -127,6 +127,12 @@ Nguồn hình dạng ranh giới (đã kiểm tra bằng Overpass API, chưa t�
 - Máy chủ Overpass chạy được: https://overpass-api.de/api/interpreter (hay lỗi 502, cần thử lại). Truy vấn lịch sử chỉ chạy trên máy chủ này.
 - Chưa tìm thấy file ranh giới mới do cơ quan nhà nước công bố mở.
 
+## Giai đoạn 3 đang dở (dừng 14/11/2026 vì hết hạn mức sử dụng)
+
+Chủ dự án đã đồng ý kế hoạch: tra cứu dự án -> báo danh sách để duyệt -> mới dựng lớp. Mới tra được 1 dự án, CHƯA mở bài gốc để kiểm:
+- Cầu Ba Son (tên cũ Thủ Thiêm 2), theo vi.wikipedia.org/wiki/Cầu_Ba_Son và các bài nó dẫn: khởi công 3/2/2015 (vnexpress.net/tin-tuc/thoi-su/tp-hcm-khoi-cong-xay-cau-thu-thiem-2-3142825.html), hợp long 2/9/2021 (vnexpress.net/hop-long-cau-thu-thiem-2-4350180.html), thông xe 28/4/2022 (vnexpress.net/khanh-thanh-cau-thu-thiem-2-4456750.html), đổi tên 9/12/2022. Số liệu dài 1.465 m, 6 làn, vốn 3.082 tỷ chỉ có nguồn baodautu/vovgiaothong: cần kiểm chứng.
+- Chưa tra: cầu Thủ Thiêm 1, 3, 4; cầu đi bộ; hầm Thủ Thiêm; metro 1, 2; Bến Thành - Thủ Thiêm; quảng trường, nhà hát, trung tâm tài chính ở Thủ Thiêm; công viên bờ sông; Bình Quới - Thanh Đa. (Wikipedia tiếng Việt không có trang cầu Thủ Thiêm 4.)
+
 ## Việc còn mở
 
 - Hình dạng 18 phường mới vẫn là "cần kiểm chứng" cho đến khi chủ dự án đối chiếu với bản đồ chính thức.
