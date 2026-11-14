@@ -40,7 +40,19 @@
         <ul class="chu-giai" id="chu-giai"></ul>
         <p class="ghi-chu canh-bao" data-chu="ranh_gioi_tham_khao">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý.</p>
       </div>
-      <div class="dong mo"><span data-chu="lop_du_an">Dự án quy hoạch</span><em data-chu="sap_co">sắp có</em></div>
+      <label class="dong">
+        <input type="checkbox" id="bat-du-an" checked>
+        <span data-chu="lop_du_an">Dự án quy hoạch</span>
+      </label>
+      <div class="du-an" id="khoi-du-an">
+        <p class="nhan-loc" data-chu="loc_theo_loai">Lọc theo loại</p>
+        <div class="hang-loc" id="loc-loai"></div>
+        <p class="nhan-loc" data-chu="loc_theo_trang_thai">Lọc theo trạng thái</p>
+        <div class="hang-loc" id="loc-trang-thai"></div>
+        <p class="ghi-chu" id="dem-du-an"></p>
+        <ul class="ds-du-an" id="ds-du-an"></ul>
+        <p class="ghi-chu" data-chu="chu_giai_du_an">Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chấm rỗng: vị trí sơ đồ.</p>
+      </div>
       <div class="dong mo"><span data-chu="lop_duong_bo">Giao thông đường bộ</span><em data-chu="sap_co">sắp có</em></div>
       <div class="dong mo"><span data-chu="lop_duong_thuy">Giao thông thủy</span><em data-chu="sap_co">sắp có</em></div>
       <div class="dong mo"><span data-chu="che_do_hoc">Chế độ học (tour)</span><em data-chu="sap_co">sắp có</em></div>
@@ -59,5 +71,6 @@
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="src/app.js"></script>
   <script src="src/hanh_chinh.js"></script>
+  <script src="src/du_an.js"></script>
 </body>
 </html>

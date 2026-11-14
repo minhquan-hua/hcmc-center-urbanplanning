@@ -62,6 +62,39 @@ File: `data/hanh_chinh/gop_phuong.csv` (mỗi dòng là một phường cũ nh�
 
 Một phường cũ bị chia cho hai phường mới thì có hai dòng.
 
+## Sửa thông tin dự án quy hoạch
+
+File: `data/du_an/du_an.csv` (mỗi dòng là một dự án)
+
+| Cột | Ý nghĩa |
+|---|---|
+| `ma` | Mã dự án, viết thường không dấu, nối bằng gạch ngang. **Không sửa** mã đã có. |
+| `ten_vi`, `ten_en` | Tên tiếng Việt và tiếng Anh |
+| `loai` | Một trong: `cầu`, `hầm`, `metro`, `đường`, `công viên`, `khu đô thị` |
+| `trang_thai` | Một trong: `đã hoàn thành`, `đang thi công`, `đã phê duyệt`, `đề xuất` |
+| `moc_thoi_gian_vi` | Các mốc thời gian, viết thành câu |
+| `mo_ta_vi` | Mô tả ngắn: quy mô, nối từ đâu tới đâu |
+| `chu_dau_tu` | Chủ đầu tư hoặc nguồn vốn (có thể để trống) |
+| `van_ban` | Văn bản phê duyệt (có thể để trống) |
+| `nguon` | Link nguồn, bắt đầu bằng `http`. Nhiều link thì ngăn bằng dấu ` | ` |
+| `ngay_cap_nhat` | Ngày bạn kiểm tra lần cuối, dạng `2026-11-14` |
+| `da_kiem_chung` | `có` hoặc `cần kiểm chứng` |
+| `ghi_chu_vi` | Lưu ý hiện trong thẻ thông tin (có thể để trống) |
+
+Việc hay làm nhất là **đổi trạng thái** khi dự án có tiến triển: sửa `trang_thai`, `moc_thoi_gian_vi`, `nguon`, `ngay_cap_nhat`, lưu file, rồi chạy `cap_nhat_du_lieu.bat`. Màu và kiểu nét trên bản đồ tự đổi theo.
+
+Khi bạn đã mở bài gốc và thấy thông tin đúng, đổi `da_kiem_chung` thành `có`.
+
+## Ví dụ: thêm một dự án mới
+
+1. Mở `du_an.csv`, thêm một dòng ở cuối với một `ma` mới (ví dụ `cau-moi`). Lưu.
+2. Mở `data/du_an/hinh_dang_nguon.csv`, thêm một dòng cho biết lấy vị trí ở đâu:
+   - Chưa có hình dạng: `kieu` ghi `điểm sơ đồ`, `tham_so` ghi kinh độ và vĩ độ, ví dụ `106.7280,10.7822`. Để lấy hai số này, nhấp chuột phải vào vị trí trên Google Maps; số đầu là vĩ độ, số sau là kinh độ, nên bạn phải **đảo thứ tự** khi ghi vào file.
+   - Đã có trên OpenStreetMap: nhờ Claude viết giúp dòng này.
+3. Chạy `cap_nhat_du_lieu.bat` và đọc phần "CẢNH BÁO".
+
+Dự án không có dòng nào trong `hinh_dang_nguon.csv` vẫn hiện trong danh sách nhưng không có trên bản đồ.
+
 ## Ví dụ: thêm một phường mới vào bản đồ
 
 1. Mở `phuong_moi.csv`, thêm một dòng với đủ các cột. Lưu.
@@ -74,6 +107,7 @@ Một phường cũ bị chia cho hai phường mới thì có hai dòng.
 - `data/hanh_chinh/*.geojson`: hình dạng ranh giới
 - `data/hanh_chinh/goc_osm/`: dữ liệu thô tải từ OpenStreetMap
 - `data/hanh_chinh/BAO_CAO_KIEM_TRA.txt`: kết quả kiểm tra lần chạy gần nhất, kèm danh sách mục cần kiểm chứng
+- `data/du_an/du_an.geojson`, `data/du_an/goc_osm/`, `data/du_an/BAO_CAO_KIEM_TRA.txt`: tương tự, cho lớp dự án
 
 ## Khi website báo lỗi
 

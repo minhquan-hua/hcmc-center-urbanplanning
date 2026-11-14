@@ -1,0 +1,30 @@
+BÁO CÁO KIỂM TRA DỮ LIỆU DỰ ÁN
+Tạo lúc: 14/11/2026 21:06 (file này do máy tạo, đừng sửa tay)
+
+Số dự án: 15. Có hình dạng từ OpenStreetMap: 10. Chỉ có vị trí sơ đồ: 5.
+
+CẢNH BÁO: không có.
+
+VỊ TRÍ SƠ ĐỒ (5):
+  - Công viên Sáng Tạo
+  - Quảng trường trung tâm và Trung tâm hành chính TP.HCM
+  - Nhà hát Giao hưởng, Nhạc và Vũ kịch
+  - Trung tâm Tài chính quốc tế tại TP.HCM
+  - Khu đô thị mới Bình Quới - Thanh Đa
+
+MỤC CẦN KIỂM CHỨNG (15):
+  - Cầu Thủ Thiêm
+  - Cầu Ba Son
+  - Hầm Thủ Thiêm (hầm sông Sài Gòn)
+  - Cầu đi bộ qua sông Sài Gòn
+  - Cầu Thủ Thiêm 4
+  - Cầu Thủ Thiêm 3
+  - Metro số 1 (Bến Thành - Suối Tiên)
+  - Metro số 2 (Bến Thành - Tham Lương)
+  - Metro Bến Thành - Thủ Thiêm
+  - Công viên bờ sông Sài Gòn (phía Thủ Thiêm)
+  - Công viên Sáng Tạo
+  - Quảng trường trung tâm và Trung tâm hành chính TP.HCM
+  - Nhà hát Giao hưởng, Nhạc và Vũ kịch
+  - Trung tâm Tài chính quốc tế tại TP.HCM
+  - Khu đô thị mới Bình Quới - Thanh Đa

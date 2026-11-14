@@ -27,6 +27,29 @@ da_kiem_chung,đã kiểm chứng,verified
 can_kiem_chung,cần kiểm chứng,needs verification
 ngay_cap_nhat,Cập nhật,Updated
 lop_du_an,Dự án quy hoạch,Planning projects
+loc_theo_loai,Lọc theo loại,Filter by type
+loc_theo_trang_thai,Lọc theo trạng thái,Filter by status
+chu_giai_du_an,Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chấm rỗng: vị trí sơ đồ.,Solid line: completed. Dashed line: not finished. Hollow dot: indicative location.
+dang_hien,Đang hiện,Showing
+du_an,Dự án,Project
+loai_cau,cầu,bridge
+loai_ham,hầm,tunnel
+loai_metro,metro,metro
+loai_duong,đường,road
+loai_cong_vien,công viên,park
+loai_khu_do_thi,khu đô thị,urban area
+tt_hoan_thanh,đã hoàn thành,completed
+tt_thi_cong,đang thi công,under construction
+tt_phe_duyet,đã phê duyệt,approved
+tt_de_xuat,đề xuất,proposed
+moc_thoi_gian,Mốc thời gian,Timeline
+mo_ta,Mô tả,Description
+chu_dau_tu,Chủ đầu tư / nguồn vốn,Investor / funding
+van_ban,Văn bản,Official document
+luu_y,Lưu ý,Note
+vi_tri_so_do,"Vị trí sơ đồ: chấm rỗng chỉ đánh dấu khu vực, không phải ranh giới hay vị trí chính xác.","Indicative location: the hollow dot only marks the general area, not a boundary or exact site."
+hinh_tu_osm,Hình dạng lấy từ OpenStreetMap; tuyến chưa xây là hướng tuyến dự kiến.,Shape from OpenStreetMap; unbuilt lines show the planned alignment.
+chua_co_vi_tri,Chưa có vị trí trên bản đồ.,No location on the map yet.
 lop_duong_bo,Giao thông đường bộ,Road traffic
 lop_duong_thuy,Giao thông thủy,Waterway traffic
 che_do_hoc,Chế độ học (tour),Learning mode (tours)

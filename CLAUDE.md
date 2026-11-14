@@ -76,7 +76,7 @@ data/
 - [x] 0. Chuẩn bị: hỏi chủ dự án, cài Git/Python, khung dự án, CLAUDE.md
 - [x] 1. Bản đồ nền 3D + khung giao diện (có nút đổi ngôn ngữ và chế độ trình chiếu). Xong 13/11/2026; chưa thử trên điện thoại thật.
 - [x] 2. Lớp hành chính Trước/Sau 2025. Xong 14/11/2026; chủ dự án chưa duyệt danh sách "cần kiểm chứng" (18 hình dạng ranh giới).
-- [ ] 3. Lớp dự án quy hoạch + bộ lọc
+- [x] 3. Lớp dự án quy hoạch + bộ lọc. Xong 14/11/2026; cả 15 dự án còn "cần kiểm chứng" (chưa mở bài gốc); chưa có dự án loại "đường".
 - [ ] 4. Giao thông đường bộ
 - [ ] 5. Giao thông thủy
 - [ ] 6. Chế độ học (tour)
@@ -127,9 +127,16 @@ Nguồn hình dạng ranh giới (đã kiểm tra bằng Overpass API, chưa t�
 - Máy chủ Overpass chạy được: https://overpass-api.de/api/interpreter (hay lỗi 502, cần thử lại). Truy vấn lịch sử chỉ chạy trên máy chủ này.
 - Chưa tìm thấy file ranh giới mới do cơ quan nhà nước công bố mở.
 
-## Giai đoạn 3 đang dở (dừng 14/11/2026 vì hết hạn mức sử dụng)
+## Giai đoạn 3 đã làm gì (14/11/2026)
 
-CẬP NHẬT 14/11/2026: đã tra xong vòng đầu, 15 dự án nằm trong bản nháp `data/du_an/du_an.csv` (tất cả "cần kiểm chứng" vì mới đọc tóm tắt kết quả tìm kiếm, chưa mở từng bài gốc). Đang chờ chủ dự án duyệt danh sách; CHƯA dựng lớp, chưa có hình dạng (`du_an.geojson`). Dự định: công trình đã có lấy hình dạng từ OpenStreetMap; công trình chưa xây vẽ sơ đồ giữa hai đầu nối và gắn nhãn "vị trí sơ đồ". Chưa tra loại "đường". Ghi chú cũ bên dưới giữ để tham khảo.
+- Chủ dự án đã duyệt danh sách 15 dự án trong `data/du_an/du_an.csv`. Tất cả "cần kiểm chứng": mới đọc tóm tắt kết quả tìm kiếm, chưa mở từng bài gốc.
+- Hình dạng: `data/du_an/hinh_dang_nguon.csv` (`kieu` = `osm` kèm câu lọc Overpass, hoặc `điểm sơ đồ` kèm kinh độ,vĩ độ). 10 dự án lấy từ OSM (kể cả cầu Thủ Thiêm 3, 4, cầu đi bộ, metro đang làm: OSM có sẵn tuyến dự kiến), 5 dự án là điểm sơ đồ do tôi đặt theo mô tả trong nguồn (trung tâm hành chính, nhà hát, trung tâm tài chính, Bình Quới - Thanh Đa, công viên Sáng Tạo). OSM có một "Công viên Sáng Tạo" ở vị trí khác mô tả nên không dùng.
+- `xu_ly_du_an()` trong `scripts/cap_nhat.py`: một truy vấn Overpass cho mọi dự án (dùng `out count` để tách), lưu ở `data/du_an/goc_osm/`, tự tải lại khi danh sách câu lọc đổi; ghi `du_an.geojson` (mỗi dự án có hình + một điểm đặt nhãn) và `BAO_CAO_KIEM_TRA.txt`.
+- `src/du_an.js`: lớp `da-*`, màu theo trạng thái, nét đứt cho công trình chưa xong, chấm rỗng cho vị trí sơ đồ, lọc theo loại và trạng thái, danh sách bấm để bay tới. Dùng chung thẻ `#the` với lớp hành chính; nhấp trúng dự án thì lớp hành chính nhường (`S.duAn.trung`).
+- Hai mục xếp trạng thái tạm, chủ dự án chưa quyết: Trung tâm Tài chính quốc tế ("đã hoàn thành") và Nhà hát ("đề xuất").
+- Mô tả, mốc thời gian mới có tiếng Việt; bản tiếng Anh chỉ có tên dự án.
+
+Ghi chú tra cứu cũ (giữ để tham khảo):
 
 Chủ dự án đã đồng ý kế hoạch: tra cứu dự án -> báo danh sách để duyệt -> mới dựng lớp. Mới tra được 1 dự án, CHƯA mở bài gốc để kiểm:
 - Cầu Ba Son (tên cũ Thủ Thiêm 2), theo vi.wikipedia.org/wiki/Cầu_Ba_Son và các bài nó dẫn: khởi công 3/2/2015 (vnexpress.net/tin-tuc/thoi-su/tp-hcm-khoi-cong-xay-cau-thu-thiem-2-3142825.html), hợp long 2/9/2021 (vnexpress.net/hop-long-cau-thu-thiem-2-4350180.html), thông xe 28/4/2022 (vnexpress.net/khanh-thanh-cau-thu-thiem-2-4456750.html), đổi tên 9/12/2022. Số liệu dài 1.465 m, 6 làn, vốn 3.082 tỷ chỉ có nguồn baodautu/vovgiaothong: cần kiểm chứng.

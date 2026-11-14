@@ -1,5 +1,5 @@
 BÁO CÁO KIỂM TRA DỮ LIỆU HÀNH CHÍNH
-Tạo lúc: 14/11/2026 00:44 (file này do máy tạo, đừng sửa tay)
+Tạo lúc: 14/11/2026 21:06 (file này do máy tạo, đừng sửa tay)
 
 Phường mới: 18. Phường cũ: 54. Dòng gộp phường: 62.
 Ranh giới cũ lấy từ bản lưu OpenStreetMap ngày 2025-05-01.

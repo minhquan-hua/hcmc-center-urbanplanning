@@ -1,0 +1,16 @@
+ma,kieu,tham_so,ghi_chu
+cau-thu-thiem-1,osm,"way[""bridge""][""name""=""Cầu Thủ Thiêm""]",
+cau-ba-son,osm,"way[""bridge""][""name""=""Cầu Ba Son""]",
+ham-thu-thiem,osm,"way[""tunnel""][""name""=""Hầm Sông Sài Gòn""]",
+cau-di-bo,osm,"way[""bridge""][""name""=""Cầu đi bộ""]",OpenStreetMap đang ghi là đang xây
+cau-thu-thiem-4,osm,"way[""name""=""Cầu Thủ Thiêm 4""]",OpenStreetMap ghi là tuyến dự kiến
+cau-thu-thiem-3,osm,"way[""name""=""Cầu Thủ Thiêm 3""]",OpenStreetMap ghi là tuyến dự kiến
+metro-1,osm,"way[""railway""=""subway""][""name""~""số 1|so 1""]",
+metro-2,osm,"way[""railway""][""name""~""Bến Thành - Tham Lương""]",
+metro-ben-thanh-thu-thiem,osm,"way[""railway""][""name""~""Bến Thành - Thủ Thiêm""]",
+cong-vien-bo-song,osm,"way[""leisure""=""park""][""name""=""Công viên bờ sông Sài Gòn""]",
+cong-vien-sang-tao,điểm sơ đồ,"106.7160,10.7835",Đặt ở bờ Thủ Thiêm giữa cầu Ba Son và cầu Thủ Thiêm theo mô tả trong nguồn
+trung-tam-hanh-chinh,điểm sơ đồ,"106.7280,10.7822",Đặt tại đường Tố Hữu theo mô tả trong nguồn; chưa có ranh khu đất
+nha-hat-thu-thiem,điểm sơ đồ,"106.7296,10.7808",Đặt cạnh khu Trung tâm hành chính theo mô tả trong nguồn
+trung-tam-tai-chinh,điểm sơ đồ,"106.7052,10.7738",Đặt tại khu vực số 8 Nguyễn Huệ; phạm vi 898 ha chưa có ranh
+binh-quoi-thanh-da,điểm sơ đồ,"106.7370,10.8150",Đặt giữa bán đảo Thanh Đa; chưa có ranh dự án
