@@ -89,6 +89,7 @@ data/
 - Website công khai sau khi bật Pages: https://minhquan-hua.github.io/hcmc-center-urbanplanning/
 - Đẩy mã: shell của Claude không hiện được cửa sổ đăng nhập; lần đầu phải chạy `git push` trong Terminal của người dùng (`run_in_terminal`) để họ đăng nhập qua trình duyệt.
 - `dua_len_mang.bat`: chủ dự án bấm đúp để kiểm tra dữ liệu, commit và push.
+- Tác giả commit phải là địa chỉ ẩn danh của GitHub (`git config user.email` trong kho này đã đặt là `333844746+minhquan-hua@users.noreply.github.com`). KHÔNG dùng email thật của chủ dự án: kho là công khai. Ngày 15/11/2026 đã viết lại lịch sử và ghi đè lên kho để gỡ email thật.
 - Khi chuyển thư mục, ứng dụng không sao chép `.git` và `.claude`; đã sao chép `.git` bằng tay và tạo lại `.claude/launch.json`.
 
 ## Quyết định
