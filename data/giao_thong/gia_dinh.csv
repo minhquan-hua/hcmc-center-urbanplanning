@@ -1,0 +1,14 @@
+ma,gia_tri,don_vi,mo_ta_vi,loai_nguon,nguon
+ti_le_xe_may,89,%,"Tỉ lệ xe máy trong dòng xe. Lấy theo tỉ lệ xe đăng ký (11,3 triệu xe máy trên 12,7 triệu phương tiện); tỉ lệ thực tế trên đường có thể khác.",số liệu công bố,https://daibieunhandan.vn/tp-ho-chi-minh-hon-xe-11-trieu-xe-mo-to-xe-gan-may-phai-thuc-hien-kiem-dinh-khi-thai-10404411.html
+ti_le_o_to,10,%,Tỉ lệ ô tô trong dòng xe.,giả định minh họa,
+ti_le_xe_buyt,1,%,Tỉ lệ xe buýt trong dòng xe.,giả định minh họa,
+
+toc_do_thap_diem,34,km/h,Tốc độ trung bình ngoài giờ cao điểm. Lấy theo tốc độ lưu thông trung bình khu trung tâm do báo dẫn lại.,số liệu công bố,https://www.sggp.org.vn/ket-xe-gia-tang-o-tphcm-chu-ky-den-xanh-khong-giai-toa-duoc-ap-luc-giao-thong-post777673.html
+toc_do_cao_diem,18,km/h,Tốc độ trung bình giờ cao điểm.,giả định minh họa,
+he_so_toc_do_xe_may,1.1,lần,Xe máy chạy nhanh hơn tốc độ trung bình bao nhiêu lần.,giả định minh họa,
+he_so_toc_do_o_to,1,lần,Ô tô so với tốc độ trung bình.,giả định minh họa,
+he_so_toc_do_xe_buyt,0.7,lần,Xe buýt so với tốc độ trung bình (có dừng đón khách).,giả định minh họa,
+so_xe_cao_diem,700,xe,Số chấm xe hiển thị giờ cao điểm trên máy tính. Điện thoại tự giảm còn khoảng 40%.,giả định minh họa,
+so_xe_thap_diem,280,xe,Số chấm xe hiển thị giờ thấp điểm trên máy tính.,giả định minh họa,
+ti_le_qua_song,40,%,Tỉ lệ chuyến đi có một đầu ở bờ đông sông Sài Gòn (Thủ Thiêm). Đặt cao hơn thực tế để dễ quan sát các cầu.,giả định minh họa,
+tang_toc_hien_thi,10,lần,Hoạt hình chạy nhanh hơn thời gian thực bao nhiêu lần.,giả định minh họa,

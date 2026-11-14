@@ -95,6 +95,39 @@ Khi bạn đã mở bài gốc và thấy thông tin đúng, đổi `da_kiem_chu
 
 Dự án không có dòng nào trong `hinh_dang_nguon.csv` vẫn hiện trong danh sách nhưng không có trên bản đồ.
 
+## Sửa các con số của mô phỏng giao thông
+
+File: `data/giao_thong/gia_dinh.csv` (mỗi dòng là một con số)
+
+| Cột | Ý nghĩa |
+|---|---|
+| `ma` | Tên nội bộ. **Không sửa, không xóa dòng.** |
+| `gia_tri` | Con số. Đây là cột bạn sửa. |
+| `don_vi` | Đơn vị, chỉ để hiển thị |
+| `mo_ta_vi` | Giải thích, hiện trong thẻ "Các con số mô phỏng dùng" |
+| `loai_nguon` | `số liệu công bố` hoặc `giả định minh họa` |
+| `nguon` | Link nguồn; bắt buộc nếu là số liệu công bố |
+
+Ba tỉ lệ xe máy, ô tô, xe buýt phải cộng lại bằng 100. Khi bạn tìm được số liệu thật cho một dòng đang là giả định, sửa `gia_tri`, đổi `loai_nguon` thành `số liệu công bố` và dán link vào `nguon`.
+
+Sửa xong chạy `cap_nhat_du_lieu.bat` để kiểm tra.
+
+## Sửa các kịch bản so sánh
+
+File: `data/giao_thong/kich_ban.csv`. Dòng đầu tiên luôn là hiện trạng.
+
+| Cột | Ý nghĩa |
+|---|---|
+| `ma` | Mã kịch bản |
+| `ten_vi`, `ten_en` | Tên hiện trên nút bấm |
+| `bo_cau` | Tên cầu hoặc hầm muốn bỏ đi, đúng như cột `ten_osm` trong `diem_qua_song.csv` |
+| `them_cau` | Tên cầu dự kiến muốn thêm, đúng như tên trên OpenStreetMap |
+| `mo_ta_vi`, `mo_ta_en` | Câu giải thích hiện dưới nút |
+
+Ví dụ thêm kịch bản "Nếu không có hầm Thủ Thiêm": thêm một dòng với `bo_cau` là `Hầm Sông Sài Gòn`.
+
+File `data/giao_thong/diem_qua_song.csv` liệt kê các cầu và hầm được đếm trong bảng thống kê.
+
 ## Ví dụ: thêm một phường mới vào bản đồ
 
 1. Mở `phuong_moi.csv`, thêm một dòng với đủ các cột. Lưu.

@@ -51,6 +51,24 @@ vi_tri_so_do,"Vị trí sơ đồ: chấm rỗng chỉ đánh dấu khu vực, k
 hinh_tu_osm,Hình dạng lấy từ OpenStreetMap; tuyến chưa xây là hướng tuyến dự kiến.,Shape from OpenStreetMap; unbuilt lines show the planned alignment.
 chua_co_vi_tri,Chưa có vị trí trên bản đồ.,No location on the map yet.
 lop_duong_bo,Giao thông đường bộ,Road traffic
+gt_canh_bao,"Mô phỏng minh họa cho mục đích học tập, không phải số liệu thực.","Illustrative simulation for learning purposes, not real data."
+gt_cao_diem,Giờ cao điểm,Peak hour
+gt_thap_diem,Giờ thấp điểm,Off-peak
+gt_kich_ban,Kịch bản,Scenario
+gt_dang_tai,Đang tải mạng đường...,Loading the road network...
+gt_xe_may,xe máy,motorbikes
+gt_o_to,ô tô,cars
+gt_xe_buyt,xe buýt,buses
+gt_diem_qua_song,Qua sông bằng,River crossing
+gt_so_xe,Số xe,Vehicles
+gt_so_voi_hien_trang,So với hiện trạng,vs. current
+gt_hien_trang,hiện trạng,current
+gt_quang_duong,Quãng đường trung bình của chuyến qua sông,Average length of a cross-river trip
+gt_giai_thich_so,"Số xe là số chấm đang chạy trong hoạt hình, không phải lưu lượng thật. Xe luôn chọn đường ngắn nhất.","Vehicle counts are dots in the animation, not real traffic volumes. Vehicles always take the shortest route."
+gt_xem_gia_dinh,Xem các con số mô phỏng dùng,See the numbers behind the simulation
+gt_gia_dinh,Các con số mô phỏng dùng,Numbers behind the simulation
+gt_so_lieu_cong_bo,số liệu công bố,published figure
+gt_gia_dinh_minh_hoa,giả định minh họa,illustrative assumption
 lop_duong_thuy,Giao thông thủy,Waterway traffic
 che_do_hoc,Chế độ học (tour),Learning mode (tours)
 sap_co,sắp có,coming soon

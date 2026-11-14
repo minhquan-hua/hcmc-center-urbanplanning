@@ -42,6 +42,10 @@ def doc_csv(duong_dan, cot_bat_buoc):
     phan_cach = ';' if dong_dau.count(';') > dong_dau.count(',') else ','
     ds = []
     for i, d in enumerate(csv.DictReader(van_ban.splitlines(), delimiter=phan_cach), start=2):
+        if None in d:
+            raise LoiDuLieu(f'File {duong_dan.relative_to(GOC)} dòng {i} có nhiều ô hơn số cột. '
+                            f'Thường là do một ô có dấu phẩy mà không nằm trong ngoặc kép; '
+                            f'hãy mở file bằng Excel, sửa lại dòng đó rồi lưu kiểu CSV UTF-8.')
         muc = {(k or '').strip(): (v or '').strip() for k, v in d.items()}
         if any(muc.values()):
             muc['_dong'] = i
@@ -527,6 +531,169 @@ def xu_ly_du_an(tai_lai):
     return len(canh_bao)
 
 
+# ---------------------------------------------------------------- giao thông đường bộ
+GT = GOC / 'data' / 'giao_thong'
+LOAI_DUONG = 'motorway|trunk|primary|secondary|tertiary'
+MA_GIA_DINH = ['ti_le_xe_may', 'ti_le_o_to', 'ti_le_xe_buyt', 'toc_do_thap_diem', 'toc_do_cao_diem',
+               'he_so_toc_do_xe_may', 'he_so_toc_do_o_to', 'he_so_toc_do_xe_buyt', 'so_xe_cao_diem',
+               'so_xe_thap_diem', 'ti_le_qua_song', 'tang_toc_hien_thi']
+
+
+def khoang_cach(a, b):
+    """Khoảng cách gần đúng giữa hai điểm (kinh độ, vĩ độ), tính bằng mét."""
+    kx = 111320 * math.cos(math.radians((a[1] + b[1]) / 2))
+    return math.hypot((a[0] - b[0]) * kx, (a[1] - b[1]) * 110570)
+
+
+def xu_ly_giao_thong(tai_lai):
+    print('\n7. Đọc giả định và kịch bản giao thông')
+    gia_dinh = doc_csv(GT / 'gia_dinh.csv', ['ma', 'gia_tri', 'don_vi', 'mo_ta_vi', 'loai_nguon', 'nguon'])
+    kich_ban = doc_csv(GT / 'kich_ban.csv', ['ma', 'ten_vi', 'ten_en', 'bo_cau', 'them_cau', 'mo_ta_vi'])
+    qua_song = doc_csv(GT / 'diem_qua_song.csv', ['ten_osm', 'ten_vi', 'ten_en'])
+    loi = []
+    co = {g['ma']: g for g in gia_dinh}
+    for ma in MA_GIA_DINH:
+        if ma not in co:
+            loi.append(f'gia_dinh.csv: thiếu dòng "{ma}"')
+    for g in gia_dinh:
+        vt = f'gia_dinh.csv dòng {g["_dong"]}'
+        try:
+            assert float(g['gia_tri'].replace(',', '.')) >= 0
+        except Exception:
+            loi.append(f'{vt}: "gia_tri" phải là một con số không âm, đang là "{g["gia_tri"]}"')
+        if g['loai_nguon'] not in ('số liệu công bố', 'giả định minh họa'):
+            loi.append(f'{vt}: "loai_nguon" phải là "số liệu công bố" hoặc "giả định minh họa"')
+        if g['loai_nguon'] == 'số liệu công bố' and not g['nguon'].startswith('http'):
+            loi.append(f'{vt}: số liệu công bố phải có link ở cột "nguon"')
+    if not loi:
+        tong = sum(float(co[m]['gia_tri'].replace(',', '.')) for m in MA_GIA_DINH[:3])
+        if abs(tong - 100) > 0.5:
+            loi.append(f'gia_dinh.csv: ba tỉ lệ xe máy, ô tô, xe buýt phải cộng lại bằng 100, đang là {tong:g}')
+    if not kich_ban or kich_ban[0]['bo_cau'] or kich_ban[0]['them_cau']:
+        loi.append('kich_ban.csv: dòng đầu tiên phải là hiện trạng (để trống "bo_cau" và "them_cau")')
+    if loi:
+        raise LoiDuLieu('Có lỗi trong file dữ liệu giao thông:\n  - ' + '\n  - '.join(loi))
+
+    print('8. Mạng đường chính từ OpenStreetMap')
+    them = sorted({k['them_cau'] for k in kich_ban if k['them_cau']})
+    truy_van = (f'[out:json][timeout:180];(way["highway"~"^({LOAI_DUONG})(_link)?$"]({KHUNG_DA});'
+                + ''.join(f'way["highway"="proposed"]["name"="{t}"]({KHUNG_DA});' for t in them)
+                + ');out body;>;out skel qt;')
+    tep = GT / 'goc_osm' / 'mang_duong.json'
+    tep_tv = GT / 'goc_osm' / 'truy_van.txt'
+    if tai_lai or not tep.exists() or not tep_tv.exists() or tep_tv.read_text(encoding='utf-8') != truy_van:
+        tai(truy_van, tep)
+        tep_tv.write_text(truy_van, encoding='utf-8')
+    phan_tu = json.loads(tep.read_text(encoding='utf-8'))['elements']
+    toa_do = {e['id']: (round(e['lon'], 5), round(e['lat'], 5)) for e in phan_tu if e['type'] == 'node'}
+    cac_way = [e for e in phan_tu if e['type'] == 'way' and len(e.get('nodes', [])) >= 2]
+
+    # bờ đông sông Sài Gòn = các phường mới thuộc Thành phố Thủ Đức cũ
+    pm = {p['ma']: p for p in doc_csv(HC / 'phuong_moi.csv', ['ma', 'khu_cu'])}
+    hinh_pm = json.loads((HC / 'phuong_moi.geojson').read_text(encoding='utf-8'))['features']
+    vung_dong = []
+    for f in hinh_pm:
+        if pm.get(f['properties']['ma'], {}).get('khu_cu') == 'Thành phố Thủ Đức':
+            g = f['geometry']
+            vung_dong += [g['coordinates']] if g['type'] == 'Polygon' else g['coordinates']
+
+    dem = {}
+    for w in cac_way:
+        for i, n in enumerate(w['nodes']):
+            dem[n] = dem.get(n, 0) + (2 if i in (0, len(w['nodes']) - 1) else 1)
+    chi_so = {}
+    nut = []
+
+    def lay_nut(n):
+        if n not in chi_so:
+            chi_so[n] = len(nut)
+            x, y = toa_do[n]
+            nut.append([x, y, 1 if trong_da_giac((x, y), vung_dong) else 0])
+        return chi_so[n]
+
+    ten_qs = [q['ten_osm'] for q in qua_song]
+    canh = []
+    thay_qs = set()
+    for w in cac_way:
+        t = w.get('tags', {})
+        du_kien = t.get('highway') == 'proposed'
+        ten = t.get('name', '')
+        mot_chieu = t.get('oneway', '')
+        chieu = 0
+        if mot_chieu in ('yes', '1', 'true') or t.get('junction') == 'roundabout' or \
+                (t.get('highway', '').startswith('motorway') and mot_chieu != 'no'):
+            chieu = 1
+        cac_nut = w['nodes'][::-1] if mot_chieu == '-1' else w['nodes']
+        if mot_chieu == '-1':
+            chieu = 1
+        qs = ten_qs.index(ten) if ten in ten_qs and (du_kien or t.get('bridge') or t.get('tunnel')) else -1
+        if qs >= 0:
+            thay_qs.add(ten)
+        dau = 0
+        for i in range(1, len(cac_nut)):
+            if dem[cac_nut[i]] > 1 or i == len(cac_nut) - 1:
+                doan = [toa_do[n] for n in cac_nut[dau:i + 1]]
+                dai = sum(khoang_cach(doan[k], doan[k + 1]) for k in range(len(doan) - 1))
+                if dai > 0:
+                    canh.append([lay_nut(cac_nut[dau]), lay_nut(cac_nut[i]), round(dai), chieu, qs,
+                                 ten if du_kien else '', [c for p in doan for c in p]])
+                dau = i
+
+    # cầu dự kiến chưa nối vào mạng thì nối thẳng tới nút gần nhất
+    canh_bao = []
+    bac = {}
+    for c in canh:
+        if not c[5]:
+            bac[c[0]] = bac.get(c[0], 0) + 1
+            bac[c[1]] = bac.get(c[1], 0) + 1
+    for t in them:
+        dau_mut = {}
+        for c in canh:
+            if c[5] == t:
+                for n in (c[0], c[1]):
+                    dau_mut[n] = dau_mut.get(n, 0) + 1
+        if not dau_mut:
+            canh_bao.append(f'Không tìm thấy tuyến dự kiến "{t}" trên OpenStreetMap; kịch bản thêm cầu này sẽ giống hiện trạng')
+            continue
+        for n, so in dau_mut.items():
+            if so == 1 and n not in bac:
+                gan = min(bac, key=lambda m: khoang_cach(nut[m], nut[n]))
+                d = khoang_cach(nut[gan], nut[n])
+                if d > 600:
+                    canh_bao.append(f'Một đầu của "{t}" cách đường chính gần nhất {d:.0f} m, chưa nối được')
+                    continue
+                canh.append([n, gan, max(1, round(d)), 0, -1, t, nut[n][:2] + nut[gan][:2]])
+    for q in qua_song:
+        if q['ten_osm'] not in thay_qs:
+            canh_bao.append(f'diem_qua_song.csv: không thấy cầu/hầm nào tên "{q["ten_osm"]}" trong mạng đường')
+    for k in kich_ban:
+        if k['bo_cau'] and k['bo_cau'] not in ten_qs:
+            canh_bao.append(f'kich_ban.csv dòng {k["_dong"]}: "{k["bo_cau"]}" không có trong diem_qua_song.csv')
+
+    ket_qua = {'nut': nut, 'canh': canh, 'qua_song': ten_qs}
+    tep_ra = GT / 'mang_duong.json'
+    tep_ra.write_text(json.dumps(ket_qua, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    print(f'  Đã ghi {tep_ra.relative_to(GOC)} ({len(nut)} nút, {len(canh)} đoạn đường, '
+          f'{tep_ra.stat().st_size // 1024} KB)')
+
+    gd = [f'{g["ma"]} = {g["gia_tri"]} {g["don_vi"]} ({g["loai_nguon"]})' for g in gia_dinh]
+    bao_cao = [
+        'BÁO CÁO KIỂM TRA DỮ LIỆU GIAO THÔNG',
+        f'Tạo lúc: {time.strftime("%d/%m/%Y %H:%M")} (file này do máy tạo, đừng sửa tay)',
+        '',
+        f'Mạng đường: {len(nut)} nút, {len(canh)} đoạn. Điểm qua sông tìm thấy: {", ".join(sorted(thay_qs))}.',
+        '',
+        f'CẢNH BÁO ({len(canh_bao)}):' if canh_bao else 'CẢNH BÁO: không có.',
+        *[f'  - {c}' for c in canh_bao],
+        '',
+        'CÁC CON SỐ ĐANG DÙNG:', *[f'  - {s}' for s in gd],
+        '',
+    ]
+    (GT / 'BAO_CAO_KIEM_TRA.txt').write_text('\n'.join(bao_cao), encoding='utf-8')
+    print('\n' + '\n'.join(bao_cao))
+    return len(canh_bao)
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -535,6 +702,7 @@ def main():
     try:
         so_canh_bao = xu_ly_hanh_chinh('--tai-lai' in sys.argv)
         so_canh_bao += xu_ly_du_an('--tai-lai' in sys.argv)
+        so_canh_bao += xu_ly_giao_thong('--tai-lai' in sys.argv)
     except LoiDuLieu as e:
         print(f'\nDỪNG LẠI: {e}')
         return 1

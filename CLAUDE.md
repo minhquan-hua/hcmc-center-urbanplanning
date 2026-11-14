@@ -77,7 +77,7 @@ data/
 - [x] 1. Bản đồ nền 3D + khung giao diện (có nút đổi ngôn ngữ và chế độ trình chiếu). Xong 13/11/2026; chưa thử trên điện thoại thật.
 - [x] 2. Lớp hành chính Trước/Sau 2025. Xong 14/11/2026; chủ dự án chưa duyệt danh sách "cần kiểm chứng" (18 hình dạng ranh giới).
 - [x] 3. Lớp dự án quy hoạch + bộ lọc. Xong 14/11/2026; cả 15 dự án còn "cần kiểm chứng" (chưa mở bài gốc); chưa có dự án loại "đường".
-- [ ] 4. Giao thông đường bộ
+- [x] 4. Giao thông đường bộ. Xong 14/11/2026; chưa thử trên điện thoại thật.
 - [ ] 5. Giao thông thủy
 - [ ] 6. Chế độ học (tour)
 - [ ] 7. Hoàn thiện, thử trên điện thoại thật, đưa lên mạng, bàn giao hướng dẫn
@@ -126,6 +126,15 @@ Nguồn hình dạng ranh giới (đã kiểm tra bằng Overpass API, chưa t�
 - Quận/phường cũ: OSM hiện tại đã xóa; lấy bằng truy vấn lịch sử `[date:"2025-05-01T00:00:00Z"]` (quận = admin_level 6, phường = 8; 114 phường trong khung).
 - Máy chủ Overpass chạy được: https://overpass-api.de/api/interpreter (hay lỗi 502, cần thử lại). Truy vấn lịch sử chỉ chạy trên máy chủ này.
 - Chưa tìm thấy file ranh giới mới do cơ quan nhà nước công bố mở.
+
+## Giai đoạn 4 đã làm gì (14/11/2026)
+
+- QUYẾT ĐỊNH: không dùng deck.gl. Xe là một lớp `circle` của MapLibre, cập nhật vị trí khoảng 20 lần/giây bằng `setData`. Lý do: 700 chấm là đủ nhẹ, bớt được một thư viện hơn 1 MB cho điện thoại. Giai đoạn 5 (tàu thủy) nên làm cùng cách.
+- `xu_ly_giao_thong()` trong `scripts/cap_nhat.py`: tải đường motorway..tertiary (+ cầu dự kiến nêu trong `kich_ban.csv`) từ Overpass, cắt thành đoạn giữa các nút giao, ghi `data/giao_thong/mang_duong.json` (`nut`: [kinh độ, vĩ độ, bờ đông 0/1]; `canh`: [nút đầu, nút cuối, dài m, một chiều 0/1, chỉ số điểm qua sông hoặc -1, tên cầu dự kiến hoặc "", tọa độ]). Bờ đông = nằm trong 3 phường thuộc Thủ Đức cũ. Cầu dự kiến chưa nối vào mạng thì nối thẳng tới nút gần nhất (dưới 600 m).
+- `src/giao_thong.js`: chỉ tải dữ liệu khi người dùng bật lớp (mặc định tắt). 260 cặp đi-đến cố định (hạt giống ngẫu nhiên cố định) dùng chung mọi kịch bản; mỗi kịch bản tìm đường ngắn nhất lại (Dijkstra). Xe lặp lại tuyến của mình. Điện thoại/máy yếu hiện 40% số xe. Bảng thống kê đếm số chấm xe qua từng cầu/hầm và so với hiện trạng.
+- Số liệu: `data/giao_thong/gia_dinh.csv`. Hai dòng có nguồn báo chí (tỉ lệ xe máy 89% theo đăng ký; tốc độ trung bình khu trung tâm 34 km/h), còn lại là "giả định minh họa". Nút "Xem các con số mô phỏng dùng" mở thẻ liệt kê tất cả.
+- Hạn chế đã biết (ghi trên giao diện): xe luôn đi đường ngắn nhất, không có ùn tắc theo tải, không có đèn tín hiệu; số trong bảng là số chấm, không phải lưu lượng.
+- Kết quả thử (700 xe, cao điểm): bỏ cầu Ba Son thì 55 xe chuyển sang cầu Thủ Thiêm (+26), hầm (+18), cầu Sài Gòn (+3); thêm Thủ Thiêm 4 thì cầu này nhận 15 xe.
 
 ## Giai đoạn 3 đã làm gì (14/11/2026)
 

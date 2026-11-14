@@ -187,6 +187,36 @@ label.dong input { width: 1.15rem; height: 1.15rem; accent-color: var(--nhan); }
 .ds-nguon { margin: 0 0 0.4rem; padding-left: 1.1rem; }
 .ds-nguon a { color: var(--nhan); }
 
+/* Lớp giao thông */
+.giao-thong { padding: 0 0 0.6rem; }
+.canh-bao-mo-phong {
+  margin: 0 0 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+  background: #fff3d6;
+  color: #7a4f00;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.ds-kich-ban { display: flex; flex-direction: column; gap: 0.3rem; }
+.nut-kich-ban {
+  min-height: 2.3rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--vien);
+  border-radius: 0.5rem;
+  background: var(--nen);
+  font-size: 0.85rem;
+  text-align: left;
+}
+.nut-kich-ban[aria-pressed="true"] { border-color: var(--nhan); background: #e7f3f8; font-weight: 600; }
+.bang-tk { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.8rem; }
+.bang-tk th { text-align: left; font-weight: 600; color: var(--chu-mo); padding: 0.2rem 0.3rem 0.2rem 0; }
+.bang-tk td { padding: 0.25rem 0.3rem 0.25rem 0; border-top: 1px solid var(--vien); }
+.bang-tk .so { text-align: right; font-variant-numeric: tabular-nums; }
+.bang-tk th:not(:first-child) { text-align: right; }
+.bang-tk .tang { color: #c92a2a; font-weight: 600; }
+.bang-tk .giam { color: #1e6b34; font-weight: 600; }
+
 /* Thẻ thông tin: điện thoại trượt từ đáy, laptop nằm góc phải dưới */
 .the {
   position: fixed;

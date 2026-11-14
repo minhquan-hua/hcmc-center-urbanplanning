@@ -1,0 +1,1 @@
+[out:json][timeout:180];(way["highway"~"^(motorway|trunk|primary|secondary|tertiary)(_link)?$"](10.735,106.665,10.83,106.80);way["highway"="proposed"]["name"="Cầu Thủ Thiêm 4"](10.735,106.665,10.83,106.80););out body;>;out skel qt;

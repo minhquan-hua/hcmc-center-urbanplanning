@@ -1,0 +1,20 @@
+BÁO CÁO KIỂM TRA DỮ LIỆU GIAO THÔNG
+Tạo lúc: 14/11/2026 21:11 (file này do máy tạo, đừng sửa tay)
+
+Mạng đường: 4963 nút, 6831 đoạn. Điểm qua sông tìm thấy: Cầu Ba Son, Cầu Sài Gòn, Cầu Thủ Thiêm, Cầu Thủ Thiêm 4, Hầm Sông Sài Gòn.
+
+CẢNH BÁO: không có.
+
+CÁC CON SỐ ĐANG DÙNG:
+  - ti_le_xe_may = 89 % (số liệu công bố)
+  - ti_le_o_to = 10 % (giả định minh họa)
+  - ti_le_xe_buyt = 1 % (giả định minh họa)
+  - toc_do_thap_diem = 34 km/h (số liệu công bố)
+  - toc_do_cao_diem = 18 km/h (giả định minh họa)
+  - he_so_toc_do_xe_may = 1.1 lần (giả định minh họa)
+  - he_so_toc_do_o_to = 1 lần (giả định minh họa)
+  - he_so_toc_do_xe_buyt = 0.7 lần (giả định minh họa)
+  - so_xe_cao_diem = 700 xe (giả định minh họa)
+  - so_xe_thap_diem = 280 xe (giả định minh họa)
+  - ti_le_qua_song = 40 % (giả định minh họa)
+  - tang_toc_hien_thi = 10 lần (giả định minh họa)

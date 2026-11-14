@@ -1,0 +1,4 @@
+ma,ten_vi,ten_en,bo_cau,them_cau,mo_ta_vi,mo_ta_en
+hien-trang,Hiện trạng,Current network,,,Mạng đường chính hiện có.,The existing main road network.
+khong-cau-ba-son,Nếu không có cầu Ba Son,Without Ba Son Bridge,Cầu Ba Son,,Bỏ cầu Ba Son khỏi mạng đường để thấy cây cầu này đang gánh bao nhiêu chuyến đi qua sông.,Removes Ba Son Bridge to show how many river crossings it carries.
+co-cau-thu-thiem-4,Nếu có thêm cầu Thủ Thiêm 4,With Thủ Thiêm 4 Bridge,,Cầu Thủ Thiêm 4,Thêm cầu Thủ Thiêm 4 theo hướng tuyến dự kiến trên OpenStreetMap.,Adds Thủ Thiêm 4 Bridge along the planned alignment from OpenStreetMap.

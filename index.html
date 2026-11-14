@@ -53,7 +53,23 @@
         <ul class="ds-du-an" id="ds-du-an"></ul>
         <p class="ghi-chu" data-chu="chu_giai_du_an">Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chấm rỗng: vị trí sơ đồ.</p>
       </div>
-      <div class="dong mo"><span data-chu="lop_duong_bo">Giao thông đường bộ</span><em data-chu="sap_co">sắp có</em></div>
+      <label class="dong">
+        <input type="checkbox" id="bat-giao-thong">
+        <span data-chu="lop_duong_bo">Giao thông đường bộ</span>
+      </label>
+      <div class="giao-thong" id="khoi-giao-thong" hidden>
+        <p class="canh-bao-mo-phong" data-chu="gt_canh_bao">Mô phỏng minh họa cho mục đích học tập, không phải số liệu thực.</p>
+        <div class="chon-ky" id="gt-chon-ky" role="group">
+          <button type="button" data-ky="cao" aria-pressed="true" data-chu="gt_cao_diem">Giờ cao điểm</button>
+          <button type="button" data-ky="thap" aria-pressed="false" data-chu="gt_thap_diem">Giờ thấp điểm</button>
+        </div>
+        <p class="nhan-loc" data-chu="gt_kich_ban">Kịch bản</p>
+        <div class="ds-kich-ban" id="gt-kich-ban"></div>
+        <p class="ghi-chu" id="gt-mo-ta"></p>
+        <ul class="chu-giai" id="gt-chu-giai"></ul>
+        <div id="gt-thong-ke"></div>
+        <button type="button" class="nut-phu" id="gt-xem-gia-dinh" data-chu="gt_xem_gia_dinh">Xem các con số mô phỏng dùng</button>
+      </div>
       <div class="dong mo"><span data-chu="lop_duong_thuy">Giao thông thủy</span><em data-chu="sap_co">sắp có</em></div>
       <div class="dong mo"><span data-chu="che_do_hoc">Chế độ học (tour)</span><em data-chu="sap_co">sắp có</em></div>
       <button id="nut-ve-dau" type="button" class="nut-phu" data-chu="ve_goc_nhin_dau">Về góc nhìn ban đầu</button>
@@ -72,5 +88,6 @@
   <script src="src/app.js"></script>
   <script src="src/hanh_chinh.js"></script>
   <script src="src/du_an.js"></script>
+  <script src="src/giao_thong.js"></script>
 </body>
 </html>
