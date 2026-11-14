@@ -129,6 +129,8 @@ Nguồn hình dạng ranh giới (đã kiểm tra bằng Overpass API, chưa t�
 
 ## Giai đoạn 3 đang dở (dừng 14/11/2026 vì hết hạn mức sử dụng)
 
+CẬP NHẬT 14/11/2026: đã tra xong vòng đầu, 15 dự án nằm trong bản nháp `data/du_an/du_an.csv` (tất cả "cần kiểm chứng" vì mới đọc tóm tắt kết quả tìm kiếm, chưa mở từng bài gốc). Đang chờ chủ dự án duyệt danh sách; CHƯA dựng lớp, chưa có hình dạng (`du_an.geojson`). Dự định: công trình đã có lấy hình dạng từ OpenStreetMap; công trình chưa xây vẽ sơ đồ giữa hai đầu nối và gắn nhãn "vị trí sơ đồ". Chưa tra loại "đường". Ghi chú cũ bên dưới giữ để tham khảo.
+
 Chủ dự án đã đồng ý kế hoạch: tra cứu dự án -> báo danh sách để duyệt -> mới dựng lớp. Mới tra được 1 dự án, CHƯA mở bài gốc để kiểm:
 - Cầu Ba Son (tên cũ Thủ Thiêm 2), theo vi.wikipedia.org/wiki/Cầu_Ba_Son và các bài nó dẫn: khởi công 3/2/2015 (vnexpress.net/tin-tuc/thoi-su/tp-hcm-khoi-cong-xay-cau-thu-thiem-2-3142825.html), hợp long 2/9/2021 (vnexpress.net/hop-long-cau-thu-thiem-2-4350180.html), thông xe 28/4/2022 (vnexpress.net/khanh-thanh-cau-thu-thiem-2-4456750.html), đổi tên 9/12/2022. Số liệu dài 1.465 m, 6 làn, vốn 3.082 tỷ chỉ có nguồn baodautu/vovgiaothong: cần kiểm chứng.
 - Chưa tra: cầu Thủ Thiêm 1, 3, 4; cầu đi bộ; hầm Thủ Thiêm; metro 1, 2; Bến Thành - Thủ Thiêm; quảng trường, nhà hát, trung tâm tài chính ở Thủ Thiêm; công viên bờ sông; Bình Quới - Thanh Đa. (Wikipedia tiếng Việt không có trang cầu Thủ Thiêm 4.)
