@@ -149,6 +149,33 @@ File `data/giao_thong/ben_thuy.csv` (mỗi dòng là một bến hoặc cảng):
 
 Ví dụ khi buýt sông số 2 đi vào hoạt động: đổi `trang_thai` thành `đang hoạt động`, sửa `mo_ta_vi`, `nguon`, `ngay_cap_nhat`, rồi nhờ Claude điền `truy_van` để tuyến hiện trên bản đồ.
 
+## Sửa nội dung các tour học tập
+
+File `data/tour/tour.csv` (mỗi dòng là một tour): `ma`, tên và mô tả bằng hai thứ tiếng.
+
+File `data/tour/buoc.csv` (mỗi dòng là một bước của một tour):
+
+| Cột | Ý nghĩa |
+|---|---|
+| `tour` | Mã tour mà bước này thuộc về |
+| `thu_tu` | Số thứ tự của bước trong tour (1, 2, 3...) |
+| `tieu_de_vi`, `tieu_de_en` | Tiêu đề bước |
+| `loi_dan_vi`, `loi_dan_en` | Lời dẫn. Chỉ viết những điều đã có nguồn trong các file dữ liệu khác. |
+| `cau_hoi_vi`, `cau_hoi_en` | Câu hỏi gợi mở cho sinh viên |
+| `kinh_do`, `vi_do` | Bản đồ bay tới điểm này |
+| `thu_phong` | Mức phóng to, từ 10 (xa) đến 18 (gần) |
+| `nghieng` | Độ nghiêng, từ 0 (nhìn thẳng xuống) đến 70 |
+| `xoay` | Góc xoay bản đồ, 0 là hướng bắc ở trên |
+| `lop` | Các lớp tự bật ở bước này, ngăn bằng ` | `. Dùng: `hanh-chinh`, `du-an`, `duong-bo`, `thuy`. Lớp không ghi sẽ tự tắt. |
+| `ky_hanh_chinh` | `truoc` hoặc `sau`, hoặc để trống |
+| `kich_ban` | Mã kịch bản giao thông trong `kich_ban.csv`, hoặc để trống |
+
+Việc hay làm nhất là **sửa lời dẫn và câu hỏi**: mở `buoc.csv` bằng Excel, sửa ô, lưu kiểu CSV UTF-8, rồi chạy `cap_nhat_du_lieu.bat` để kiểm tra.
+
+Để thêm một bước: thêm một dòng với `thu_tu` kế tiếp. Lấy `kinh_do`, `vi_do` bằng cách nhấp chuột phải trên Google Maps (số đầu là vĩ độ, số sau là kinh độ).
+
+Để thêm một tour: thêm một dòng trong `tour.csv` với `ma` mới, rồi thêm các bước mang mã đó trong `buoc.csv`.
+
 ## Ví dụ: thêm một phường mới vào bản đồ
 
 1. Mở `phuong_moi.csv`, thêm một dòng với đủ các cột. Lưu.

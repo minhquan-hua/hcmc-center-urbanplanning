@@ -440,7 +440,7 @@
       kichBan = kq[2];
       quaSong = kq[3];
       if (!kichBan.length) throw { tep: 'kich_ban.csv', kieu: 'hong' };
-      maKichBan = kichBan[0].ma;
+      maKichBan = kichBan.some(function (k) { return k.ma === kbCho; }) ? kbCho : kichBan[0].ma;
       taoCapDiDen();
       return new Promise(function (xong) { S.khiNenSanSang(xong); });
     }).then(function () {
@@ -469,7 +469,16 @@
   S.khiDoiNgonNgu(function () { veBang(); });
   veBang();
 
+  var kbCho = null; // kịch bản được yêu cầu trước khi dữ liệu tải xong (dùng cho các tour)
   window.SaBan.giaoThong = {
+    datKichBan: function (ma) {
+      kbCho = ma;
+      if (sanSang && kichBan.some(function (k) { return k.ma === ma; }) && ma !== maKichBan) {
+        maKichBan = ma;
+        veBang();
+        capNhat();
+      }
+    },
     trangThai: function () {
       return { sanSang: sanSang, soXe: xe.length, kichBan: maKichBan, ky: ky, dangChay: dangChay,
                thongKe: sanSang ? demQuaSong(maKichBan) : null };

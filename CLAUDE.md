@@ -79,7 +79,7 @@ data/
 - [x] 3. Lớp dự án quy hoạch + bộ lọc. Xong 14/11/2026; cả 15 dự án còn "cần kiểm chứng" (chưa mở bài gốc); chưa có dự án loại "đường".
 - [x] 4. Giao thông đường bộ. Xong 14/11/2026; chưa thử trên điện thoại thật.
 - [x] 5. Giao thông thủy. Xong 14/11/2026; 5 tuyến đều "cần kiểm chứng"; chưa thử trên điện thoại thật.
-- [ ] 6. Chế độ học (tour)
+- [x] 6. Chế độ học (tour). Xong 15/11/2026; chủ dự án CHƯA duyệt lời dẫn và câu hỏi.
 - [ ] 7. Hoàn thiện, thử trên điện thoại thật, đưa lên mạng, bàn giao hướng dẫn
 
 ## Quyết định
@@ -126,6 +126,13 @@ Nguồn hình dạng ranh giới (đã kiểm tra bằng Overpass API, chưa t�
 - Quận/phường cũ: OSM hiện tại đã xóa; lấy bằng truy vấn lịch sử `[date:"2025-05-01T00:00:00Z"]` (quận = admin_level 6, phường = 8; 114 phường trong khung).
 - Máy chủ Overpass chạy được: https://overpass-api.de/api/interpreter (hay lỗi 502, cần thử lại). Truy vấn lịch sử chỉ chạy trên máy chủ này.
 - Chưa tìm thấy file ranh giới mới do cơ quan nhà nước công bố mở.
+
+## Giai đoạn 6 đã làm gì (15/11/2026)
+
+- Ba tour, 17 bước, song ngữ: `data/tour/tour.csv` và `data/tour/buoc.csv` (tạo lần đầu bằng script tạm, từ nay sửa thẳng trong CSV). Tour: `thu-thiem` (6 bước), `quan-sang-phuong` (5), `dong-song` (6).
+- Lời dẫn chỉ dùng dữ kiện đã có trong các file dữ liệu (nên cũng mang mức "cần kiểm chứng" của các file đó). Câu hỏi gợi mở do Claude soạn. Hai con số "khoảng 15 km2 / 3 km2" là diện tích tính từ ranh giới tham khảo OSM.
+- `src/tour.js`: danh sách tour trong bảng lớp; khung `#tour` ở đáy (điện thoại) hoặc giữa đáy (laptop). Mỗi bước: bật/tắt lớp bằng cách đổi ô chọn rồi phát sự kiện `change`, gọi `S.hanhChinh.datKy`, `S.giaoThong.datKichBan` (nhớ kịch bản nếu dữ liệu chưa tải xong), rồi `flyTo` có chừa 38% chiều cao ở đáy cho khung tour. Thoát thì trả lề về 0; KHÔNG khôi phục các lớp về trạng thái trước tour.
+- `kiem_tra_tour()` trong `scripts/cap_nhat.py` kiểm tra cột, vị trí, tên lớp, mã kịch bản.
 
 ## Giai đoạn 5 đã làm gì (14/11/2026)
 

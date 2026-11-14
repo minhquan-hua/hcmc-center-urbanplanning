@@ -217,6 +217,62 @@ label.dong input { width: 1.15rem; height: 1.15rem; accent-color: var(--nhan); }
 .bang-tk .tang { color: #c92a2a; font-weight: 600; }
 .bang-tk .giam { color: #1e6b34; font-weight: 600; }
 
+/* Chế độ học */
+.tieu-de-muc { font-weight: 650; }
+.ds-tour { display: flex; flex-direction: column; gap: 0.4rem; padding-bottom: 0.5rem; }
+.nut-tour {
+  display: flex; flex-direction: column; gap: 0.15rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--vien);
+  border-radius: 0.6rem;
+  background: var(--nen);
+  text-align: left;
+}
+.nut-tour strong { font-size: 0.88rem; }
+.nut-tour span { font-size: 0.76rem; color: var(--chu-mo); line-height: 1.35; }
+.nut-tour em { font-style: normal; font-size: 0.72rem; color: var(--nhan); font-weight: 600; }
+.tour {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  max-height: 52vh;
+  overflow-y: auto;
+  background: var(--nen);
+  border-radius: 0.9rem 0.9rem 0 0;
+  box-shadow: var(--bong);
+  padding: 0.9rem 1rem calc(0.8rem + env(safe-area-inset-bottom));
+  z-index: 5;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.tour h2 { margin: 0.15rem 0 0.4rem; font-size: 1.15rem; }
+.tour-loi-dan { margin: 0 0 0.6rem; }
+.tour-cau-hoi { padding: 0.55rem 0.7rem; border-left: 4px solid var(--nhan); background: #e7f3f8; border-radius: 0 0.4rem 0.4rem 0; }
+.tour-cau-hoi strong { font-size: 0.75rem; color: var(--nhan); text-transform: uppercase; letter-spacing: 0.03em; }
+.tour-cau-hoi p { margin: 0.15rem 0 0; }
+.tour-nut { display: flex; gap: 0.4rem; margin-top: 0.7rem; position: sticky; bottom: 0; background: var(--nen); padding-top: 0.3rem; }
+.tour-nut button {
+  flex: 1;
+  min-height: 2.6rem;
+  border: 1px solid var(--vien);
+  border-radius: 0.5rem;
+  background: var(--nen);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.tour-nut button.chinh { background: var(--nhan); border-color: var(--nhan); color: #fff; flex: 1.6; }
+.tour-nut button:disabled { opacity: 0.4; cursor: default; }
+@media (max-width: 767px) { body.dang-tour .bang { display: none; } }
+@media (min-width: 768px) {
+  .tour {
+    left: 50%; right: auto; bottom: 1.6rem;
+    transform: translateX(-50%);
+    width: min(38rem, calc(100vw - 2rem));
+    max-height: 46vh;
+    border-radius: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
+}
+
 /* Thẻ thông tin: điện thoại trượt từ đáy, laptop nằm góc phải dưới */
 .the {
   position: fixed;

@@ -86,6 +86,12 @@ th_thuoc_tuyen,Thuộc tuyến,Route
 th_vi_tri_osm,Vị trí lấy từ OpenStreetMap.,Location from OpenStreetMap.
 th_tau_minh_hoa,"Tàu chạy trên bản đồ là minh họa: số tàu ({so}) và tốc độ ({toc} km/h) là giả định, không phải lịch chạy thật.","Boats on the map are illustrative: the number of boats ({so}) and speed ({toc} km/h) are assumptions, not real schedules."
 che_do_hoc,Chế độ học (tour),Learning mode (tours)
+tour_buoc,bước,steps
+tour_cau_hoi,Câu hỏi gợi mở,Question to think about
+tour_thoat,Thoát,Exit
+tour_truoc,Trước,Back
+tour_tiep,Tiếp,Next
+tour_ket_thuc,Kết thúc,Finish
 sap_co,sắp có,coming soon
 ve_goc_nhin_dau,Về góc nhìn ban đầu,Reset view
 nguon_ban_do,"Bản đồ nền: © OpenStreetMap (giấy phép ODbL), OpenMapTiles, OpenFreeMap.","Base map: © OpenStreetMap (ODbL licence), OpenMapTiles, OpenFreeMap."

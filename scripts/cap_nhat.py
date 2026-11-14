@@ -864,6 +864,53 @@ def xu_ly_thuy(tai_lai):
     return len(canh_bao)
 
 
+# ---------------------------------------------------------------- tour học tập
+LOP_TOUR = ['hanh-chinh', 'du-an', 'duong-bo', 'thuy']
+
+
+def kiem_tra_tour():
+    print('\n11. Kiểm tra nội dung các tour')
+    thu_muc = GOC / 'data' / 'tour'
+    tour = doc_csv(thu_muc / 'tour.csv', ['ma', 'ten_vi', 'ten_en', 'mo_ta_vi', 'mo_ta_en'])
+    buoc = doc_csv(thu_muc / 'buoc.csv',
+                   ['tour', 'thu_tu', 'tieu_de_vi', 'loi_dan_vi', 'cau_hoi_vi', 'kinh_do', 'vi_do',
+                    'thu_phong', 'nghieng', 'xoay', 'lop', 'ky_hanh_chinh', 'kich_ban'])
+    kich_ban = [k['ma'] for k in doc_csv(GT / 'kich_ban.csv', ['ma'])]
+    loi = []
+    ma_tour = [t['ma'] for t in tour]
+    for b in buoc:
+        vt = f'buoc.csv dòng {b["_dong"]}'
+        if b['tour'] not in ma_tour:
+            loi.append(f'{vt}: tour "{b["tour"]}" không có trong tour.csv')
+        if not b['tieu_de_vi'] or not b['loi_dan_vi']:
+            loi.append(f'{vt}: thiếu "tieu_de_vi" hoặc "loi_dan_vi"')
+        try:
+            x, y = float(b['kinh_do'].replace(',', '.')), float(b['vi_do'].replace(',', '.'))
+            assert 106.62 <= x <= 106.83 and 10.70 <= y <= 10.86
+            assert 10 <= float(b['thu_phong'].replace(',', '.')) <= 18
+            assert 0 <= float((b['nghieng'] or '0').replace(',', '.')) <= 70
+            float((b['xoay'] or '0').replace(',', '.'))
+            int(b['thu_tu'])
+        except Exception:
+            loi.append(f'{vt}: vị trí không hợp lệ. Kinh độ 106.62-106.83, vĩ độ 10.70-10.86, '
+                       f'thu phóng 10-18, nghiêng 0-70; "thu_tu" phải là số nguyên')
+        for l in [x for x in b['lop'].split('|') if x]:
+            if l not in LOP_TOUR:
+                loi.append(f'{vt}: lớp "{l}" không hợp lệ; dùng: {", ".join(LOP_TOUR)} (ngăn bằng dấu |)')
+        if b['ky_hanh_chinh'] not in ('', 'truoc', 'sau'):
+            loi.append(f'{vt}: "ky_hanh_chinh" phải để trống, hoặc là "truoc" hay "sau"')
+        if b['kich_ban'] and b['kich_ban'] not in kich_ban:
+            loi.append(f'{vt}: kịch bản "{b["kich_ban"]}" không có trong kich_ban.csv')
+    for t in tour:
+        if not any(b['tour'] == t['ma'] for b in buoc):
+            loi.append(f'tour.csv dòng {t["_dong"]}: tour "{t["ma"]}" chưa có bước nào trong buoc.csv')
+    if loi:
+        raise LoiDuLieu('Có lỗi trong file tour:\n  - ' + '\n  - '.join(loi))
+    thieu_en = sum(1 for b in buoc if not b.get('loi_dan_en') or not b.get('cau_hoi_en'))
+    print(f'  {len(tour)} tour, {len(buoc)} bước. Bước chưa có bản tiếng Anh: {thieu_en}.')
+    return 0
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -874,6 +921,7 @@ def main():
         so_canh_bao += xu_ly_du_an('--tai-lai' in sys.argv)
         so_canh_bao += xu_ly_giao_thong('--tai-lai' in sys.argv)
         so_canh_bao += xu_ly_thuy('--tai-lai' in sys.argv)
+        so_canh_bao += kiem_tra_tour()
     except LoiDuLieu as e:
         print(f'\nDỪNG LẠI: {e}')
         return 1
