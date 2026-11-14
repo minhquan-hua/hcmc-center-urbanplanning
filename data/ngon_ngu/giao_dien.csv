@@ -94,4 +94,16 @@ tour_tiep,Tiếp,Next
 tour_ket_thuc,Kết thúc,Finish
 sap_co,sắp có,coming soon
 ve_goc_nhin_dau,Về góc nhìn ban đầu,Reset view
+gioi_thieu_nut,Giới thiệu và nguồn dữ liệu,About and data sources
+gioi_thieu,Giới thiệu,About
+gt_muc_dich,"Website học tập giúp sinh viên quy hoạch và kiến trúc tìm hiểu khu trung tâm TP.HCM: Quận 1 cũ, Thủ Thiêm và các khu liền kề. Đây không phải tài liệu quy hoạch chính thức.","A learning website that helps planning and architecture students explore central Ho Chi Minh City: former District 1, Thủ Thiêm and adjacent areas. It is not an official planning document."
+gt_nguon_tieu_de,Nguồn dữ liệu,Data sources
+gt_nguon_nen,"Bản đồ nền, đường, tòa nhà, sông, hình dạng công trình và tuyến đường thủy: © những người đóng góp cho OpenStreetMap, giấy phép ODbL; ô bản đồ từ OpenFreeMap và OpenMapTiles.","Base map, roads, buildings, rivers, project shapes and waterway routes: © OpenStreetMap contributors, ODbL licence; tiles by OpenFreeMap and OpenMapTiles."
+gt_nguon_hanh_chinh,"Việc gộp phường: Nghị quyết 1685/NQ-UBTVQH15 ngày 16/6/2025. Ranh giới cũ là bản lưu OpenStreetMap ngày 1/5/2025.","Ward mergers: Resolution 1685/NQ-UBTVQH15 of 16 June 2025. Former boundaries are an OpenStreetMap snapshot of 1 May 2025."
+gt_nguon_du_an,Dự án quy hoạch và tuyến đường thủy: báo chí và cổng thông tin nhà nước; link nguồn nằm trong thẻ của từng mục.,Planning projects and waterway routes: press and government portals; source links are in each item's card.
+gt_nguon_giao_thong,Mô phỏng giao thông: mạng đường từ OpenStreetMap; các con số xem trong mục Giao thông đường bộ.,Traffic illustration: road network from OpenStreetMap; see the numbers under Road traffic.
+gt_luu_y_tieu_de,Lưu ý khi sử dụng,Please note
+gt_luu_y_ranh_gioi,"Ranh giới hành chính chỉ để tham khảo, không phải địa giới pháp lý.","Administrative boundaries are indicative, not legal boundaries."
+gt_luu_y_kiem_chung,Mục có nhãn đỏ cần kiểm chứng là thông tin chưa được đối chiếu với văn bản gốc. Tiến độ dự án thay đổi nhanh; hãy xem ngày cập nhật của từng mục.,Items with a red needs verification label have not been checked against the original documents. Project status changes quickly; check each item's update date.
+gt_luu_y_mo_phong,"Xe và tàu chạy trên bản đồ là mô phỏng minh họa cho mục đích học tập, không phải số liệu thực.","Moving vehicles and boats are an illustrative simulation for learning purposes, not real data."
 nguon_ban_do,"Bản đồ nền: © OpenStreetMap (giấy phép ODbL), OpenMapTiles, OpenFreeMap.","Base map: © OpenStreetMap (ODbL licence), OpenMapTiles, OpenFreeMap."

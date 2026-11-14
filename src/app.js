@@ -154,6 +154,12 @@
   var nenDaSanSang = false;
   banDo.on('load', function () {
     nenDaSanSang = true;
+    // Bản đồ nền có rất nhiều nhãn "Khu phố ..." làm rối; ẩn bớt để nhãn phường và dự án dễ đọc
+    try {
+      var loc = banDo.getFilter('label_other');
+      if (loc) banDo.setFilter('label_other',
+        ['all', loc, ['!=', ['slice', ['to-string', ['get', 'name']], 0, 7], 'Khu phố']]);
+    } catch (loi) { console.warn(loi); }
     bat3D(document.getElementById('bat-3d').checked);
   });
 
@@ -190,6 +196,47 @@
     nutTrinhChieu.setAttribute('aria-pressed', String(bat));
     datBang(!bat);
     setTimeout(function () { banDo.resize(); }, 50);
+  });
+
+  // ---------- Thẻ "Giới thiệu và nguồn dữ liệu" ----------
+  function moGioiThieu() {
+    var S = window.SaBan;
+    ['hanhChinh', 'duAn', 'thuy'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
+    var nd = document.getElementById('the-noi-dung');
+    nd.textContent = '';
+    function them(the, lop, ma, macDinh) {
+      var e = document.createElement(the);
+      if (lop) e.className = lop;
+      e.textContent = chu(ma) || macDinh;
+      nd.appendChild(e);
+    }
+    them('p', 'the-loai', 'gioi_thieu', 'Giới thiệu');
+    them('h2', null, 'tieu_de', 'Sa bàn quy hoạch TP.HCM');
+    them('p', null, 'gt_muc_dich', '');
+    them('h3', null, 'gt_nguon_tieu_de', 'Nguồn dữ liệu');
+    var ds = document.createElement('ul');
+    ds.className = 'ds-nguon';
+    ['gt_nguon_nen', 'gt_nguon_hanh_chinh', 'gt_nguon_du_an', 'gt_nguon_giao_thong'].forEach(function (ma) {
+      var li = document.createElement('li');
+      li.textContent = chu(ma) || ma;
+      ds.appendChild(li);
+    });
+    nd.appendChild(ds);
+    them('h3', null, 'gt_luu_y_tieu_de', 'Lưu ý khi sử dụng');
+    var ds2 = document.createElement('ul');
+    ds2.className = 'ds-nguon';
+    ['gt_luu_y_ranh_gioi', 'gt_luu_y_kiem_chung', 'gt_luu_y_mo_phong'].forEach(function (ma) {
+      var li = document.createElement('li');
+      li.textContent = chu(ma) || ma;
+      ds2.appendChild(li);
+    });
+    nd.appendChild(ds2);
+    document.getElementById('the').hidden = false;
+    if (window.matchMedia('(max-width: 767px)').matches) datBang(false);
+  }
+  document.getElementById('nut-gioi-thieu').addEventListener('click', moGioiThieu);
+  document.getElementById('the-dong').addEventListener('click', function () {
+    document.getElementById('the').hidden = true;
   });
 
   // Phần dùng chung cho các lớp bản đồ (src/hanh_chinh.js và các giai đoạn sau)
