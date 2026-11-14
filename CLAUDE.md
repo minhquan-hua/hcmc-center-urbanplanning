@@ -127,6 +127,15 @@ Nguồn hình dạng ranh giới (đã kiểm tra bằng Overpass API, chưa t�
 - Máy chủ Overpass chạy được: https://overpass-api.de/api/interpreter (hay lỗi 502, cần thử lại). Truy vấn lịch sử chỉ chạy trên máy chủ này.
 - Chưa tìm thấy file ranh giới mới do cơ quan nhà nước công bố mở.
 
+## Giai đoạn 5 đang dở: đã tra cứu, chờ chủ dự án duyệt danh sách (14/11/2026)
+
+Chưa viết code, chưa có file dữ liệu. Kết quả tra cứu (mới đọc tóm tắt tìm kiếm, tất cả "cần kiểm chứng"):
+- Theo Sở Xây dựng (plo.vn/tphcm-van-hanh-lai-tuyen-tau-cao-toc-di-con-dao-sap-khoi-dong-buyt-song-so-2-post910887.html; baoxaydung.vn/mo-rong-buyt-song-tphcm-tung-buoc-hinh-thanh-mang-luoi-giao-thong-thuy-lien-hoan-192260529202510407.htm): TP.HCM có 5 tuyến khách đường thủy: buýt sông số 1, tàu cao tốc Bạch Đằng - Vũng Tàu, phà Cần Giờ - Vũng Tàu, hai tuyến đi Côn Đảo. Buýt sông số 2 (Bạch Đằng - Lò Gốm) dự kiến 2026-2027.
+- Buýt sông số 1 Bạch Đằng - Linh Đông: khoảng 11 km, vé 15.000 đ (nguồn blog du lịch, yếu). OSM: relation 13684620 (ref=1, operator Công ty TNHH Thường Nhật), các way tên "Saigon Waterbus" route=ferry; bến là node amenity=ferry_terminal: Bạch Đằng, Thủ Thiêm, Ba Son, Bình An, Thảo Điền, Thanh Đa, Hiệp Bình Chánh, Linh Đông.
+- Phà Cát Lái: OSM way "Phà Cát Lái" route=ferry (59405448, 583820290). Cầu Cát Lái thay phà đã động thổ/khởi công 2026, tĩnh không 55 m (tienphong.vn/khoi-cong-hai-cau-vuot-song-dong-nai-post1880590.tpo; vietnamplus). Không tìm được số lượt khách/ngày.
+- Tàu cao tốc đi Vũng Tàu: OSM relation 11513593 (GreenlinesDP), way 78499768, 744909328; bến "Bến Tàu Cánh Ngầm Sài Gòn" node 5109064067.
+- Cảng hàng hóa trên OSM (landuse=industrial, industrial=port): Sài Gòn Khánh Hội (relation 6946894), Tân Thuận, Tân Thuận Đông, Bến Nghé, VICT, Cát Lái, Tân Cảng - Phú Hữu. Không có luồng tàu trên OSM: tàu hàng sẽ chạy theo tim sông (way "Sông Sài Gòn" waterway=river), ghi là sơ đồ. Chưa có nguồn cho sản lượng Cát Lái năm 2025 hay việc di dời cảng Khánh Hội.
+
 ## Giai đoạn 4 đã làm gì (14/11/2026)
 
 - QUYẾT ĐỊNH: không dùng deck.gl. Xe là một lớp `circle` của MapLibre, cập nhật vị trí khoảng 20 lần/giây bằng `setData`. Lý do: 700 chấm là đủ nhẹ, bớt được một thư viện hơn 1 MB cho điện thoại. Giai đoạn 5 (tàu thủy) nên làm cùng cách.
