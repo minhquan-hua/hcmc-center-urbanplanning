@@ -80,7 +80,7 @@ data/
 - [x] 4. Giao thông đường bộ. Xong 14/11/2026; chưa thử trên điện thoại thật.
 - [x] 5. Giao thông thủy. Xong 14/11/2026; 5 tuyến đều "cần kiểm chứng"; chưa thử trên điện thoại thật.
 - [x] 6. Chế độ học (tour). Xong 15/11/2026; chủ dự án CHƯA duyệt lời dẫn và câu hỏi.
-- [ ] 7. Hoàn thiện, thử trên điện thoại thật, đưa lên mạng, bàn giao hướng dẫn. Đã xong: rà soát cuối, mục Giới thiệu, chuyển thư mục, đẩy mã lên GitHub (15/11/2026), hướng dẫn bàn giao. CÒN LẠI: chủ dự án bật GitHub Pages, kiểm tra link công khai, thử trên điện thoại thật.
+- [ ] 7. Hoàn thiện, thử trên điện thoại thật, đưa lên mạng, bàn giao hướng dẫn. Đã xong: rà soát cuối, mục Giới thiệu, chuyển thư mục, đẩy mã lên GitHub (15/11/2026), hướng dẫn bàn giao. GitHub Pages đã bật 15/11/2026 (nhánh main, thư mục gốc); đã kiểm tra bằng curl: trang chủ và 26 file website đều trả về 200, đúng bản mới nhất. CÒN LẠI: chủ dự án thử trên điện thoại thật (chưa ai mở link công khai trong trình duyệt để xem); duyệt các mục "cần kiểm chứng".
 
 ## Nơi đặt dự án (từ 15/11/2026)
 
