@@ -1,0 +1,17 @@
+BÁO CÁO KIỂM TRA DỮ LIỆU ĐƯỜNG THỦY
+Tạo lúc: 14/11/2026 21:24 (file này do máy tạo, đừng sửa tay)
+
+Tuyến: 5 (có hình dạng: 4). Bến và cảng: 16.
+  - buyt-song-1: đường chạy dài 22.0 km
+  - pha-cat-lai: đường chạy dài 0.6 km
+  - tau-cao-toc-vung-tau: đường chạy dài 18.2 km
+  - tau-hang: đường chạy dài 10.7 km
+
+CẢNH BÁO: không có.
+
+MỤC CẦN KIỂM CHỨNG:
+  - Buýt sông số 1 (Bạch Đằng - Linh Đông)
+  - Phà Cát Lái
+  - Tàu cao tốc Bạch Đằng - Vũng Tàu
+  - Tàu hàng trên sông Sài Gòn (sơ đồ)
+  - Buýt sông số 2 (Bạch Đằng - Lò Gốm)

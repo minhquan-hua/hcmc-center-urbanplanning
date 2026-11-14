@@ -78,7 +78,7 @@ data/
 - [x] 2. Lớp hành chính Trước/Sau 2025. Xong 14/11/2026; chủ dự án chưa duyệt danh sách "cần kiểm chứng" (18 hình dạng ranh giới).
 - [x] 3. Lớp dự án quy hoạch + bộ lọc. Xong 14/11/2026; cả 15 dự án còn "cần kiểm chứng" (chưa mở bài gốc); chưa có dự án loại "đường".
 - [x] 4. Giao thông đường bộ. Xong 14/11/2026; chưa thử trên điện thoại thật.
-- [ ] 5. Giao thông thủy
+- [x] 5. Giao thông thủy. Xong 14/11/2026; 5 tuyến đều "cần kiểm chứng"; chưa thử trên điện thoại thật.
 - [ ] 6. Chế độ học (tour)
 - [ ] 7. Hoàn thiện, thử trên điện thoại thật, đưa lên mạng, bàn giao hướng dẫn
 
@@ -127,9 +127,15 @@ Nguồn hình dạng ranh giới (đã kiểm tra bằng Overpass API, chưa t�
 - Máy chủ Overpass chạy được: https://overpass-api.de/api/interpreter (hay lỗi 502, cần thử lại). Truy vấn lịch sử chỉ chạy trên máy chủ này.
 - Chưa tìm thấy file ranh giới mới do cơ quan nhà nước công bố mở.
 
-## Giai đoạn 5 đang dở: đã tra cứu, chờ chủ dự án duyệt danh sách (14/11/2026)
+## Giai đoạn 5 đã làm gì (14/11/2026)
 
-Chưa viết code, chưa có file dữ liệu. Kết quả tra cứu (mới đọc tóm tắt tìm kiếm, tất cả "cần kiểm chứng"):
+- Chủ dự án đã duyệt danh sách tuyến và bến. Dữ liệu: `data/giao_thong/tuyen_thuy.csv` (5 tuyến; buýt sông số 2 là "dự kiến", không có hình) và `ben_thuy.csv` (16 bến/cảng).
+- `xu_ly_thuy()` trong `scripts/cap_nhat.py`: một truy vấn Overpass (khung rộng hơn: `KHUNG_THUY`), nối các đoạn thành chuỗi dài nhất (`noi_chuoi`) làm "đường chạy" cho tàu; `cat_doan` (hai điểm) cắt lấy đoạn giữa hai đỉnh gần nhất. Ghi `duong_thuy.geojson` và `BAO_CAO_KIEM_TRA_THUY.txt`.
+- `src/thuy.js`: lớp `th-*`, mặc định tắt, chỉ tải khi bật. Tàu là chấm đặc chạy trên "đường chạy": tuyến có hai đầu cách nhau dưới 800 m coi là tuyến vòng (buýt sông trên OSM có cả chiều đi và về), còn lại chạy tới cuối rồi quay đầu. Số tàu, tốc độ là cột `so_tau`, `toc_do` (giả định); tăng tốc lấy từ `gia_dinh.csv`.
+- Thứ tự ưu tiên khi nhấp: đường thủy > dự án > hành chính (mỗi lớp có `trung(point)`, `boChon()`, `dangChon()` trong `window.SaBan`). Ba lớp dùng chung thẻ `#the`.
+- Không đưa giá vé, giờ chạy, số chuyến, sản lượng cảng lên website vì nguồn yếu hoặc không có.
+
+Kết quả tra cứu (mới đọc tóm tắt tìm kiếm, tất cả "cần kiểm chứng"):
 - Theo Sở Xây dựng (plo.vn/tphcm-van-hanh-lai-tuyen-tau-cao-toc-di-con-dao-sap-khoi-dong-buyt-song-so-2-post910887.html; baoxaydung.vn/mo-rong-buyt-song-tphcm-tung-buoc-hinh-thanh-mang-luoi-giao-thong-thuy-lien-hoan-192260529202510407.htm): TP.HCM có 5 tuyến khách đường thủy: buýt sông số 1, tàu cao tốc Bạch Đằng - Vũng Tàu, phà Cần Giờ - Vũng Tàu, hai tuyến đi Côn Đảo. Buýt sông số 2 (Bạch Đằng - Lò Gốm) dự kiến 2026-2027.
 - Buýt sông số 1 Bạch Đằng - Linh Đông: khoảng 11 km, vé 15.000 đ (nguồn blog du lịch, yếu). OSM: relation 13684620 (ref=1, operator Công ty TNHH Thường Nhật), các way tên "Saigon Waterbus" route=ferry; bến là node amenity=ferry_terminal: Bạch Đằng, Thủ Thiêm, Ba Son, Bình An, Thảo Điền, Thanh Đa, Hiệp Bình Chánh, Linh Đông.
 - Phà Cát Lái: OSM way "Phà Cát Lái" route=ferry (59405448, 583820290). Cầu Cát Lái thay phà đã động thổ/khởi công 2026, tĩnh không 55 m (tienphong.vn/khoi-cong-hai-cau-vuot-song-dong-nai-post1880590.tpo; vietnamplus). Không tìm được số lượt khách/ngày.

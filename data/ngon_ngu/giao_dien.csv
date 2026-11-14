@@ -70,6 +70,21 @@ gt_gia_dinh,Các con số mô phỏng dùng,Numbers behind the simulation
 gt_so_lieu_cong_bo,số liệu công bố,published figure
 gt_gia_dinh_minh_hoa,giả định minh họa,illustrative assumption
 lop_duong_thuy,Giao thông thủy,Waterway traffic
+th_canh_bao,"Tuyến và bến là thật; tàu chạy trên bản đồ là minh họa cho mục đích học tập, không phải lịch chạy thật.","Routes and piers are real; the moving boats are illustrative for learning purposes, not real schedules."
+th_chu_giai,Chấm viền màu: bến hoặc cảng. Chấm đặc: tàu minh họa. Nhấp vào tuyến hoặc bến để xem chi tiết.,Outlined dot: pier or port. Solid dot: illustrative boat. Tap a route or pier for details.
+th_buyt_song,buýt sông,river bus
+th_pha,phà,ferry
+th_tau_khach,tàu khách,passenger boat
+th_tau_hang,tàu hàng,cargo ship
+th_ben_buyt_song,bến buýt sông,river bus pier
+th_ben_pha,bến phà,ferry landing
+th_ben_tau_khach,bến tàu khách,passenger terminal
+th_cang,cảng hàng hóa,cargo port
+th_dang_hoat_dong,đang hoạt động,operating
+th_du_kien,dự kiến,planned
+th_thuoc_tuyen,Thuộc tuyến,Route
+th_vi_tri_osm,Vị trí lấy từ OpenStreetMap.,Location from OpenStreetMap.
+th_tau_minh_hoa,"Tàu chạy trên bản đồ là minh họa: số tàu ({so}) và tốc độ ({toc} km/h) là giả định, không phải lịch chạy thật.","Boats on the map are illustrative: the number of boats ({so}) and speed ({toc} km/h) are assumptions, not real schedules."
 che_do_hoc,Chế độ học (tour),Learning mode (tours)
 sap_co,sắp có,coming soon
 ve_goc_nhin_dau,Về góc nhìn ban đầu,Reset view

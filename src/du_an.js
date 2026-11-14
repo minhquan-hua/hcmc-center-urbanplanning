@@ -124,6 +124,8 @@
       banDo.on('mouseleave', id, function () { banDo.getCanvas().style.cursor = ''; });
     });
     banDo.on('click', function (e) {
+      // nhấp trúng tuyến hay bến đường thủy thì để lớp đó xử lý
+      if (S.thuy && S.thuy.trung(e.point)) { dangChon = null; return; }
       var ma = trung(e.point);
       if (ma) chon(ma, false);
       else if (dangChon) {
@@ -237,6 +239,7 @@
     var d = theoMa[ma];
     if (!d) return;
     if (S.hanhChinh) S.hanhChinh.boChon();
+    if (S.thuy) S.thuy.boChon();
     dangChon = ma;
     veThe();
     document.getElementById('the').hidden = false;
@@ -339,6 +342,7 @@
   window.SaBan.duAn = {
     trung: trung,
     chon: chon,
-    boChon: function () { dangChon = null; }
+    boChon: function () { dangChon = null; },
+    dangChon: function () { return !!dangChon; }
   };
 })();

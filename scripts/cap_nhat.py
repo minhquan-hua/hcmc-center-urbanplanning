@@ -694,6 +694,176 @@ def xu_ly_giao_thong(tai_lai):
     return len(canh_bao)
 
 
+# ---------------------------------------------------------------- giao thông thủy
+KHUNG_THUY = '10.70,106.665,10.86,106.83'
+LOAI_TUYEN_THUY = ['buýt sông', 'phà', 'tàu khách', 'tàu hàng']
+LOAI_BEN = ['bến buýt sông', 'bến phà', 'bến tàu khách', 'cảng hàng hóa']
+
+
+def noi_chuoi(doan):
+    """Nối các đoạn hở thành các chuỗi dài nhất có thể; trả về chuỗi dài nhất (tính bằng mét)."""
+    con = [d[:] for d in doan if len(d) >= 2]
+    cac_chuoi = []
+    while con:
+        hien = con.pop(max(range(len(con)), key=lambda i: len(con[i])))
+        doi = True
+        while doi:
+            doi = False
+            for i, d in enumerate(con):
+                if d[0] == hien[-1]:
+                    hien += d[1:]
+                elif d[-1] == hien[-1]:
+                    hien += d[-2::-1]
+                elif d[-1] == hien[0]:
+                    hien = d[:-1] + hien
+                elif d[0] == hien[0]:
+                    hien = d[:0:-1] + hien
+                else:
+                    continue
+                con.pop(i)
+                doi = True
+                break
+        cac_chuoi.append(hien)
+    return max(cac_chuoi, key=lambda c: sum(khoang_cach(c[k], c[k + 1]) for k in range(len(c) - 1)))
+
+
+def doc_diem(chu):
+    x, y = [float(v) for v in chu.split(',')]
+    return (x, y)
+
+
+def xu_ly_thuy(tai_lai):
+    print('\n9. Đọc tuyến và bến đường thủy')
+    tuyen = doc_csv(GT / 'tuyen_thuy.csv',
+                    ['ma', 'ten_vi', 'ten_en', 'loai', 'trang_thai', 'mo_ta_vi', 'truy_van', 'cat_doan',
+                     'so_tau', 'toc_do', 'nguon', 'ngay_cap_nhat', 'da_kiem_chung'])
+    ben = doc_csv(GT / 'ben_thuy.csv', ['ma', 'ten_vi', 'ten_en', 'loai', 'tuyen', 'truy_van'])
+    loi = []
+    ma_tuyen = [t['ma'] for t in tuyen]
+    for t in tuyen:
+        vt = f'tuyen_thuy.csv dòng {t["_dong"]}'
+        if t['loai'] not in LOAI_TUYEN_THUY:
+            loi.append(f'{vt}: cột "loai" phải là một trong: {", ".join(LOAI_TUYEN_THUY)}')
+        if t['trang_thai'] not in ('đang hoạt động', 'dự kiến'):
+            loi.append(f'{vt}: cột "trang_thai" phải là "đang hoạt động" hoặc "dự kiến"')
+        if not t['nguon'].startswith('http'):
+            loi.append(f'{vt}: cột "nguon" phải bắt đầu bằng http')
+        if t['da_kiem_chung'] not in KIEM_CHUNG_HOP_LE:
+            loi.append(f'{vt}: cột "da_kiem_chung" phải là "có" hoặc "cần kiểm chứng"')
+        try:
+            assert int(t['so_tau'] or 0) >= 0 and float((t['toc_do'] or '0').replace(',', '.')) >= 0
+        except Exception:
+            loi.append(f'{vt}: "so_tau" và "toc_do" phải là số không âm')
+        if t['cat_doan']:
+            try:
+                assert len([doc_diem(p) for p in t['cat_doan'].split(';')]) == 2
+            except Exception:
+                loi.append(f'{vt}: "cat_doan" phải có dạng kinh độ,vĩ độ;kinh độ,vĩ độ')
+    for b in ben:
+        vt = f'ben_thuy.csv dòng {b["_dong"]}'
+        if b['loai'] not in LOAI_BEN:
+            loi.append(f'{vt}: cột "loai" phải là một trong: {", ".join(LOAI_BEN)}')
+        if b['tuyen'] and b['tuyen'] not in ma_tuyen:
+            loi.append(f'{vt}: tuyến "{b["tuyen"]}" không có trong tuyen_thuy.csv')
+        if not b['truy_van']:
+            loi.append(f'{vt}: thiếu "truy_van"')
+    if loi:
+        raise LoiDuLieu('Có lỗi trong file dữ liệu đường thủy:\n  - ' + '\n  - '.join(loi))
+
+    print('10. Hình dạng tuyến và vị trí bến từ OpenStreetMap')
+    co_hinh = [t for t in tuyen if t['truy_van']]
+    truy_van = ('[out:json][timeout:150];'
+                + ''.join(f'({t["truy_van"]}({KHUNG_THUY});)->.s;.s out count;.s out geom;' for t in co_hinh)
+                + ''.join(f'({b["truy_van"]}({KHUNG_THUY});)->.s;.s out count;.s out center;' for b in ben))
+    tep = GT / 'goc_osm' / 'duong_thuy.json'
+    tep_tv = GT / 'goc_osm' / 'truy_van_thuy.txt'
+    if tai_lai or not tep.exists() or not tep_tv.exists() or tep_tv.read_text(encoding='utf-8') != truy_van:
+        tai(truy_van, tep)
+        tep_tv.write_text(truy_van, encoding='utf-8')
+    phan_tu = json.loads(tep.read_text(encoding='utf-8'))['elements']
+
+    canh_bao = []
+    doi_tuong = []
+    vi_tri = 0
+
+    def lay_nhom():
+        nonlocal vi_tri
+        if vi_tri >= len(phan_tu) or phan_tu[vi_tri].get('type') != 'count':
+            raise LoiDuLieu('Dữ liệu đường thủy đã tải không khớp danh sách. Hãy chạy lại với --tai-lai.')
+        so = int(phan_tu[vi_tri]['tags']['total'])
+        nhom = phan_tu[vi_tri + 1: vi_tri + 1 + so]
+        vi_tri += 1 + so
+        return nhom
+
+    for t in co_hinh:
+        doan = []
+        for w in lay_nhom():
+            if w.get('type') != 'way' or not w.get('geometry'):
+                continue
+            pts = []
+            for p in w['geometry']:
+                q = (round(p['lon'], 6), round(p['lat'], 6))
+                if not pts or pts[-1] != q:
+                    pts.append(q)
+            if len(pts) >= 2:
+                doan.append(pts)
+        if not doan:
+            canh_bao.append(f'Tuyến "{t["ten_vi"]}": OpenStreetMap không trả về hình dạng, sẽ không hiện trên bản đồ')
+            continue
+        chuoi = noi_chuoi(doan)
+        ve = doan
+        if t['cat_doan']:
+            a, b = [doc_diem(p) for p in t['cat_doan'].split(';')]
+            ia = min(range(len(chuoi)), key=lambda i: khoang_cach(chuoi[i], a))
+            ib = min(range(len(chuoi)), key=lambda i: khoang_cach(chuoi[i], b))
+            chuoi = chuoi[ia:ib + 1] if ia <= ib else chuoi[ib:ia + 1][::-1]
+            ve = [chuoi]
+        chuoi = gian_luoc(chuoi, SAI_SO)
+        if len(chuoi) < 2:
+            canh_bao.append(f'Tuyến "{t["ten_vi"]}": đoạn cắt quá ngắn, sẽ không hiện trên bản đồ')
+            continue
+        dai = sum(khoang_cach(chuoi[k], chuoi[k + 1]) for k in range(len(chuoi) - 1))
+        doi_tuong.append({'type': 'Feature', 'properties': {'ma': t['ma'], 'hinh': 'tuyến', 'loai': t['loai']},
+                          'geometry': {'type': 'MultiLineString',
+                                       'coordinates': [[list(p) for p in gian_luoc(d, SAI_SO)] for d in ve]}})
+        doi_tuong.append({'type': 'Feature',
+                          'properties': {'ma': t['ma'], 'hinh': 'đường chạy', 'loai': t['loai'], 'dai_m': round(dai)},
+                          'geometry': {'type': 'LineString', 'coordinates': [list(p) for p in chuoi]}})
+    for b in ben:
+        nhom = lay_nhom()
+        diem = None
+        for e in nhom:
+            c = e if 'lon' in e else e.get('center')
+            if c:
+                diem = [round(c['lon'], 6), round(c['lat'], 6)]
+                break
+        if not diem:
+            canh_bao.append(f'Bến "{b["ten_vi"]}": không tìm thấy trên OpenStreetMap, sẽ không hiện trên bản đồ')
+            continue
+        doi_tuong.append({'type': 'Feature', 'properties': {'ma': b['ma'], 'hinh': 'bến', 'loai': b['loai']},
+                          'geometry': {'type': 'Point', 'coordinates': diem}})
+    ghi_geojson(GT / 'duong_thuy.geojson', doi_tuong)
+
+    chay = [f'{f["properties"]["ma"]}: đường chạy dài {f["properties"]["dai_m"] / 1000:.1f} km'
+            for f in doi_tuong if f['properties']['hinh'] == 'đường chạy']
+    bao_cao = [
+        'BÁO CÁO KIỂM TRA DỮ LIỆU ĐƯỜNG THỦY',
+        f'Tạo lúc: {time.strftime("%d/%m/%Y %H:%M")} (file này do máy tạo, đừng sửa tay)',
+        '',
+        f'Tuyến: {len(tuyen)} (có hình dạng: {len(chay)}). Bến và cảng: {len(ben)}.',
+        *[f'  - {c}' for c in chay],
+        '',
+        f'CẢNH BÁO ({len(canh_bao)}):' if canh_bao else 'CẢNH BÁO: không có.',
+        *[f'  - {c}' for c in canh_bao],
+        '',
+        'MỤC CẦN KIỂM CHỨNG:', *[f'  - {t["ten_vi"]}' for t in tuyen if t['da_kiem_chung'] != 'có'],
+        '',
+    ]
+    (GT / 'BAO_CAO_KIEM_TRA_THUY.txt').write_text('\n'.join(bao_cao), encoding='utf-8')
+    print('\n' + '\n'.join(bao_cao))
+    return len(canh_bao)
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -703,6 +873,7 @@ def main():
         so_canh_bao = xu_ly_hanh_chinh('--tai-lai' in sys.argv)
         so_canh_bao += xu_ly_du_an('--tai-lai' in sys.argv)
         so_canh_bao += xu_ly_giao_thong('--tai-lai' in sys.argv)
+        so_canh_bao += xu_ly_thuy('--tai-lai' in sys.argv)
     except LoiDuLieu as e:
         print(f'\nDỪNG LẠI: {e}')
         return 1

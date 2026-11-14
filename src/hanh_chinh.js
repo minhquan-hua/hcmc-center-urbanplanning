@@ -135,6 +135,7 @@
       if (!dangBat) return;
       // nhấp trúng một dự án thì để lớp dự án xử lý
       if (S.duAn && S.duAn.trung(e.point)) return;
+      if (S.thuy && S.thuy.trung(e.point)) return;
       var lop = ky === 'sau' ? 'hc-moi-nen' : 'hc-cu-nen';
       var kq = banDo.queryRenderedFeatures(e.point, { layers: [lop] });
       if (kq.length) chon(ky === 'sau' ? 'hc-moi' : 'hc-cu', kq[0].properties.ma);
@@ -183,6 +184,7 @@
     if (!sanSang) return;
     boChon();
     if (S.duAn) S.duAn.boChon();
+    if (S.thuy) S.thuy.boChon();
     dangChon = { nguon: nguon, id: ma };
     banDo.setFeatureState({ source: nguon, id: ma }, { chon: true });
     veThe();

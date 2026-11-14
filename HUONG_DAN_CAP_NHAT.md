@@ -128,6 +128,27 @@ Ví dụ thêm kịch bản "Nếu không có hầm Thủ Thiêm": thêm một d
 
 File `data/giao_thong/diem_qua_song.csv` liệt kê các cầu và hầm được đếm trong bảng thống kê.
 
+## Sửa tuyến và bến đường thủy
+
+File `data/giao_thong/tuyen_thuy.csv` (mỗi dòng là một tuyến):
+
+| Cột | Ý nghĩa |
+|---|---|
+| `ma` | Mã tuyến. **Không sửa** mã đã có. |
+| `ten_vi`, `ten_en` | Tên tuyến |
+| `loai` | Một trong: `buýt sông`, `phà`, `tàu khách`, `tàu hàng` |
+| `trang_thai` | `đang hoạt động` hoặc `dự kiến` |
+| `mo_ta_vi`, `ghi_chu_vi` | Mô tả và lưu ý hiện trong thẻ thông tin |
+| `truy_van`, `cat_doan` | Cách lấy hình dạng từ OpenStreetMap. **Đừng sửa**; cần đổi thì nhờ Claude. Để trống thì tuyến chỉ hiện trong danh sách. |
+| `so_tau` | Số tàu minh họa chạy trên tuyến (giả định) |
+| `toc_do` | Tốc độ tàu minh họa, km/h (giả định) |
+| `nguon` | Link nguồn; nhiều link ngăn bằng ` | ` |
+| `ngay_cap_nhat`, `da_kiem_chung` | Như các file khác |
+
+File `data/giao_thong/ben_thuy.csv` (mỗi dòng là một bến hoặc cảng): bạn sửa được `ten_vi`, `ten_en`. Cột `loai` là một trong `bến buýt sông`, `bến phà`, `bến tàu khách`, `cảng hàng hóa`; cột `tuyen` là mã tuyến mà bến thuộc về. Cột `truy_van` đừng sửa.
+
+Ví dụ khi buýt sông số 2 đi vào hoạt động: đổi `trang_thai` thành `đang hoạt động`, sửa `mo_ta_vi`, `nguon`, `ngay_cap_nhat`, rồi nhờ Claude điền `truy_van` để tuyến hiện trên bản đồ.
+
 ## Ví dụ: thêm một phường mới vào bản đồ
 
 1. Mở `phuong_moi.csv`, thêm một dòng với đủ các cột. Lưu.
