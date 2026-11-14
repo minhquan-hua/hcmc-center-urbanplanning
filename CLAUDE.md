@@ -80,7 +80,16 @@ data/
 - [x] 4. Giao thông đường bộ. Xong 14/11/2026; chưa thử trên điện thoại thật.
 - [x] 5. Giao thông thủy. Xong 14/11/2026; 5 tuyến đều "cần kiểm chứng"; chưa thử trên điện thoại thật.
 - [x] 6. Chế độ học (tour). Xong 15/11/2026; chủ dự án CHƯA duyệt lời dẫn và câu hỏi.
-- [ ] 7. Hoàn thiện, thử trên điện thoại thật, đưa lên mạng, bàn giao hướng dẫn
+- [ ] 7. Hoàn thiện, thử trên điện thoại thật, đưa lên mạng, bàn giao hướng dẫn. Đã xong: rà soát cuối, mục Giới thiệu, chuyển thư mục, đẩy mã lên GitHub (15/11/2026), hướng dẫn bàn giao. CÒN LẠI: chủ dự án bật GitHub Pages, kiểm tra link công khai, thử trên điện thoại thật.
+
+## Nơi đặt dự án (từ 15/11/2026)
+
+- Thư mục: `C:\Users\Minh Quan\OneDrive\Documents\sa-ban-quy-hoach-hcm` (Documents do OneDrive đồng bộ).
+- Kho GitHub: https://github.com/minhquan-hua/hcmc-center-urbanplanning (nhánh `main`, công khai).
+- Website công khai sau khi bật Pages: https://minhquan-hua.github.io/hcmc-center-urbanplanning/
+- Đẩy mã: shell của Claude không hiện được cửa sổ đăng nhập; lần đầu phải chạy `git push` trong Terminal của người dùng (`run_in_terminal`) để họ đăng nhập qua trình duyệt.
+- `dua_len_mang.bat`: chủ dự án bấm đúp để kiểm tra dữ liệu, commit và push.
+- Khi chuyển thư mục, ứng dụng không sao chép `.git` và `.claude`; đã sao chép `.git` bằng tay và tạo lại `.claude/launch.json`.
 
 ## Quyết định
 

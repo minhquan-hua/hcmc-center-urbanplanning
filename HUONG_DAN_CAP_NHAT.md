@@ -3,11 +3,17 @@
 Viết cho người không biết lập trình. Bạn chỉ sửa các file trong thư mục `data/`.
 Đừng sửa gì trong `src/` và `scripts/`.
 
-## Ba việc cần nhớ
+## Bốn việc cần nhớ
 
 1. **Xem website trên máy:** bấm đúp `xem_thu.bat`. Một cửa sổ đen hiện ra và trình duyệt tự mở. Giữ cửa sổ đen mở trong lúc xem; đóng nó để tắt.
-2. **Sau khi sửa file trong `data/hanh_chinh/`:** bấm đúp `cap_nhat_du_lieu.bat`. Chương trình kiểm tra file bạn vừa sửa và báo lỗi bằng tiếng Việt nếu có.
+2. **Sau khi sửa file trong `data/`:** bấm đúp `cap_nhat_du_lieu.bat`. Chương trình kiểm tra các file bạn vừa sửa và báo lỗi bằng tiếng Việt nếu có.
 3. **Xem lại thay đổi:** quay lại trình duyệt và bấm Ctrl + F5.
+4. **Đưa thay đổi lên website công khai:** khi đã ưng bản trên máy, bấm đúp `dua_len_mang.bat`. File này kiểm tra dữ liệu, lưu lại một bản, rồi đẩy lên GitHub; website công khai đổi theo sau khoảng 1-2 phút. Nếu dữ liệu còn lỗi, nó dừng lại và không đưa gì lên.
+
+Website công khai: https://minhquan-hua.github.io/hcmc-center-urbanplanning/
+Kho mã nguồn: https://github.com/minhquan-hua/hcmc-center-urbanplanning
+
+Lần đầu chạy `dua_len_mang.bat` trên một máy mới, một cửa sổ đăng nhập GitHub có thể hiện ra; bạn đăng nhập ở đó.
 
 ## Cách mở và lưu file CSV
 
