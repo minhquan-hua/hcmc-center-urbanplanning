@@ -143,3 +143,16 @@ ht_so_do,Chấm rỗng chỉ là vị trí sơ đồ cho biết khu vực; chưa
 ht_hinh_osm,"Hình vẽ lấy từ OpenStreetMap do cộng đồng vẽ; với công trình chưa xây đây là hướng tuyến hoặc ranh dự kiến, có thể khác thiết kế cuối cùng.","Shape from OpenStreetMap (community-drawn); for unbuilt works it is an indicative alignment or outline and may differ from the final design."
 ht_chu_giai,"Nét liền: đã hoàn thành. Nét đứt: chưa xong. Vạch trắng ở giữa: metro, đường sắt. Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.","Solid: completed. Dashed: not finished. White centre stripe: metro, railway. Hollow dot: schematic location. *: not on the map."
 ht_luu_y_chung,"Hướng tuyến chưa xây lấy từ OpenStreetMap, chỉ để tham khảo. Trạng thái tra ngày 17/11/2026 từ báo chí, có thể đã thay đổi.","Unbuilt alignments are from OpenStreetMap, indicative only. Status checked on 17 Nov 2026 from press reports and may have changed."
+vs_nut,Vì sao sáp nhập?,Why the merger?
+vs_tieu_de,Vì sao sáp nhập?,Why the merger?
+vs_mo_dau,"Từ 1/7/2025, TP.HCM, Bình Dương và Bà Rịa - Vũng Tàu hợp nhất thành Thành phố Hồ Chí Minh. Dưới đây là lý do nêu trong văn bản chính thức và các góc nhìn có dẫn nguồn.","From 1 July 2025, Ho Chi Minh City, Binh Duong and Ba Ria - Vung Tau merged into Ho Chi Minh City. Below: reasons stated in official documents, and sourced viewpoints (content in Vietnamese)."
+vs_nhom_chinh_thuc,Văn bản và phát biểu chính thức,Official documents and statements
+vs_nhom_goc_nhin,Góc nhìn nghiên cứu và chuyên gia,Research and expert viewpoints
+vs_nhom_cau_hoi,"Câu hỏi gợi mở: Long Thành, Cái Mép, Cần Giờ","Open questions: Long Thanh, Cai Mep, Can Gio"
+vs_cau_hoi_luu_y,"Website chỉ đặt câu hỏi để thảo luận, không khẳng định câu trả lời.","This site only poses questions for discussion; it does not assert answers."
+vs_cap_tieu_de,Cấp tin cậy của nguồn,Source reliability levels
+vs_cap_a,A · văn bản chính thức,A · official documents
+vs_cap_b,"B · phát biểu lãnh đạo, đề án qua báo tường thuật","B · leaders' statements, plans as reported by the press"
+vs_cap_c,"C · nghiên cứu, viện nghiên cứu quốc tế","C · research, international research institutes"
+vs_cap_d,D · ý kiến chuyên gia trên báo chính thống,D · expert opinion in mainstream press
+vs_luu_y,"Các ý kiến là của người được dẫn, không phải của website. Hãy đọc bài gốc trước khi trích dẫn.","Opinions belong to the people cited, not to this site. Read the original before quoting."

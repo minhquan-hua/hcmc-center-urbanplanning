@@ -345,6 +345,20 @@ body.dang-tour .chon-tam { display: none; }
 .the-nguon { margin: 0 0 0.3rem; }
 .the-nguon a { color: var(--nhan); }
 .the-ghi-chu { margin: 0.6rem 0 0; }
+/* Thẻ "Vì sao sáp nhập" */
+.nut-vi-sao { margin: 0 0 0.7rem; border-color: var(--nhan); color: var(--nhan); font-weight: 650; }
+.vs-muc { padding: 0.55rem 0; border-top: 1px solid var(--vien); }
+.vs-muc h4 { margin: 0 0 0.2rem; font-size: 0.92rem; }
+.vs-muc p { margin: 0 0 0.25rem; }
+.vs-muc .the-nguon { font-size: 0.8rem; color: var(--chu-mo); overflow-wrap: anywhere; }
+.vs-cap { display: inline-block; min-width: 1.4rem; text-align: center; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 0.3rem; color: #fff; }
+.vs-cap-a { background: #1e6b34; }
+.vs-cap-b { background: #2f6f9f; }
+.vs-cap-c { background: #6b4fa0; }
+.vs-cap-d { background: #8a5a00; }
+.vs-luu-y { margin: 0 0 0.4rem; }
+.vs-chu-giai { list-style: none; margin: 0; padding: 0; font-size: 0.8rem; }
+.vs-chu-giai li { display: flex; gap: 0.5rem; align-items: baseline; padding: 0.15rem 0; }
 .nut-lien-ket { border: 0; background: none; padding: 0; color: var(--nhan); font-weight: 600; text-decoration: underline; text-align: left; }
 [hidden] { display: none !important; }
 

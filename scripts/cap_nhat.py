@@ -1169,6 +1169,58 @@ def xu_ly_ha_tang(tai_lai):
     return len(canh_bao)
 
 
+# ---------------------------------------------------------------- thẻ "Vì sao sáp nhập"
+VS_NHOM_HOP_LE = ['chính thức', 'góc nhìn', 'câu hỏi']
+VS_CAP_HOP_LE = ['A', 'B', 'C', 'D']
+
+
+def kiem_tra_vi_sao():
+    print('\n=== THẺ "VÌ SAO SÁP NHẬP" ===')
+    ds = doc_csv(VUNG / 'vi_sao_sap_nhap.csv',
+                 ['ma', 'nhom', 'cap_tin_cay', 'tieu_de_vi', 'tieu_de_en', 'noi_dung_vi',
+                  'nguon_ten', 'nguon', 'ngay_cap_nhat', 'da_kiem_chung'])
+    loi, da_co = [], set()
+    for d in ds:
+        vt = f'vi_sao_sap_nhap.csv dòng {d["_dong"]}'
+        if not d['ma']:
+            loi.append(f'{vt}: thiếu mã ở cột "ma"')
+        elif d['ma'] in da_co:
+            loi.append(f'{vt}: mã "{d["ma"]}" bị trùng với dòng khác')
+        da_co.add(d['ma'])
+        if d['nhom'] not in VS_NHOM_HOP_LE:
+            loi.append(f'{vt}: cột "nhom" phải là một trong: {", ".join(VS_NHOM_HOP_LE)}')
+        if d['nhom'] != 'câu hỏi' and d['cap_tin_cay'] not in VS_CAP_HOP_LE:
+            loi.append(f'{vt}: cột "cap_tin_cay" phải là A, B, C hoặc D')
+        if d['nhom'] == 'câu hỏi' and d['cap_tin_cay'] not in VS_CAP_HOP_LE + ['']:
+            loi.append(f'{vt}: cột "cap_tin_cay" phải để trống hoặc là A, B, C, D')
+        for c in ('tieu_de_vi', 'noi_dung_vi', 'ngay_cap_nhat'):
+            if not d[c]:
+                loi.append(f'{vt}: thiếu nội dung ở cột "{c}"')
+        if not d['nguon'].startswith('http'):
+            loi.append(f'{vt}: cột "nguon" phải là đường link bắt đầu bằng http')
+        if d['da_kiem_chung'] not in KIEM_CHUNG_HOP_LE:
+            loi.append(f'{vt}: cột "da_kiem_chung" phải là "có" hoặc "cần kiểm chứng"')
+    if loi:
+        raise LoiDuLieu('File data/vung/vi_sao_sap_nhap.csv có lỗi:\n  - ' + '\n  - '.join(loi))
+
+    can_kc = [d['tieu_de_vi'] for d in ds if d['da_kiem_chung'] != 'có']
+    bao_cao = [
+        'BÁO CÁO KIỂM TRA THẺ "VÌ SAO SÁP NHẬP"',
+        f'Tạo lúc: {time.strftime("%d/%m/%Y %H:%M")} (file này do máy tạo, đừng sửa tay)',
+        '',
+        f'Số mục: {len(ds)}. ' + ', '.join(
+            f'{n}: {sum(1 for d in ds if d["nhom"] == n)}' for n in VS_NHOM_HOP_LE) + '.',
+        'Theo cấp tin cậy: ' + ', '.join(
+            f'{c}: {sum(1 for d in ds if d["cap_tin_cay"] == c)}' for c in VS_CAP_HOP_LE) + '.',
+        '',
+        f'MỤC CẦN KIỂM CHỨNG ({len(can_kc)}):', *[f'  - {s}' for s in can_kc],
+        '',
+    ]
+    (VUNG / 'BAO_CAO_KIEM_TRA_VI_SAO.txt').write_text('\n'.join(bao_cao), encoding='utf-8')
+    print('\n' + '\n'.join(bao_cao))
+    return 0
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -1182,6 +1234,7 @@ def main():
         so_canh_bao += kiem_tra_tour()
         so_canh_bao += xu_ly_vung('--tai-lai' in sys.argv)
         so_canh_bao += xu_ly_ha_tang('--tai-lai' in sys.argv)
+        so_canh_bao += kiem_tra_vi_sao()
     except LoiDuLieu as e:
         print(f'\nDỪNG LẠI: {e}')
         return 1
