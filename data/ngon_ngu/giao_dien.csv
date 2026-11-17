@@ -92,6 +92,7 @@ tour_thoat,Thoát,Exit
 tour_truoc,Trước,Back
 tour_tiep,Tiếp,Next
 tour_ket_thuc,Kết thúc,Finish
+tour_mo_vi_sao,"Mở thẻ ""Vì sao sáp nhập?""",Open the “Why merge?” card
 sap_co,sắp có,coming soon
 ve_goc_nhin_dau,Về góc nhìn ban đầu,Reset view
 gioi_thieu_nut,Giới thiệu và nguồn dữ liệu,About and data sources

@@ -393,3 +393,4 @@ body.dang-tour .chon-tam { display: none; }
 .ht-tom-tat { margin: 0.15rem 0; font-size: 0.8rem; }
 #ht-long-thanh .nut-loc { margin-top: 0.3rem; }
 #ht-long-thanh .nut-loc { text-decoration: none; color: var(--chu); }
+.tour-nut-the { display: block; width: 100%; margin: 0.7rem 0 0; }

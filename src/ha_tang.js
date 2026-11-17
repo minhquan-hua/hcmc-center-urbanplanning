@@ -405,8 +405,23 @@
     });
   }).catch(baoLoiTai);
 
+  // Dùng cho tour: tô đậm nhiều mục cùng lúc (không mở thẻ) và bật/tắt chế độ chỉ hiện kết nối Long Thành
+  var danhDauCu = [];
+  function danhDau(dsMa) {
+    if (!sanSang) return;
+    danhDauCu.forEach(function (ma) { if (ma !== dangChon) banDo.setFeatureState({ source: 'ha-tang', id: ma }, { chon: false }); });
+    danhDauCu = (dsMa || []).filter(function (ma) { return theoMa[ma]; });
+    danhDauCu.forEach(function (ma) { banDo.setFeatureState({ source: 'ha-tang', id: ma }, { chon: true }); });
+  }
+  function datChiLongThanh(bat) {
+    if (chiLongThanh === !!bat) return;
+    chiLongThanh = !!bat;
+    veBang();
+    capNhatHienThi();
+  }
+
   window.SaBan.haTang = {
-    trung: trung, chon: chon_, boChon: boChon,
+    trung: trung, chon: chon_, boChon: boChon, danhDau: danhDau, datChiLongThanh: datChiLongThanh,
     dangChon: function () { return !!dangChon; }
   };
 })();

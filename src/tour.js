@@ -10,6 +10,14 @@
 
   var tour = [], buoc = {};       // buoc[ma tour] = các bước đã xếp thứ tự
   var dangMo = null, viTri = 0;
+  var anChoThe = false;           // tour tạm ẩn khi người xem mở thẻ "Vì sao sáp nhập" từ trong tour
+
+  // tour.csv cột "tam": "vung" = tour ở tầm Toàn vùng; để trống hoặc "trung-tam" = tầm Trung tâm
+  function laVung(maTour) {
+    var d = tour.filter(function (x) { return x.ma === maTour; })[0];
+    return !!d && d.tam === 'vung';
+  }
+  function tachMa(chuoi) { return (chuoi || '').split('|').map(function (x) { return x.trim(); }).filter(Boolean); }
 
   function t(ma, macDinh) { return S.chu(ma) || macDinh || ma; }
   function en() { return S.ngonNgu() === 'en'; }
@@ -32,9 +40,12 @@
 
   // ---------- Danh sách tour trong bảng lớp ----------
   function veDanhSach() {
-    var ds = document.getElementById('ds-tour');
-    ds.textContent = '';
+    var dsTT = document.getElementById('ds-tour'), dsVung = document.getElementById('ds-tour-vung');
+    dsTT.textContent = '';
+    if (dsVung) dsVung.textContent = '';
     tour.forEach(function (d) {
+      var ds = d.tam === 'vung' ? dsVung : dsTT;
+      if (!ds) return;
       var nut = el('button', 'nut-tour');
       nut.type = 'button';
       nut.appendChild(el('strong', null, chu(d, 'ten')));
@@ -46,7 +57,35 @@
   }
 
   // ---------- Một bước ----------
+  function apDungVung(b) {
+    var cacLop = tachMa(b.lop), dd = tachMa(b.danh_dau);
+    if (S.haTang) { S.haTang.boChon(); S.haTang.datChiLongThanh(cacLop.indexOf('long-thanh') >= 0); S.haTang.danhDau(dd); }
+    if (S.vung) { S.vung.boChon(); S.vung.danhDau(dd); }
+    document.getElementById('the').hidden = true;
+    var hep = window.matchMedia('(max-width: 767px)').matches;
+    banDo.flyTo({
+      center: [so(b.kinh_do, 106.85), so(b.vi_do, 10.85)],
+      // điện thoại hẹp ngang: lùi ra một chút để thấy đủ vùng đang nói tới
+      zoom: so(b.thu_phong, 8.5) - (hep ? 0.9 : 0), pitch: 0, bearing: 0,
+      // chừa đúng chiều cao khung tour (đã vẽ trước khi bay) để vùng đang nói tới không bị che
+      padding: { top: hep ? 40 : 60, left: 0, right: 0, bottom: chieuCaoTour() },
+      duration: 1600, essential: true
+    });
+  }
+
+  function chieuCaoTour() {
+    var khung = document.getElementById('tour');
+    var cao = khung.hidden ? 0 : window.innerHeight - khung.getBoundingClientRect().top;
+    return Math.round(Math.min(Math.max(cao, window.innerHeight * 0.3), window.innerHeight * 0.6)) + 10;
+  }
+
+  function boTourVung() {
+    if (S.haTang) { S.haTang.danhDau([]); S.haTang.datChiLongThanh(false); }
+    if (S.vung) S.vung.danhDau([]);
+  }
+
   function apDung(b) {
+    if (laVung(b.tour)) { apDungVung(b); return; }
     var cacLop = b.lop.split('|').map(function (x) { return x.trim(); });
     Object.keys(O_CHON).forEach(function (l) { datO(O_CHON[l], cacLop.indexOf(l) >= 0); });
     if (b.ky_hanh_chinh && S.hanhChinh) S.hanhChinh.datKy(b.ky_hanh_chinh);
@@ -79,9 +118,21 @@
       hop.appendChild(el('p', null, cauHoi));
       nd.appendChild(hop);
     }
+    if (b.nut === 'vi-sao' && S.viSao) {
+      var nut = el('button', 'nut-phu nut-vi-sao tour-nut-the', t('tour_mo_vi_sao', 'Mở thẻ "Vì sao sáp nhập?"'));
+      nut.type = 'button';
+      nut.addEventListener('click', function () {
+        S.viSao.mo();
+        // ẩn tour cho thẻ khỏi bị che; đóng thẻ thì tour hiện lại
+        anChoThe = true;
+        khung.hidden = true;
+      });
+      nd.appendChild(nut);
+    }
     document.getElementById('tour-truoc').disabled = viTri === 0;
     document.getElementById('tour-tiep').textContent =
       viTri === ds.length - 1 ? t('tour_ket_thuc', 'Kết thúc') : t('tour_tiep', 'Tiếp');
+    anChoThe = false;
     khung.hidden = false;
     khung.scrollTop = 0;
     document.body.classList.add('dang-tour');
@@ -89,15 +140,19 @@
 
   function mo(ma) {
     if (!buoc[ma] || !buoc[ma].length) return;
+    var canTam = laVung(ma) ? 'vung' : 'trung-tam';
+    if (S.tam && S.tam() !== canTam) S.datTam(canTam);
     dangMo = ma;
     viTri = 0;
     S.datBang(false);
-    apDung(buoc[ma][0]);
     ve();
+    apDung(buoc[ma][0]);
   }
 
   function dong() {
+    if (dangMo && laVung(dangMo)) { boTourVung(); document.getElementById('the').hidden = true; }
     dangMo = null;
+    anChoThe = false;
     ve();
     banDo.easeTo({ padding: { top: 0, left: 0, right: 0, bottom: 0 }, duration: 400 });
     if (!window.matchMedia('(max-width: 767px)').matches) S.datBang(true);
@@ -109,13 +164,17 @@
     if (moi >= buoc[dangMo].length) { dong(); return; }
     if (moi < 0) return;
     viTri = moi;
-    apDung(buoc[dangMo][viTri]);
     ve();
+    apDung(buoc[dangMo][viTri]);
   }
 
   document.getElementById('tour-truoc').addEventListener('click', function () { di(-1); });
   document.getElementById('tour-tiep').addEventListener('click', function () { di(1); });
   document.getElementById('tour-thoat').addEventListener('click', dong);
+  // thẻ đóng lại (bằng nút × hay nhấp ra ngoài) thì hiện lại tour đang tạm ẩn
+  new MutationObserver(function () {
+    if (dangMo && anChoThe && document.getElementById('the').hidden) ve();
+  }).observe(document.getElementById('the'), { attributes: true, attributeFilter: ['hidden'] });
   S.khiDoiNgonNgu(function () { veDanhSach(); ve(); });
 
   function taiCSV(tenTep, cot) {

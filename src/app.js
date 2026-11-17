@@ -202,7 +202,7 @@
     if (moi === tam || (moi !== 'vung' && moi !== 'trung-tam')) return;
     var S = window.SaBan;
     // đang xem tour thì thoát tour trước
-    if (!document.getElementById('tour').hidden) document.getElementById('tour-thoat').click();
+    if (S.tour && S.tour.trangThai().dangMo) S.tour.dong();
     ['hanhChinh', 'duAn', 'thuy', 'vung'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
     document.getElementById('the').hidden = true;
     tam = moi;

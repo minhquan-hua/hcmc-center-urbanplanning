@@ -866,22 +866,57 @@ def xu_ly_thuy(tai_lai):
 
 # ---------------------------------------------------------------- tour học tập
 LOP_TOUR = ['hanh-chinh', 'du-an', 'duong-bo', 'thuy']
+LOP_TOUR_VUNG = ['long-thanh']  # tour tầm vùng: chỉ hiện các tuyến nối sân bay Long Thành
+
+
+def kiem_tra_buoc_vung(b, vt, ma_vung, loi):
+    """Kiểm tra một bước của tour ở tầm Toàn vùng."""
+    if not b['tieu_de_vi'] or not b['loi_dan_vi']:
+        loi.append(f'{vt}: thiếu "tieu_de_vi" hoặc "loi_dan_vi"')
+    try:
+        x, y = float(b['kinh_do'].replace(',', '.')), float(b['vi_do'].replace(',', '.'))
+        assert 105.5 <= x <= 108.0 and 9.8 <= y <= 12.5
+        assert 7 <= float(b['thu_phong'].replace(',', '.')) <= 14
+        int(b['thu_tu'])
+    except Exception:
+        loi.append(f'{vt}: vị trí không hợp lệ cho tour vùng. Kinh độ 105.5-108, vĩ độ 9.8-12.5, '
+                   f'thu phóng 7-14; "thu_tu" phải là số nguyên')
+    for l in [x for x in b['lop'].split('|') if x]:
+        if l not in LOP_TOUR_VUNG:
+            loi.append(f'{vt}: tour vùng chỉ dùng lớp "long-thanh" hoặc để trống (đang ghi "{l}")')
+    for m in [x.strip() for x in b['danh_dau'].split('|') if x.strip()]:
+        if m not in ma_vung:
+            loi.append(f'{vt}: mã "{m}" ở cột "danh_dau" không có trong data/vung/ha_tang.csv hay vung.csv')
+    if b['nut'] not in ('', 'vi-sao'):
+        loi.append(f'{vt}: cột "nut" phải để trống hoặc ghi "vi-sao"')
+    if b['ky_hanh_chinh'] or b['kich_ban']:
+        loi.append(f'{vt}: tour vùng không dùng "ky_hanh_chinh" và "kich_ban"; hãy để trống')
 
 
 def kiem_tra_tour():
     print('\n11. Kiểm tra nội dung các tour')
     thu_muc = GOC / 'data' / 'tour'
-    tour = doc_csv(thu_muc / 'tour.csv', ['ma', 'ten_vi', 'ten_en', 'mo_ta_vi', 'mo_ta_en'])
+    tour = doc_csv(thu_muc / 'tour.csv', ['ma', 'tam', 'ten_vi', 'ten_en', 'mo_ta_vi', 'mo_ta_en'])
     buoc = doc_csv(thu_muc / 'buoc.csv',
                    ['tour', 'thu_tu', 'tieu_de_vi', 'loi_dan_vi', 'cau_hoi_vi', 'kinh_do', 'vi_do',
-                    'thu_phong', 'nghieng', 'xoay', 'lop', 'ky_hanh_chinh', 'kich_ban'])
+                    'thu_phong', 'nghieng', 'xoay', 'lop', 'ky_hanh_chinh', 'kich_ban', 'danh_dau', 'nut'])
     kich_ban = [k['ma'] for k in doc_csv(GT / 'kich_ban.csv', ['ma'])]
+    ma_vung = {d['ma'] for d in doc_csv(VUNG / 'ha_tang.csv', ['ma'])} |         {d['ma'] for d in doc_csv(VUNG / 'vung.csv', ['ma'])}
     loi = []
+    for t in tour:
+        if t['tam'] not in ('', 'trung-tam', 'vung'):
+            loi.append(f'tour.csv dòng {t["_dong"]}: cột "tam" phải là "trung-tam" hoặc "vung"')
     ma_tour = [t['ma'] for t in tour]
+    tam_tour = {t['ma']: t['tam'] for t in tour}
     for b in buoc:
         vt = f'buoc.csv dòng {b["_dong"]}'
         if b['tour'] not in ma_tour:
             loi.append(f'{vt}: tour "{b["tour"]}" không có trong tour.csv')
+        if tam_tour.get(b['tour']) == 'vung':
+            kiem_tra_buoc_vung(b, vt, ma_vung, loi)
+            continue
+        if b['danh_dau'] or b['nut']:
+            loi.append(f'{vt}: cột "danh_dau" và "nut" chỉ dùng cho tour tầm vùng; hãy để trống')
         if not b['tieu_de_vi'] or not b['loi_dan_vi']:
             loi.append(f'{vt}: thiếu "tieu_de_vi" hoặc "loi_dan_vi"')
         try:

@@ -265,8 +265,17 @@
     });
   }).catch(baoLoiTai);
 
+  // Dùng cho tour: tô đậm nhiều vùng cùng lúc, không mở thẻ
+  var danhDauCu = [];
+  function danhDau(dsMa) {
+    if (!sanSang) return;
+    danhDauCu.forEach(function (ma) { if (ma !== dangChon) banDo.setFeatureState({ source: 'vung', id: ma }, { chon: false }); });
+    danhDauCu = (dsMa || []).filter(function (ma) { return vung[ma]; });
+    danhDauCu.forEach(function (ma) { banDo.setFeatureState({ source: 'vung', id: ma }, { chon: true }); });
+  }
+
   window.SaBan.vung = {
-    trung: trung, chon: chon, boChon: boChon,
+    trung: trung, chon: chon, boChon: boChon, danhDau: danhDau,
     dangChon: function () { return !!dangChon; }
   };
 })();
