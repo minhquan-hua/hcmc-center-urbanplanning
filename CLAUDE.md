@@ -67,7 +67,7 @@ Quận 1 cũ, Thủ Thiêm và các khu liền kề (Quận 3, Quận 4, Bình T
 
 - Sa bàn TRUNG TÂM đã xong cả 8 giai đoạn và đang chạy công khai; chủ dự án đã thử trên điện thoại.
 - Việc nội dung còn mở của sa bàn trung tâm: duyệt các mục "cần kiểm chứng" (18 hình dạng phường, 15 dự án, 5 tuyến thủy), duyệt lời tour, hai trạng thái xếp tạm (Trung tâm Tài chính quốc tế, Nhà hát). Chưa ai bấm đúp thử `cap_nhat_du_lieu.bat` và `dua_len_mang.bat`.
-- Đang làm: SA BÀN VÙNG (xem mục dưới). BƯỚC 1 (khung vùng) ĐÃ XONG ngày 17/11/2026, đã commit, CHƯA đưa lên mạng. Việc tiếp theo: bước 2 (hạ tầng vùng), làm ở phiên mới.
+- Đang làm: SA BÀN VÙNG (xem mục dưới). BƯỚC 1 (khung vùng) ĐÃ XONG và ĐÃ ĐƯỢC CHỦ DỰ ÁN DUYỆT ngày 17/11/2026, đã commit, CHƯA đưa lên mạng. Việc tiếp theo: bước 2 (hạ tầng vùng), làm ở phiên mới.
 - Cần chủ dự án duyệt sau bước 1: 6 mục "cần kiểm chứng" trong `data/vung/vung.csv` (thông tin sáp nhập); tên gọi "Thành phố Đồng Nai" (trực thuộc trung ương từ 30/4/2026, theo báo Đại biểu Nhân dân). Nhật ký chi tiết các giai đoạn cũ nằm ở `NHAT_KY.md`; chỉ đọc khi cần.
 
 ## Cấu trúc và ghi chú kỹ thuật cốt lõi
