@@ -373,3 +373,9 @@ body.dang-tour .chon-tam { display: none; }
   .thanh-tren h1 { font-size: 1.1rem; }
   .bao-loi { left: auto; right: 0.9rem; max-width: 28rem; }
 }
+
+.ht-tieu-de { margin-top: 0.6rem; }
+#khoi-vung .ht-tieu-de { border-top: 1px solid var(--vien); }
+.ht-tom-tat { margin: 0.15rem 0; font-size: 0.8rem; }
+#ht-long-thanh .nut-loc { margin-top: 0.3rem; }
+#ht-long-thanh .nut-loc { text-decoration: none; color: var(--chu); }

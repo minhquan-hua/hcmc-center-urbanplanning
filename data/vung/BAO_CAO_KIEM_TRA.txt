@@ -1,5 +1,5 @@
 BÁO CÁO KIỂM TRA DỮ LIỆU SA BÀN VÙNG
-Tạo lúc: 17/11/2026 09:48 (file này do máy tạo, đừng sửa tay)
+Tạo lúc: 17/11/2026 10:20 (file này do máy tạo, đừng sửa tay)
 
 Số vùng: 6. Ranh giới cũ lấy từ bản lưu OpenStreetMap ngày 2025-05-01.
 Diện tích theo hình vẽ chỉ là gần đúng. Với địa phương ven biển, ranh giới trên OpenStreetMap

@@ -1032,6 +1032,143 @@ def xu_ly_vung(tai_lai):
     return len(canh_bao)
 
 
+# ---------------------------------------------------------------- hạ tầng vùng
+KHUNG_VUNG = '10.2,105.9,11.7,107.7'
+NHOM_HA_TANG = ['metro', 'đường sắt', 'đường bộ', 'sân bay', 'cảng', 'khu đô thị', 'khu công nghiệp']
+KIEU_HINH_HT = ['', 'osm tuyến', 'osm vùng', 'điểm', 'điểm sơ đồ']
+SAI_SO_HT = 0.0001   # khoảng 10 mét
+
+
+def xu_ly_ha_tang(tai_lai):
+    print('\nSA BÀN VÙNG: HẠ TẦNG\n1. Đọc danh sách hạ tầng vùng')
+    ds = doc_csv(VUNG / 'ha_tang.csv',
+                 ['ma', 'ten_vi', 'ten_en', 'nhom', 'trang_thai', 'noi_long_thanh', 'moc_thoi_gian_vi',
+                  'mo_ta_vi', 'nguon', 'ngay_cap_nhat', 'da_kiem_chung', 'hinh_kieu', 'hinh_tham_so'])
+    loi = []
+    cac_ma = [d['ma'] for d in ds]
+    for d in ds:
+        vt = f'ha_tang.csv dòng {d["_dong"]}'
+        if not d['ma'] or not d['ten_vi']:
+            loi.append(f'{vt}: thiếu "ma" hoặc "ten_vi"')
+        if cac_ma.count(d['ma']) > 1:
+            loi.append(f'{vt}: mã "{d["ma"]}" bị trùng')
+        if d['nhom'] not in NHOM_HA_TANG:
+            loi.append(f'{vt}: cột "nhom" phải là một trong: {", ".join(NHOM_HA_TANG)}')
+        if d['trang_thai'] not in TRANG_THAI_HOP_LE:
+            loi.append(f'{vt}: cột "trang_thai" phải là một trong: {", ".join(TRANG_THAI_HOP_LE)}')
+        if d['noi_long_thanh'] not in ('', 'có'):
+            loi.append(f'{vt}: cột "noi_long_thanh" phải để trống hoặc ghi "có"')
+        if not d['nguon'].startswith('http'):
+            loi.append(f'{vt}: cột "nguon" phải bắt đầu bằng http (nhiều link thì ngăn bằng dấu |)')
+        if d['da_kiem_chung'] not in KIEM_CHUNG_HOP_LE:
+            loi.append(f'{vt}: cột "da_kiem_chung" phải là "có" hoặc "cần kiểm chứng"')
+        if d['hinh_kieu'] not in KIEU_HINH_HT:
+            loi.append(f'{vt}: cột "hinh_kieu" phải để trống hoặc là một trong: {", ".join(KIEU_HINH_HT[1:])}')
+        elif d['hinh_kieu'].startswith('điểm'):
+            try:
+                x, y = [float(v) for v in d['hinh_tham_so'].split(',')]
+                assert 105.9 < x < 107.7 and 10.2 < y < 11.7
+            except Exception:
+                loi.append(f'{vt}: "hinh_tham_so" của điểm phải có dạng kinh độ,vĩ độ (ví dụ 107.0134,10.5090)')
+        elif d['hinh_kieu'] and not d['hinh_tham_so']:
+            loi.append(f'{vt}: thiếu "hinh_tham_so" (câu truy vấn OpenStreetMap)')
+    if loi:
+        raise LoiDuLieu('Có lỗi trong file dữ liệu hạ tầng vùng:\n  - ' + '\n  - '.join(loi))
+
+    print('2. Hình dạng từ OpenStreetMap')
+    tu_osm = [d for d in ds if d['hinh_kieu'].startswith('osm')]
+    tep = VUNG / 'goc_osm' / 'ha_tang.json'
+    tep_ds = VUNG / 'goc_osm' / 'ha_tang_truy_van.json'
+    ds_truy_van = [[d['ma'], d['hinh_tham_so']] for d in tu_osm]
+    da_doi = not tep_ds.exists() or json.loads(tep_ds.read_text(encoding='utf-8')) != ds_truy_van
+    if tai_lai or da_doi or not tep.exists():
+        than = ''.join(f'({d["hinh_tham_so"].replace("KHUNG", KHUNG_VUNG).rstrip(";")};)->.s;.s out count;.s out geom;'
+                       for d in tu_osm)
+        tai(f'[out:json][timeout:240];{than}', tep)
+        tep_ds.write_text(json.dumps(ds_truy_van, ensure_ascii=False), encoding='utf-8')
+    phan_tu = json.loads(tep.read_text(encoding='utf-8'))['elements']
+
+    def diem_cua(w):
+        pts = []
+        for p in w.get('geometry') or []:
+            if not p:
+                continue
+            q = (round(p['lon'], 5), round(p['lat'], 5))
+            if not pts or pts[-1] != q:
+                pts.append(q)
+        return gian_luoc(pts, SAI_SO_HT)
+
+    canh_bao, doi_tuong = [], []
+    vi_tri = 0
+    for d in tu_osm:
+        if vi_tri >= len(phan_tu) or phan_tu[vi_tri].get('type') != 'count':
+            raise LoiDuLieu('Dữ liệu hình dạng hạ tầng vùng đã tải không khớp danh sách. Hãy chạy lại với --tai-lai.')
+        so = int(phan_tu[vi_tri]['tags']['total'])
+        nhom_pt = phan_tu[vi_tri + 1: vi_tri + 1 + so]
+        vi_tri += 1 + so
+        tt = {'ma': d['ma'], 'so_do': False}
+        diem = None
+        if d['hinh_kieu'] == 'osm vùng':
+            cac_dg = []
+            for e in nhom_pt:
+                if e.get('type') == 'relation':
+                    cac_dg += da_giac_tu_relation(e, SAI_SO_HT)
+                elif e.get('type') == 'way':
+                    pts = diem_cua(e)
+                    if len(pts) >= 4 and pts[0] == pts[-1]:
+                        cac_dg.append([pts])
+            if cac_dg:
+                doi_tuong.append({'type': 'Feature', 'properties': dict(tt, hinh='vùng'),
+                                  'geometry': hinh_geojson(cac_dg)})
+                diem = diem_trong(cac_dg)
+        else:
+            duong = [pts for pts in (diem_cua(e) for e in nhom_pt if e.get('type') == 'way') if len(pts) >= 2]
+            if duong:
+                doi_tuong.append({'type': 'Feature', 'properties': dict(tt, hinh='tuyến'),
+                                  'geometry': {'type': 'MultiLineString',
+                                               'coordinates': [[list(p) for p in dd] for dd in duong]}})
+                # đặt nhãn ở điểm nằm gần "giữa" tuyến nhất
+                tat_ca = [p for dd in duong for p in dd]
+                gx = (min(p[0] for p in tat_ca) + max(p[0] for p in tat_ca)) / 2
+                gy = (min(p[1] for p in tat_ca) + max(p[1] for p in tat_ca)) / 2
+                diem = min(tat_ca, key=lambda p: (p[0] - gx) ** 2 + (p[1] - gy) ** 2)
+        if diem is None:
+            canh_bao.append(f'"{d["ten_vi"]}": OpenStreetMap không trả về hình dạng nào, chỉ hiện trong danh sách')
+            continue
+        doi_tuong.append({'type': 'Feature', 'properties': dict(tt, hinh='nhãn'),
+                          'geometry': {'type': 'Point', 'coordinates': [round(diem[0], 5), round(diem[1], 5)]}})
+    for d in ds:
+        if d['hinh_kieu'].startswith('điểm'):
+            x, y = [float(v) for v in d['hinh_tham_so'].split(',')]
+            doi_tuong.append({'type': 'Feature',
+                              'properties': {'ma': d['ma'], 'so_do': d['hinh_kieu'] == 'điểm sơ đồ', 'hinh': 'điểm'},
+                              'geometry': {'type': 'Point', 'coordinates': [x, y]}})
+    ghi_geojson(VUNG / 'ha_tang.geojson', doi_tuong)
+
+    khong_hinh = [d['ten_vi'] for d in ds if not d['hinh_kieu']]
+    so_do = [d['ten_vi'] for d in ds if d['hinh_kieu'] == 'điểm sơ đồ']
+    can_kc = [d['ten_vi'] for d in ds if d['da_kiem_chung'] != 'có']
+    bao_cao = [
+        'BÁO CÁO KIỂM TRA DỮ LIỆU HẠ TẦNG VÙNG',
+        f'Tạo lúc: {time.strftime("%d/%m/%Y %H:%M")} (file này do máy tạo, đừng sửa tay)',
+        '',
+        f'Số mục: {len(ds)}. Có hình từ OpenStreetMap: {len(tu_osm) - len(canh_bao)}.',
+        '',
+        f'CẢNH BÁO ({len(canh_bao)}):' if canh_bao else 'CẢNH BÁO: không có.',
+        *[f'  - {c}' for c in canh_bao],
+        '',
+        f'CHỈ CÓ VỊ TRÍ SƠ ĐỒ ({len(so_do)}):', *[f'  - {s}' for s in so_do],
+        '',
+        f'CHỈ HIỆN TRONG DANH SÁCH, KHÔNG CÓ TRÊN BẢN ĐỒ ({len(khong_hinh)}):', *[f'  - {s}' for s in khong_hinh],
+        '',
+        f'MỤC CẦN KIỂM CHỨNG ({len(can_kc)}):', *[f'  - {s}' for s in can_kc],
+        '',
+    ]
+    (VUNG / 'BAO_CAO_KIEM_TRA_HA_TANG.txt').write_text('\n'.join(bao_cao), encoding='utf-8')
+    print('\n' + '\n'.join(bao_cao))
+    return len(canh_bao)
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -1044,6 +1181,7 @@ def main():
         so_canh_bao += xu_ly_thuy('--tai-lai' in sys.argv)
         so_canh_bao += kiem_tra_tour()
         so_canh_bao += xu_ly_vung('--tai-lai' in sys.argv)
+        so_canh_bao += xu_ly_ha_tang('--tai-lai' in sys.argv)
     except LoiDuLieu as e:
         print(f'\nDỪNG LẠI: {e}')
         return 1

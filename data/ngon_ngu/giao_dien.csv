@@ -119,3 +119,27 @@ vung_gop_tu,Được hợp nhất từ,Merged from
 vung_nay_thuoc,Từ 1/7/2025 thuộc,Since 1 July 2025 part of
 vung_thong_tin,Thông tin sáp nhập,Merger information
 gt_nguon_vung,Ranh giới vùng (tầm Toàn vùng): OpenStreetMap; thông tin sáp nhập theo Nghị quyết 202/2025/QH15 của Quốc hội.,Regional boundaries (Region view): OpenStreetMap; merger information from National Assembly Resolution 202/2025/QH15.
+ht_tieu_de,Hạ tầng vùng,Regional infrastructure
+ht_ha_tang,Hạ tầng vùng,Regional infrastructure
+ht_metro,metro,metro
+ht_duong_sat,đường sắt,railway
+ht_duong_bo,đường bộ,road
+ht_san_bay,sân bay,airport
+ht_cang,cảng,port
+ht_khu_do_thi,khu đô thị,urban area
+ht_khu_cong_nghiep,khu công nghiệp,industrial park
+ht_tt_phe_duyet,"đã phê duyệt, chưa khởi công","approved, not started"
+ht_tt_chu_truong,"chủ trương, quy hoạch",planned (policy stage)
+ht_tuyen,tuyến,routes
+ht_lt_tieu_de,Kết nối sân bay Long Thành - TP.HCM,Long Thanh Airport - HCMC links
+ht_duong_bo_hoa,Đường bộ,Road
+ht_duong_sat_hoa,Đường sắt và metro,Rail and metro
+ht_lt_chi_hien,Chỉ hiện các tuyến này,Show only these routes
+ht_lt_thuoc,Thuộc nhóm kết nối sân bay Long Thành - TP.HCM.,Part of the Long Thanh Airport - HCMC links.
+ht_dang_hien,Đang hiện,Showing
+ht_luu_y,Lưu ý,Note
+ht_khong_hinh,Chưa có hướng tuyến hay vị trí đáng tin để vẽ; chỉ hiện trong danh sách.,No reliable alignment or location to draw yet; listed only.
+ht_so_do,Chấm rỗng chỉ là vị trí sơ đồ cho biết khu vực; chưa có hướng tuyến hay ranh giới đáng tin để vẽ.,The hollow dot is a schematic location only; no reliable alignment or boundary to draw yet.
+ht_hinh_osm,"Hình vẽ lấy từ OpenStreetMap do cộng đồng vẽ; với công trình chưa xây đây là hướng tuyến hoặc ranh dự kiến, có thể khác thiết kế cuối cùng.","Shape from OpenStreetMap (community-drawn); for unbuilt works it is an indicative alignment or outline and may differ from the final design."
+ht_chu_giai,"Nét liền: đã hoàn thành. Nét đứt: chưa xong. Vạch trắng ở giữa: metro, đường sắt. Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.","Solid: completed. Dashed: not finished. White centre stripe: metro, railway. Hollow dot: schematic location. *: not on the map."
+ht_luu_y_chung,"Hướng tuyến chưa xây lấy từ OpenStreetMap, chỉ để tham khảo. Trạng thái tra ngày 17/11/2026 từ báo chí, có thể đã thay đổi.","Unbuilt alignments are from OpenStreetMap, indicative only. Status checked on 17 Nov 2026 from press reports and may have changed."

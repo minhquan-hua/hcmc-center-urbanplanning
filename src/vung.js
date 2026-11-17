@@ -110,12 +110,15 @@
 
     banDo.on('click', function (e) {
       if (S.tam() !== 'vung') return;
+      // hạ tầng vùng (tuyến, điểm) được ưu tiên hơn ranh giới
+      if (S.haTang && S.haTang.trung(e.point)) { boChon(); return; }
       var ma = trung(e.point);
       if (ma) chon(ma); else boChon();
     });
     banDo.on('mousemove', function (e) {
       if (S.tam() !== 'vung') return;
-      banDo.getCanvas().style.cursor = trung(e.point) ? 'pointer' : '';
+      banDo.getCanvas().style.cursor =
+        ((S.haTang && S.haTang.trung(e.point)) || trung(e.point)) ? 'pointer' : '';
     });
   }
 
@@ -163,6 +166,7 @@
 
   function chon(ma) {
     if (!sanSang || !vung[ma]) return;
+    if (S.haTang) S.haTang.boChon();
     boChon();
     dangChon = ma;
     banDo.setFeatureState({ source: 'vung', id: ma }, { chon: true });
