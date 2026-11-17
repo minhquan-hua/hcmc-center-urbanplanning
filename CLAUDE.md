@@ -135,7 +135,7 @@ Chủ đề: 3 vị trí chiến lược của Tây Nam Bộ và mạng giao th�
 - Phạm vi: vẽ ranh giới toàn vùng, có chế độ "Trước / Sau sáp nhập"; CHỈ làm chi tiết 3 điểm chiến lược và các trục nối chúng. Các tỉnh khác chỉ có ranh giới.
 - Giao thông thủy: chỉ vẽ tuyến và bến đứng yên.
 - Bản đồ nhỏ (minimap) ở góc dưới: hình Việt Nam, có khung chữ nhật chỉ vùng đang xem trên bản đồ lớn, giúp sinh viên quốc tế hình dung. Quyết định kỹ thuật: hiện ở cả ba tầm.
-- Tiếng Anh: bản tiếng Anh phải 100% tiếng Anh, thuật ngữ chuyên ngành chuẩn; tên riêng, địa danh giữ nguyên tiếng Việt CÓ dấu (không bỏ dấu, không dịch). CHƯA hỏi: có dịch bù phần đã làm (lời tour vùng, thẻ "Vì sao sáp nhập" đang chỉ có tiêu đề tiếng Anh) hay không.
+- Tiếng Anh: bản tiếng Anh phải 100% tiếng Anh, thuật ngữ chuyên ngành chuẩn; tên riêng, địa danh giữ nguyên tiếng Việt CÓ dấu (không bỏ dấu, không dịch). Chủ dự án quyết (17/11/2026): dịch bù sang tiếng Anh đầy đủ phần đã làm (lời tour vùng, thẻ "Vì sao sáp nhập" đang chỉ có tiêu đề tiếng Anh) SAU KHI dựng xong bản đồ Tây Nam Bộ (sau bước 4, trước hoặc cùng bước 5).
 
 Cần tra nguồn trước khi ghi (lời chủ dự án hoặc hiểu biết chưa kiểm chứng):
 - Kiên Giang có nhập vào An Giang từ 1/7/2025 và Phú Quốc là đặc khu thuộc An Giang không. Nếu đúng: ghi "Đặc khu Phú Quốc (An Giang)", tên Kiên Giang chỉ ở bản đồ trước 2025.
