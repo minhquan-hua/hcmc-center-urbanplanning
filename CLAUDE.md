@@ -65,6 +65,7 @@ Quận 1 cũ, Thủ Thiêm và các khu liền kề (Quận 3, Quận 4, Bình T
 
 ## Trạng thái (cập nhật 17/11/2026)
 
+- ĐANG LÀM (từ 17/11/2026): SA BÀN TÂY NAM BỘ, kế hoạch đã duyệt, xem mục cuối file. Bước tiếp theo: bước 1 (khung bản đồ + bản đồ nhỏ), làm ở phiên mới.
 - Sa bàn TRUNG TÂM đã xong cả 8 giai đoạn và đang chạy công khai; chủ dự án đã thử trên điện thoại.
 - Việc nội dung còn mở của sa bàn trung tâm: duyệt các mục "cần kiểm chứng" (18 hình dạng phường, 15 dự án, 5 tuyến thủy), duyệt lời tour, hai trạng thái xếp tạm (Trung tâm Tài chính quốc tế, Nhà hát). Chưa ai bấm đúp thử `cap_nhat_du_lieu.bat` và `dua_len_mang.bat`.
 - Đang làm: SA BÀN VÙNG (xem mục dưới). BƯỚC 1 (khung vùng) đã được chủ dự án duyệt ngày 17/11/2026. BƯỚC 2 (hạ tầng vùng, 27 mục) ĐÃ DỰNG XONG và commit ngày 17/11/2026, CHƯA đưa lên mạng; ĐANG DỪNG chờ chủ dự án xem bản đồ vùng rồi mới quyết bước 3-5.
@@ -120,3 +121,30 @@ Quy tắc nội dung cho phần vùng:
 - Tiết kiệm token: tra cứu gộp, duyệt gộp; tiếng Anh chỉ dịch tên; không thêm chi tiết ngoài yêu cầu; trả lời ngắn.
 - Gợi ý có sẵn từ OpenStreetMap (đã thấy khi dò ngày 14/11/2026, chưa kiểm): tuyến dự kiến "Đường sắt đô thị Bến Thành-Cần Giờ", "Đường sắt Thủ Thiêm-Long Thành", "Đường sắt cao tốc Bắc - Nam", metro tuyến 2, 3, 4, 6, 7 dạng `railway=proposed/construction`.
 
+
+## SA BÀN TÂY NAM BỘ: kế hoạch đã được chủ dự án duyệt (17/11/2026)
+
+Chủ đề: 3 vị trí chiến lược của Tây Nam Bộ và mạng giao thông đặc thù của vùng.
+- Cần Thơ: thành phố trực thuộc trung ương, trung tâm kinh tế, hành chính, chính trị của vùng.
+- Cà Mau: cảng Hòn Khoai (chủ dự án gọi là "cảng lưỡng dụng") và đường từ đất liền ra cảng; ý nghĩa kinh tế, quốc phòng, địa chính trị.
+- Phú Quốc: quân sự, kinh tế du lịch, địa chính trị (án ngữ vịnh Thái Lan); tuyến nối đất liền ra đảo.
+- Giao thông: đường thủy truyền thống (sông ngòi chằng chịt); cao tốc hình "xương cá" (logistics, xuất khẩu nông sản, an ninh quốc phòng); tuyến đường ven biển (liên vùng, du lịch, kinh tế ven biển).
+
+Điều chủ dự án đã quyết:
+- Cách tích hợp: nút chọn tầm thêm lựa chọn thứ ba "Tây Nam Bộ". Cách làm giống tầm vùng (ranh giới, tuyến, điểm, thẻ, tour; không tòa nhà, không xe/tàu chạy).
+- Phạm vi: vẽ ranh giới toàn vùng, có chế độ "Trước / Sau sáp nhập"; CHỈ làm chi tiết 3 điểm chiến lược và các trục nối chúng. Các tỉnh khác chỉ có ranh giới.
+- Giao thông thủy: chỉ vẽ tuyến và bến đứng yên.
+- Bản đồ nhỏ (minimap) ở góc dưới: hình Việt Nam, có khung chữ nhật chỉ vùng đang xem trên bản đồ lớn, giúp sinh viên quốc tế hình dung. Quyết định kỹ thuật: hiện ở cả ba tầm.
+- Tiếng Anh: bản tiếng Anh phải 100% tiếng Anh, thuật ngữ chuyên ngành chuẩn; tên riêng, địa danh giữ nguyên tiếng Việt CÓ dấu (không bỏ dấu, không dịch). CHƯA hỏi: có dịch bù phần đã làm (lời tour vùng, thẻ "Vì sao sáp nhập" đang chỉ có tiêu đề tiếng Anh) hay không.
+
+Cần tra nguồn trước khi ghi (lời chủ dự án hoặc hiểu biết chưa kiểm chứng):
+- Kiên Giang có nhập vào An Giang từ 1/7/2025 và Phú Quốc là đặc khu thuộc An Giang không. Nếu đúng: ghi "Đặc khu Phú Quốc (An Giang)", tên Kiên Giang chỉ ở bản đồ trước 2025.
+- Trạng thái thật của cảng Hòn Khoai, tính chất "lưỡng dụng", đường ra cảng, tuyến nối đất liền ra Phú Quốc. Nguồn nói khác thì báo lại.
+- Phần quốc phòng, địa chính trị: chỉ nêu điều có nguồn (cấp tin cậy A-D như thẻ "Vì sao sáp nhập"), còn lại đặt thành câu hỏi gợi mở.
+
+Các bước (mỗi bước chủ dự án duyệt một lần; MỖI BƯỚC MỘT PHIÊN MỚI):
+1. Khung bản đồ Tây Nam Bộ: nút tầm thứ ba, ranh giới tỉnh mới và cũ (OpenStreetMap), đánh dấu 3 điểm; bản đồ nhỏ Việt Nam.
+2. Hạ tầng: tra một lượt, gửi một danh sách để duyệt (cao tốc xương cá, đường ven biển, đường thủy chính và bến, cảng Hòn Khoai và đường ra cảng, tuyến ra Phú Quốc, sân bay và cảng trên đảo), mỗi mục có trạng thái; rồi dựng.
+3. Thẻ "Vị trí chiến lược" cho Cần Thơ, Hòn Khoai, Phú Quốc.
+4. Tour (1-2 tour).
+5. Đưa lên mạng.
