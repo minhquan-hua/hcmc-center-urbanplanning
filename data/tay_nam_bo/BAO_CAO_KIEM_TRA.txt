@@ -1,0 +1,38 @@
+BÁO CÁO KIỂM TRA DỮ LIỆU SA BÀN TÂY NAM BỘ
+Tạo lúc: 17/11/2026 18:44 (file này do máy tạo, đừng sửa tay)
+
+Số vùng: 20. Ranh giới cũ lấy từ bản lưu OpenStreetMap ngày 2025-05-01.
+Diện tích theo hình vẽ chỉ là gần đúng. Với địa phương ven biển, ranh giới trên OpenStreetMap
+gồm cả vùng biển (tới Phú Quốc, Thổ Chu, Hòn Khoai) nên diện tích hình vẽ lớn hơn nhiều so với diện tích đất liền.
+
+CẢNH BÁO: không có.
+
+DIỆN TÍCH:
+  - Thành phố Cần Thơ: 9,681 km² theo hình vẽ (tên trên OpenStreetMap: "Thành phố Cần Thơ")
+  - Tỉnh An Giang: 26,727 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh An Giang")
+  - Tỉnh Cà Mau: 27,863 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Cà Mau")
+  - Tỉnh Vĩnh Long: 10,241 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Vĩnh Long")
+  - Tỉnh Đồng Tháp: 6,089 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Đồng Tháp")
+  - Tỉnh Tây Ninh: 8,517 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Tây Ninh")
+  - Tỉnh Long An (trước 1/7/2025): 4,487 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Long An")
+  - Tỉnh Tây Ninh (trước 1/7/2025): 4,032 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Tây Ninh")
+  - Tỉnh Tiền Giang (trước 1/7/2025): 2,706 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Tiền Giang")
+  - Tỉnh Đồng Tháp (trước 1/7/2025): 3,383 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Đồng Tháp")
+  - Tỉnh Bến Tre (trước 1/7/2025): 4,268 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Bến Tre")
+  - Tỉnh Vĩnh Long (trước 1/7/2025): 1,523 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Vĩnh Long")
+  - Tỉnh Trà Vinh (trước 1/7/2025): 4,452 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Trà Vinh")
+  - Thành phố Cần Thơ (trước 1/7/2025): 1,441 km² theo hình vẽ (tên trên OpenStreetMap: "Thành phố Cần Thơ")
+  - Tỉnh Hậu Giang (trước 1/7/2025): 1,622 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Hậu Giang")
+  - Tỉnh Sóc Trăng (trước 1/7/2025): 6,618 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Sóc Trăng")
+  - Tỉnh Bạc Liêu (trước 1/7/2025): 6,671 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Bạc Liêu")
+  - Tỉnh Cà Mau (trước 1/7/2025): 21,210 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Cà Mau")
+  - Tỉnh Kiên Giang (trước 1/7/2025): 23,217 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Kiên Giang")
+  - Tỉnh An Giang (trước 1/7/2025): 3,526 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh An Giang")
+  - Tổng các địa phương cũ hợp thành Thành phố Cần Thơ: 9,681 km²; hình vẽ mới: 9,681 km²; lệch 0.0%
+  - Tổng các địa phương cũ hợp thành Tỉnh An Giang: 26,743 km²; hình vẽ mới: 26,727 km²; lệch 0.1%
+  - Tổng các địa phương cũ hợp thành Tỉnh Cà Mau: 27,881 km²; hình vẽ mới: 27,863 km²; lệch 0.1%
+  - Tổng các địa phương cũ hợp thành Tỉnh Vĩnh Long: 10,243 km²; hình vẽ mới: 10,241 km²; lệch 0.0%
+  - Tổng các địa phương cũ hợp thành Tỉnh Đồng Tháp: 6,090 km²; hình vẽ mới: 6,089 km²; lệch 0.0%
+  - Tổng các địa phương cũ hợp thành Tỉnh Tây Ninh: 8,519 km²; hình vẽ mới: 8,517 km²; lệch 0.0%
+
+MỤC CẦN KIỂM CHỨNG (0):

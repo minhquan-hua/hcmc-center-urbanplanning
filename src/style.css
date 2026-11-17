@@ -394,3 +394,43 @@ body.dang-tour .chon-tam { display: none; }
 #ht-long-thanh .nut-loc { margin-top: 0.3rem; }
 #ht-long-thanh .nut-loc { text-decoration: none; color: var(--chu); }
 .tour-nut-the { display: block; width: 100%; margin: 0.7rem 0 0; }
+
+/* Tây Nam Bộ */
+#khoi-tay-nam-bo > .tieu-de-muc:first-child { border-top: 0; }
+#khoi-tay-nam-bo .chon-ky { margin: 0.2rem 0 0.4rem; }
+.o-mau.o-diem { border-radius: 50%; opacity: 1; box-shadow: 0 0 0 2px #fff inset; }
+@media (max-width: 420px) { .chon-tam button { padding: 0 0.6rem; font-size: 0.82rem; } }
+
+/* Bản đồ nhỏ Việt Nam: điện thoại ở góc trái dưới (trên thước tỉ lệ), laptop ở góc phải dưới */
+.ban-do-nho {
+  position: fixed;
+  left: 0.6rem;
+  bottom: calc(5.3rem + env(safe-area-inset-bottom));
+  z-index: 1;
+  width: 5.2rem; height: 6rem;
+  background: #eef0e8;
+  border: 1px solid var(--vien);
+  border-radius: 0.4rem;
+  box-shadow: var(--bong);
+  overflow: hidden;
+}
+.bdn-khung { position: absolute; inset: 0; }
+.bdn-khung .maplibregl-canvas { cursor: default; }
+.bdn-nut {
+  position: absolute; top: 0; right: 0;
+  width: 1.5rem; height: 1.5rem;
+  padding: 0; border: 0;
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom-left-radius: 0.4rem;
+  font-size: 1rem; line-height: 1;
+  color: var(--chu-mo);
+}
+.ban-do-nho.thu-gon { width: auto; height: auto; background: var(--nen); }
+.ban-do-nho.thu-gon .bdn-khung { display: none; }
+.ban-do-nho.thu-gon .bdn-nut {
+  position: static; width: auto; height: 2rem; padding: 0 0.6rem;
+  border-radius: 0.4rem; font-size: 0.78rem; font-weight: 600; color: var(--chu);
+}
+@media (min-width: 768px) {
+  .ban-do-nho { left: auto; right: 0.9rem; bottom: 2.2rem; width: 7.5rem; height: 8.6rem; }
+}

@@ -65,7 +65,7 @@ Quận 1 cũ, Thủ Thiêm và các khu liền kề (Quận 3, Quận 4, Bình T
 
 ## Trạng thái (cập nhật 17/11/2026)
 
-- ĐANG LÀM (từ 17/11/2026): SA BÀN TÂY NAM BỘ, kế hoạch đã duyệt, xem mục cuối file. Bước tiếp theo: bước 1 (khung bản đồ + bản đồ nhỏ), làm ở phiên mới.
+- ĐANG LÀM (từ 17/11/2026): SA BÀN TÂY NAM BỘ, kế hoạch đã duyệt, xem mục cuối file. BƯỚC 1 (khung bản đồ + bản đồ nhỏ) ĐÃ DỰNG XONG và commit ngày 17/11/2026, CHƯA đưa lên mạng; đang chờ chủ dự án xem và duyệt. Bước tiếp theo: bước 2 (hạ tầng), làm ở phiên mới.
 - Sa bàn TRUNG TÂM đã xong cả 8 giai đoạn và đang chạy công khai; chủ dự án đã thử trên điện thoại.
 - Việc nội dung còn mở của sa bàn trung tâm: duyệt các mục "cần kiểm chứng" (18 hình dạng phường, 15 dự án, 5 tuyến thủy), duyệt lời tour, hai trạng thái xếp tạm (Trung tâm Tài chính quốc tế, Nhà hát). Chưa ai bấm đúp thử `cap_nhat_du_lieu.bat` và `dua_len_mang.bat`.
 - Đang làm: SA BÀN VÙNG (xem mục dưới). BƯỚC 1 (khung vùng) đã được chủ dự án duyệt ngày 17/11/2026. BƯỚC 2 (hạ tầng vùng, 27 mục) ĐÃ DỰNG XONG và commit ngày 17/11/2026, CHƯA đưa lên mạng; ĐANG DỪNG chờ chủ dự án xem bản đồ vùng rồi mới quyết bước 3-5.
@@ -93,6 +93,10 @@ Quận 1 cũ, Thủ Thiêm và các khu liền kề (Quận 3, Quận 4, Bình T
 - Tour vùng: `data/tour/tour.csv` cột `tam` = `vung` / `trung-tam`; `buoc.csv` thêm cột `danh_dau` (mã trong `ha_tang.csv` hoặc `vung.csv`, ngăn bằng `|`, tô đậm không mở thẻ) và `nut` (`vi-sao` = nút mở thẻ "Vì sao sáp nhập", tour tạm ẩn tới khi thẻ đóng); ở tour vùng `lop` chỉ nhận `long-thanh` (chỉ hiện tuyến nối Long Thành). Danh sách tour vùng ở `#ds-tour-vung`; mở tour tự đổi tầm. `S.haTang.danhDau()`, `S.haTang.datChiLongThanh()`, `S.vung.danhDau()`. Khung bay chừa đúng chiều cao khung tour; điện thoại tự lùi 0,9 mức thu phóng. Kiểm tra: `kiem_tra_buoc_vung` trong `cap_nhat.py`.
 - Tra cứu web: thuvienphapluat.vn và eastasiaforum.org chặn công cụ đọc trang; toàn văn nghị quyết đọc được trên nhandan.vn.
 - Ở tầm vùng, ưu tiên nhấp: hạ tầng (`S.haTang`) > ranh giới (`S.vung`). Nhãn trạng thái ở tầm vùng: `đã phê duyệt` hiện là "đã phê duyệt, chưa khởi công", `đề xuất` hiện là "chủ trương, quy hoạch".
+- Tầm Tây Nam Bộ (bước 1, 17/11/2026): `S.tam()` có thêm `'tay-nam-bo'`; khối `#khoi-tay-nam-bo`; thân trang có lớp `tam-tnb`. Rời tầm trung tâm sang tầm nào cũng tắt 5 ô lớp trung tâm (chỉ nhớ trạng thái khi rời từ trung tâm). `src/tay_nam_bo.js` (`S.tnb`: `chon(loai, ma)`, `boChon()`, `trung()`, `datKy('truoc'|'sau')`) đọc `data/tay_nam_bo/tinh.csv` (cùng cột với `vung.csv`; địa phương cũ có `thuoc` = mã tỉnh mới, màu lấy theo tỉnh mới) + `tinh.geojson` + `diem.csv` (3 vị trí chiến lược: `kinh_do`, `vi_do`, `mo_ta_vi/en`, `vi_tri` = link OpenStreetMap của toạ độ). Nút "Trước / Sau sáp nhập" chỉ hiện một bộ ranh giới mỗi lần. Ưu tiên nhấp: điểm > ranh giới. Hướng đặt tên điểm nằm trong `HUONG_NHAN` ở đầu `tay_nam_bo.js`.
+- `cap_nhat.py`: `xu_ly_vung` và `xu_ly_tay_nam_bo` dùng chung `xu_ly_ranh_gioi` (mỗi tỉnh mới tự so tổng diện tích các tỉnh cũ hợp thành; lệch quá 3% thì cảnh báo). Báo cáo ở `data/tay_nam_bo/BAO_CAO_KIEM_TRA.txt`. Ranh giới mới và cũ của Tây Nam Bộ khớp nhau (lệch ≤ 0,1%).
+- Bản đồ nhỏ: `src/ban_do_nho.js`, khối `#ban-do-nho`; là một bản đồ MapLibre thứ hai, không tương tác, kiểu nền tự viết (chỉ nước + biên giới quốc gia từ OpenFreeMap), tự ghi nhãn "Hoàng Sa", "Trường Sa", "Hà Nội", "TP.HCM"; khung đỏ theo vùng đang xem, vùng quá nhỏ thì thêm chấm đỏ. Nút × thu gọn, nhớ bằng localStorage. Điện thoại: góc trái dưới (trên thước tỉ lệ); laptop: góc phải dưới (thẻ thông tin mở ra sẽ che, chấp nhận).
+- Chụp màn hình khung xem thử ở cỡ điện thoại hay bị cắt hoặc lặp ô; khi đó kiểm bằng toạ độ (`banDo.project`) và `getBoundingClientRect`.
 - Xem thử trong ứng dụng: nếu cổng 8000 đã có máy chủ của phiên khác thì `preview_start` không chạy được (lệnh ghi cứng cổng 8000); cứ `navigate` tới http://localhost:8000/ là được vì cùng thư mục.
 - Lệnh Bash dài có heredoc hay lỗi dấu nháy trên máy này: ghi script ra file bằng công cụ Write rồi mới chạy.
 
@@ -142,8 +146,13 @@ Cần tra nguồn trước khi ghi (lời chủ dự án hoặc hiểu biết ch
 - Trạng thái thật của cảng Hòn Khoai, tính chất "lưỡng dụng", đường ra cảng, tuyến nối đất liền ra Phú Quốc. Nguồn nói khác thì báo lại.
 - Phần quốc phòng, địa chính trị: chỉ nêu điều có nguồn (cấp tin cậy A-D như thẻ "Vì sao sáp nhập"), còn lại đặt thành câu hỏi gợi mở.
 
+Đã tra (17/11/2026, bước 1):
+- Nghị quyết 202/2025/QH15, Điều 1, khoản 18-23 (toàn văn đọc được trên daibieunhandan.vn): Long An + Tây Ninh -> tỉnh Tây Ninh; Cần Thơ + Sóc Trăng + Hậu Giang -> thành phố Cần Thơ; Bến Tre + Trà Vinh + Vĩnh Long -> tỉnh Vĩnh Long; Tiền Giang + Đồng Tháp -> tỉnh Đồng Tháp; Bạc Liêu + Cà Mau -> tỉnh Cà Mau; Kiên Giang + An Giang -> tỉnh An Giang. Nghị quyết không nêu nơi đặt trung tâm hành chính.
+- Phú Quốc là đặc khu thuộc tỉnh An Giang từ 1/7/2025 (Báo Nhân Dân, cổng thông tin phuquoc.angiang.gov.vn); văn bản gốc là Nghị quyết 1654/NQ-UBTVQH15 ngày 16/6/2025 nhưng CHƯA đọc được toàn văn (hoatieu.vn chặn, angiang.gov.vn lỗi chứng chỉ) -> "cần kiểm chứng".
+- Hòn Khoai: ngày 19/8/2025 khởi công Cảng tổng hợp lưỡng dụng Hòn Khoai, tuyến giao thông ra đảo và cao tốc Cà Mau - Đất Mũi, Bộ Quốc phòng làm chủ đầu tư (camau.gov.vn). Các nguồn chưa thống nhất số liệu quy mô; tra lại ở bước 2.
+
 Các bước (mỗi bước chủ dự án duyệt một lần; MỖI BƯỚC MỘT PHIÊN MỚI):
-1. Khung bản đồ Tây Nam Bộ: nút tầm thứ ba, ranh giới tỉnh mới và cũ (OpenStreetMap), đánh dấu 3 điểm; bản đồ nhỏ Việt Nam.
+1. Khung bản đồ Tây Nam Bộ: nút tầm thứ ba, ranh giới tỉnh mới và cũ (OpenStreetMap), đánh dấu 3 điểm; bản đồ nhỏ Việt Nam. ĐÃ DỰNG XONG 17/11/2026 (chủ dự án chọn vẽ cả Tây Ninh mới gồm Long An); chờ duyệt.
 2. Hạ tầng: tra một lượt, gửi một danh sách để duyệt (cao tốc xương cá, đường ven biển, đường thủy chính và bến, cảng Hòn Khoai và đường ra cảng, tuyến ra Phú Quốc, sân bay và cảng trên đảo), mỗi mục có trạng thái; rồi dựng.
 3. Thẻ "Vị trí chiến lược" cho Cần Thơ, Hòn Khoai, Phú Quốc.
 4. Tour (1-2 tour).

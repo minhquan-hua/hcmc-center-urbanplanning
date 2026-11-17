@@ -953,13 +953,20 @@ SAI_SO_VUNG = 0.0003   # khoảng 30 mét: đủ mịn ở tầm nhìn toàn vù
 
 
 def xu_ly_vung(tai_lai):
-    print('\nSA BÀN VÙNG\n1. Đọc bảng các tỉnh, thành trong vùng')
-    vung = doc_csv(VUNG / 'vung.csv', ['ma', 'ten_vi', 'ten_en', 'nhom', 'osm_id', 'ghi_chu_vi',
+    return xu_ly_ranh_gioi(tai_lai, VUNG, 'vung.csv', 'vung.geojson', 'ranh_gioi_vung_',
+                           'SA BÀN VÙNG', 'BÁO CÁO KIỂM TRA DỮ LIỆU SA BÀN VÙNG',
+                           '(tới Côn Đảo)')
+
+
+def xu_ly_ranh_gioi(tai_lai, thu_muc, ten_csv, ten_geojson, tien_to_tho, tieu_de, tieu_de_bao_cao, vi_du_bien):
+    """Ranh giới cấp tỉnh mới và cũ từ OpenStreetMap, dùng chung cho sa bàn vùng và Tây Nam Bộ."""
+    print(f'\n{tieu_de}\n1. Đọc bảng các tỉnh, thành ({ten_csv})')
+    vung = doc_csv(thu_muc / ten_csv, ['ma', 'ten_vi', 'ten_en', 'nhom', 'osm_id', 'ghi_chu_vi',
                                        'nguon_ten', 'nguon', 'ngay_cap_nhat', 'da_kiem_chung'])
     loi = []
     cac_ma = [v['ma'] for v in vung]
     for v in vung:
-        vt = f'vung.csv dòng {v["_dong"]}'
+        vt = f'{ten_csv} dòng {v["_dong"]}'
         if not v['ma'] or not v['ten_vi']:
             loi.append(f'{vt}: thiếu "ma" hoặc "ten_vi"')
         if cac_ma.count(v['ma']) > 1:
@@ -992,8 +999,8 @@ def xu_ly_vung(tai_lai):
         raise LoiDuLieu('Có lỗi trong file dữ liệu:\n  - ' + '\n  - '.join(loi))
 
     print('2. Ranh giới từ OpenStreetMap')
-    tep = {'mới': VUNG / 'goc_osm' / 'ranh_gioi_vung_moi.json',
-           'cũ': VUNG / 'goc_osm' / 'ranh_gioi_vung_cu_2025_05.json'}
+    tep = {'mới': thu_muc / 'goc_osm' / f'{tien_to_tho}moi.json',
+           'cũ': thu_muc / 'goc_osm' / f'{tien_to_tho}cu_2025_05.json'}
     hinh = {}
     for nhom in NHOM_VUNG:
         cac_id = sorted({v['osm_id'] for v in vung if v['nhom'] == nhom})
@@ -1029,28 +1036,32 @@ def xu_ly_vung(tai_lai):
         # OpenStreetMap gồm cả mặt biển nên điểm tự tính có thể rơi ra biển)
         diem = v['_nhan'] or diem_trong(dg)
         if v['_nhan'] and not trong_da_giac(diem, dg):
-            canh_bao.append(f'Vị trí đặt tên của "{v["ten_vi"]}" trong vung.csv nằm ngoài ranh giới của nó')
+            canh_bao.append(f'Vị trí đặt tên của "{v["ten_vi"]}" trong {ten_csv} nằm ngoài ranh giới của nó')
         doi_tuong.append({'type': 'Feature',
                           'properties': {'ma': v['ma'], 'nhom': v['nhom'], 'osm': int(v['osm_id']),
                                          'diem': [round(diem[0], 4), round(diem[1], 4)]},
                           'geometry': hinh_geojson(dg)})
-    tong_cu = sum(dt[v['ma']] for v in vung if v['nhom'] == 'cũ')
-    if tong_cu and 'tphcm' in dt:
-        lech = abs(dt['tphcm'] - tong_cu) / tong_cu * 100
-        so_dt.append(f'Tổng các địa phương cũ: {tong_cu:,.0f} km²; Thành phố Hồ Chí Minh mới: '
-                     f'{dt["tphcm"]:,.0f} km²; lệch {lech:.1f}%')
+    # mỗi đơn vị mới: tổng diện tích các địa phương cũ hợp thành phải gần bằng hình vẽ mới
+    for m in vung:
+        con = [v for v in vung if v.get('thuoc') == m['ma']]
+        if m['nhom'] != 'mới' or not con:
+            continue
+        tong_cu = sum(dt[v['ma']] for v in con)
+        lech = abs(dt[m['ma']] - tong_cu) / tong_cu * 100
+        so_dt.append(f'Tổng các địa phương cũ hợp thành {m["ten_vi"]}: {tong_cu:,.0f} km²; '
+                     f'hình vẽ mới: {dt[m["ma"]]:,.0f} km²; lệch {lech:.1f}%')
         if lech > 3:
-            canh_bao.append(f'Tổng diện tích các địa phương cũ lệch {lech:.1f}% so với Thành phố Hồ Chí Minh mới')
-    ghi_geojson(VUNG / 'vung.geojson', doi_tuong)
+            canh_bao.append(f'Tổng diện tích các địa phương cũ lệch {lech:.1f}% so với {m["ten_vi"]}')
+    ghi_geojson(thu_muc / ten_geojson, doi_tuong)
 
     can_kc = [v['ten_vi'] for v in vung if v['da_kiem_chung'] != 'có']
     bao_cao = [
-        'BÁO CÁO KIỂM TRA DỮ LIỆU SA BÀN VÙNG',
+        tieu_de_bao_cao,
         f'Tạo lúc: {time.strftime("%d/%m/%Y %H:%M")} (file này do máy tạo, đừng sửa tay)',
         '',
         f'Số vùng: {len(vung)}. Ranh giới cũ lấy từ bản lưu OpenStreetMap ngày {NGAY_CU[:10]}.',
         'Diện tích theo hình vẽ chỉ là gần đúng. Với địa phương ven biển, ranh giới trên OpenStreetMap',
-        'gồm cả vùng biển (tới Côn Đảo) nên diện tích hình vẽ lớn hơn nhiều so với diện tích đất liền.',
+        f'gồm cả vùng biển {vi_du_bien} nên diện tích hình vẽ lớn hơn nhiều so với diện tích đất liền.',
         '',
         f'CẢNH BÁO ({len(canh_bao)}):' if canh_bao else 'CẢNH BÁO: không có.',
         *[f'  - {c}' for c in canh_bao],
@@ -1062,7 +1073,7 @@ def xu_ly_vung(tai_lai):
         *[f'  - {s}' for s in can_kc],
         '',
     ]
-    (VUNG / 'BAO_CAO_KIEM_TRA.txt').write_text('\n'.join(bao_cao), encoding='utf-8')
+    (thu_muc / 'BAO_CAO_KIEM_TRA.txt').write_text('\n'.join(bao_cao), encoding='utf-8')
     print('\n' + '\n'.join(bao_cao))
     return len(canh_bao)
 
@@ -1256,6 +1267,44 @@ def kiem_tra_vi_sao():
     return 0
 
 
+# ---------------------------------------------------------------- sa bàn Tây Nam Bộ
+TNB = GOC / 'data' / 'tay_nam_bo'
+
+
+def xu_ly_tay_nam_bo(tai_lai):
+    so = xu_ly_ranh_gioi(tai_lai, TNB, 'tinh.csv', 'tinh.geojson', 'ranh_gioi_',
+                         'SA BÀN TÂY NAM BỘ', 'BÁO CÁO KIỂM TRA DỮ LIỆU SA BÀN TÂY NAM BỘ',
+                         '(tới Phú Quốc, Thổ Chu, Hòn Khoai)')
+    print('4. Kiểm tra các điểm chiến lược (diem.csv)')
+    diem = doc_csv(TNB / 'diem.csv', ['ma', 'ten_vi', 'ten_en', 'kinh_do', 'vi_do', 'mo_ta_vi',
+                                      'nguon_ten', 'nguon', 'ngay_cap_nhat', 'da_kiem_chung'])
+    loi = []
+    cac_ma = [d['ma'] for d in diem]
+    for d in diem:
+        vt = f'diem.csv dòng {d["_dong"]}'
+        if not d['ma'] or not d['ten_vi']:
+            loi.append(f'{vt}: thiếu "ma" hoặc "ten_vi"')
+        if cac_ma.count(d['ma']) > 1:
+            loi.append(f'{vt}: mã "{d["ma"]}" bị trùng')
+        try:
+            x, y = float(d['kinh_do']), float(d['vi_do'])
+            if not (102 <= x <= 110 and 8 <= y <= 12):
+                loi.append(f'{vt}: tọa độ nằm ngoài Tây Nam Bộ (kinh độ 102-110, vĩ độ 8-12)')
+        except ValueError:
+            loi.append(f'{vt}: "kinh_do" và "vi_do" phải là con số (dùng dấu chấm)')
+        if not d['nguon'].startswith('http'):
+            loi.append(f'{vt}: cột "nguon" phải là một đường link bắt đầu bằng http')
+        if d.get('nguon_2') and not d['nguon_2'].startswith('http'):
+            loi.append(f'{vt}: cột "nguon_2" phải để trống hoặc là một đường link bắt đầu bằng http')
+        if d['da_kiem_chung'] not in KIEM_CHUNG_HOP_LE:
+            loi.append(f'{vt}: cột "da_kiem_chung" phải là "có" hoặc "cần kiểm chứng"')
+    if loi:
+        raise LoiDuLieu('File data/tay_nam_bo/diem.csv có lỗi:\n  - ' + '\n  - '.join(loi))
+    can_kc = [d['ten_vi'] for d in diem if d['da_kiem_chung'] != 'có']
+    print(f'  {len(diem)} điểm. Cần kiểm chứng: {", ".join(can_kc) or "không"}.')
+    return so
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -1270,6 +1319,7 @@ def main():
         so_canh_bao += xu_ly_vung('--tai-lai' in sys.argv)
         so_canh_bao += xu_ly_ha_tang('--tai-lai' in sys.argv)
         so_canh_bao += kiem_tra_vi_sao()
+        so_canh_bao += xu_ly_tay_nam_bo('--tai-lai' in sys.argv)
     except LoiDuLieu as e:
         print(f'\nDỪNG LẠI: {e}')
         return 1

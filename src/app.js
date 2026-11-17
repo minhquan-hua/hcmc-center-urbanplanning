@@ -14,14 +14,19 @@
   var KHUNG_VUNG = [[105.75, 10.25], [107.65, 12.05]];
   var GIOI_HAN_VUNG = [[104.6, 8.2], [108.8, 12.9]];
   var THU_NHO_NHAT_VUNG = 6.5;
+  // Tầm Tây Nam Bộ: đủ thấy Tây Ninh mới ở phía bắc, Phú Quốc, Thổ Chu ở phía tây, Hòn Khoai ở phía nam
+  var KHUNG_TNB = [[103.4, 8.35], [107.0, 11.8]];
+  var GIOI_HAN_TNB = [[100.0, 4.0], [110.5, 16.0]]; // rộng theo chiều dọc để điện thoại vẫn thấy trọn vùng
+  var THU_NHO_NHAT_TNB = 5.5;
+  var CAC_TAM = ['trung-tam', 'vung', 'tay-nam-bo'];
   // Các ô bật/tắt lớp chi tiết chỉ dùng ở tầm trung tâm
   var O_TRUNG_TAM = ['bat-3d', 'bat-hanh-chinh', 'bat-du-an', 'bat-giao-thong', 'bat-thuy'];
 
   var tuDien = {};
   var nguoiNghe = []; // các hàm được gọi lại mỗi khi đổi ngôn ngữ
-  var tam = 'trung-tam'; // 'trung-tam' hoặc 'vung'
+  var tam = 'trung-tam'; // 'trung-tam', 'vung' hoặc 'tay-nam-bo'
   var nguoiNgheTam = [];
-  var nhoO = {};         // trạng thái các ô lớp trung tâm trước khi sang tầm vùng
+  var nhoO = {};         // trạng thái các ô lớp trung tâm trước khi rời tầm trung tâm
   var ngonNgu = 'vi';
   try { ngonNgu = localStorage.getItem('ngon_ngu') === 'en' ? 'en' : 'vi'; } catch (e) {}
 
@@ -178,10 +183,10 @@
     if (nenDaSanSang) bat3D(e.target.checked);
   });
 
-  function bayToiVung(thoiGian) {
+  function bayToiVung(thoiGian, khung) {
     banDo.setPadding({ top: 0, bottom: 0, left: 0, right: 0 });
     var rong = window.matchMedia('(min-width: 768px)').matches;
-    banDo.fitBounds(KHUNG_VUNG, {
+    banDo.fitBounds(khung || KHUNG_VUNG, {
       padding: rong ? { top: 70, bottom: 20, left: 340, right: 20 } : { top: 110, bottom: 60, left: 10, right: 10 },
       pitch: 0, bearing: 0, duration: thoiGian, essential: true
     });
@@ -189,37 +194,43 @@
 
   document.getElementById('nut-ve-dau').addEventListener('click', function () {
     if (tam === 'vung') bayToiVung(1200);
+    else if (tam === 'tay-nam-bo') bayToiVung(1200, KHUNG_TNB);
     else banDo.flyTo(Object.assign({ duration: 1200 }, GOC_NHIN_DAU));
   });
 
-  // ---------- Chuyển tầm nhìn: Toàn vùng / Trung tâm ----------
+  // ---------- Chuyển tầm nhìn: Tây Nam Bộ / Toàn vùng / Trung tâm ----------
   function datO(id, bat) {
     var o = document.getElementById(id);
     if (o && o.checked !== bat) { o.checked = bat; o.dispatchEvent(new Event('change')); }
   }
 
   function datTam(moi) {
-    if (moi === tam || (moi !== 'vung' && moi !== 'trung-tam')) return;
+    if (moi === tam || CAC_TAM.indexOf(moi) < 0) return;
     var S = window.SaBan;
     // đang xem tour thì thoát tour trước
     if (S.tour && S.tour.trangThai().dangMo) S.tour.dong();
-    ['hanhChinh', 'duAn', 'thuy', 'vung'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
+    ['hanhChinh', 'duAn', 'thuy', 'vung', 'haTang', 'tnb'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
     document.getElementById('the').hidden = true;
+    var cu = tam;
     tam = moi;
-    var laVung = tam === 'vung';
-    document.body.classList.toggle('tam-vung', laVung);
+    document.body.classList.toggle('tam-vung', tam === 'vung');
+    document.body.classList.toggle('tam-tnb', tam === 'tay-nam-bo');
     document.querySelectorAll('#chon-tam button').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-tam') === tam));
     });
-    document.getElementById('khoi-vung').hidden = !laVung;
-    document.getElementById('khoi-trung-tam').hidden = laVung;
+    document.getElementById('khoi-vung').hidden = tam !== 'vung';
+    document.getElementById('khoi-tay-nam-bo').hidden = tam !== 'tay-nam-bo';
+    document.getElementById('khoi-trung-tam').hidden = tam !== 'trung-tam';
     banDo.stop();
-    if (laVung) {
+    if (tam !== 'trung-tam') {
       // tắt các lớp chi tiết, nhớ lại để bật lại khi về trung tâm
-      O_TRUNG_TAM.forEach(function (id) { nhoO[id] = document.getElementById(id).checked; datO(id, false); });
-      banDo.setMinZoom(THU_NHO_NHAT_VUNG);
-      banDo.setMaxBounds(GIOI_HAN_VUNG);
-      bayToiVung(1500);
+      if (cu === 'trung-tam') {
+        O_TRUNG_TAM.forEach(function (id) { nhoO[id] = document.getElementById(id).checked; datO(id, false); });
+      }
+      var laTnb = tam === 'tay-nam-bo';
+      banDo.setMinZoom(laTnb ? THU_NHO_NHAT_TNB : THU_NHO_NHAT_VUNG);
+      banDo.setMaxBounds(laTnb ? GIOI_HAN_TNB : GIOI_HAN_VUNG);
+      bayToiVung(1500, laTnb ? KHUNG_TNB : KHUNG_VUNG);
     } else {
       O_TRUNG_TAM.forEach(function (id) { datO(id, !!nhoO[id]); });
       banDo.setPadding({ top: 0, bottom: 0, left: 0, right: 0 });
@@ -265,7 +276,7 @@
   // ---------- Thẻ "Giới thiệu và nguồn dữ liệu" ----------
   function moGioiThieu() {
     var S = window.SaBan;
-    ['hanhChinh', 'duAn', 'thuy', 'vung'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
+    ['hanhChinh', 'duAn', 'thuy', 'vung', 'haTang', 'tnb'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
     var nd = document.getElementById('the-noi-dung');
     nd.textContent = '';
     function them(the, lop, ma, macDinh) {
@@ -280,7 +291,7 @@
     them('h3', null, 'gt_nguon_tieu_de', 'Nguồn dữ liệu');
     var ds = document.createElement('ul');
     ds.className = 'ds-nguon';
-    ['gt_nguon_nen', 'gt_nguon_hanh_chinh', 'gt_nguon_du_an', 'gt_nguon_giao_thong', 'gt_nguon_vung'].forEach(function (ma) {
+    ['gt_nguon_nen', 'gt_nguon_hanh_chinh', 'gt_nguon_du_an', 'gt_nguon_giao_thong', 'gt_nguon_vung', 'gt_nguon_tnb'].forEach(function (ma) {
       var li = document.createElement('li');
       li.textContent = chu(ma) || ma;
       ds.appendChild(li);

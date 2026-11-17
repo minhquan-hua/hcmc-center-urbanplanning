@@ -19,6 +19,7 @@
   </header>
 
   <div class="chon-tam" id="chon-tam" role="group">
+    <button type="button" data-tam="tay-nam-bo" aria-pressed="false" data-chu="tam_tnb">Tây Nam Bộ</button>
     <button type="button" data-tam="vung" aria-pressed="false" data-chu="tam_vung">Toàn vùng</button>
     <button type="button" data-tam="trung-tam" aria-pressed="true" data-chu="tam_trung_tam">Trung tâm</button>
   </div>
@@ -48,6 +49,20 @@
         </div>
         <div class="dong tieu-de-muc"><span data-chu="che_do_hoc">Chế độ học (tour)</span></div>
         <div class="ds-tour" id="ds-tour-vung"></div>
+      </div>
+      <div id="khoi-tay-nam-bo" hidden>
+        <div class="dong tieu-de-muc"><span data-chu="tnb_tieu_de">Ranh giới Tây Nam Bộ</span></div>
+        <div class="chon-ky" id="tnb-chon-ky" role="group">
+          <button type="button" data-ky="truoc" aria-pressed="false" data-chu="tnb_truoc">Trước sáp nhập</button>
+          <button type="button" data-ky="sau" aria-pressed="true" data-chu="tnb_sau">Sau sáp nhập</button>
+        </div>
+        <p class="ghi-chu" id="tnb-mo-ta-ky"></p>
+        <p class="ghi-chu" data-chu="tnb_mo_ta">Các tỉnh, thành Tây Nam Bộ và tỉnh Tây Ninh mới (gồm Long An cũ).</p>
+        <ul class="ds-du-an" id="ds-tnb"></ul>
+        <p class="ghi-chu canh-bao" data-chu="tnb_ranh_gioi">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.</p>
+        <div class="dong tieu-de-muc ht-tieu-de"><span data-chu="tnb_diem_tieu_de">Ba vị trí chiến lược</span></div>
+        <ul class="ds-du-an" id="ds-tnb-diem"></ul>
+        <p class="ghi-chu" data-chu="tnb_diem_ghi_chu">Phân tích chi tiết từng vị trí sẽ bổ sung ở bước sau.</p>
       </div>
       <div id="khoi-trung-tam">
       <label class="dong">
@@ -129,6 +144,11 @@
     </div>
   </aside>
 
+  <div class="ban-do-nho" id="ban-do-nho">
+    <div class="bdn-khung" id="bdn-khung" role="img" aria-label="Bản đồ nhỏ Việt Nam" data-chu-nhan="bdn_ten"></div>
+    <button type="button" class="bdn-nut" id="bdn-nut" aria-expanded="true" aria-label="Ẩn bản đồ nhỏ">×</button>
+  </div>
+
   <div class="bao-loi" id="bao-loi" role="alert" hidden></div>
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
@@ -141,5 +161,7 @@
   <script src="src/vung.js"></script>
   <script src="src/ha_tang.js"></script>
   <script src="src/vi_sao.js"></script>
+  <script src="src/tay_nam_bo.js"></script>
+  <script src="src/ban_do_nho.js"></script>
 </body>
 </html>
