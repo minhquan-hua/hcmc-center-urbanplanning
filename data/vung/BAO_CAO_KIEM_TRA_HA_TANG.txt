@@ -1,5 +1,5 @@
 BÁO CÁO KIỂM TRA DỮ LIỆU HẠ TẦNG VÙNG
-Tạo lúc: 17/11/2026 10:20 (file này do máy tạo, đừng sửa tay)
+Tạo lúc: 17/11/2026 10:23 (file này do máy tạo, đừng sửa tay)
 
 Số mục: 27. Có hình từ OpenStreetMap: 23.
 
@@ -12,31 +12,4 @@ CHỈ HIỆN TRONG DANH SÁCH, KHÔNG CÓ TRÊN BẢN ĐỒ (2):
   - Metro số 2 kéo dài Tham Lương - ranh Tây Ninh
   - Metro kéo dài từ tuyến số 1 tới sân bay Long Thành
 
-MỤC CẦN KIỂM CHỨNG (27):
-  - Metro số 1 Bến Thành - Suối Tiên
-  - Metro số 2 Bến Thành - Tham Lương
-  - Metro số 2 đoạn Bến Thành - Thủ Thiêm
-  - Metro số 2 kéo dài Tham Lương - ranh Tây Ninh
-  - Metro số 6 Tân Sơn Nhất - Phú Hữu
-  - Metro số 4 Đông Thạnh - Hiệp Phước
-  - Metro Thành phố mới Bình Dương - Suối Tiên
-  - Metro kéo dài từ tuyến số 1 tới sân bay Long Thành
-  - Đường sắt Bến Thành - Cần Giờ
-  - Đường sắt Thủ Thiêm - Long Thành
-  - Đường sắt tốc độ cao Bắc - Nam (đoạn phía Nam)
-  - Cao tốc TP.HCM - Long Thành - Dầu Giây
-  - Cao tốc Bến Lức - Long Thành
-  - Cao tốc Biên Hòa - Vũng Tàu
-  - Đường T1, T2 vào sân bay Long Thành
-  - Vành đai 3 Thành phố Hồ Chí Minh
-  - Vành đai 4 Thành phố Hồ Chí Minh
-  - Cao tốc TP.HCM - Thủ Dầu Một - Chơn Thành
-  - Cao tốc TP.HCM - Mộc Bài
-  - Đường vượt biển Cần Giờ - Vũng Tàu
-  - Sân bay quốc tế Long Thành
-  - Cụm cảng nước sâu Cái Mép - Thị Vải
-  - Cảng trung chuyển quốc tế Cần Giờ
-  - Khu đô thị du lịch lấn biển Cần Giờ
-  - Khu công nghiệp VSIP I
-  - Khu công nghiệp VSIP II và phần mở rộng
-  - Khu công nghiệp VSIP III
+MỤC CẦN KIỂM CHỨNG (0):
