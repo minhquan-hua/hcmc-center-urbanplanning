@@ -107,3 +107,15 @@ gt_luu_y_ranh_gioi,"Ranh giới hành chính chỉ để tham khảo, không ph�
 gt_luu_y_kiem_chung,Mục có nhãn đỏ cần kiểm chứng là thông tin chưa được đối chiếu với văn bản gốc. Tiến độ dự án thay đổi nhanh; hãy xem ngày cập nhật của từng mục.,Items with a red needs verification label have not been checked against the original documents. Project status changes quickly; check each item's update date.
 gt_luu_y_mo_phong,"Xe và tàu chạy trên bản đồ là mô phỏng minh họa cho mục đích học tập, không phải số liệu thực.","Moving vehicles and boats are an illustrative simulation for learning purposes, not real data."
 nguon_ban_do,"Bản đồ nền: © OpenStreetMap (giấy phép ODbL), OpenMapTiles, OpenFreeMap.","Base map: © OpenStreetMap (ODbL licence), OpenMapTiles, OpenFreeMap."
+tam_vung,Toàn vùng,Region
+tam_trung_tam,Trung tâm,Centre
+vung_tieu_de,Ranh giới vùng,Regional boundaries
+vung_mo_ta,Thành phố Hồ Chí Minh sau sáp nhập và hai địa phương giáp ranh. Nét đứt: ranh giới ba địa phương cũ. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.,Ho Chi Minh City after the merger and its two neighbours. Dashed lines: the three former units. Tap the map or a name below for details.
+vung_ranh_gioi,"Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.","Boundaries are indicative, from OpenStreetMap, not legal limits. Sea boundaries are not drawn."
+vung_ranh_gioi_cu,"Ranh giới cũ: bản lưu OpenStreetMap ngày 1/5/2025, chỉ để tham khảo.","Former boundary: OpenStreetMap snapshot of 1 May 2025, indicative only."
+vung_loai_moi,Đơn vị cấp tỉnh hiện nay,Current province-level unit
+vung_loai_cu,Địa phương cũ (trước 1/7/2025),Former unit (before 1 July 2025)
+vung_gop_tu,Được hợp nhất từ,Merged from
+vung_nay_thuoc,Từ 1/7/2025 thuộc,Since 1 July 2025 part of
+vung_thong_tin,Thông tin sáp nhập,Merger information
+gt_nguon_vung,Ranh giới vùng (tầm Toàn vùng): OpenStreetMap; thông tin sáp nhập theo Nghị quyết 202/2025/QH15 của Quốc hội.,Regional boundaries (Region view): OpenStreetMap; merger information from National Assembly Resolution 202/2025/QH15.

@@ -1,0 +1,25 @@
+BÁO CÁO KIỂM TRA DỮ LIỆU SA BÀN VÙNG
+Tạo lúc: 17/11/2026 09:44 (file này do máy tạo, đừng sửa tay)
+
+Số vùng: 6. Ranh giới cũ lấy từ bản lưu OpenStreetMap ngày 2025-05-01.
+Diện tích theo hình vẽ chỉ là gần đúng. Với địa phương ven biển, ranh giới trên OpenStreetMap
+gồm cả vùng biển (tới Côn Đảo) nên diện tích hình vẽ lớn hơn nhiều so với diện tích đất liền.
+
+CẢNH BÁO: không có.
+
+DIỆN TÍCH:
+  - Thành phố Hồ Chí Minh: 36,253 km² theo hình vẽ (tên trên OpenStreetMap: "Thành phố Hồ Chí Minh")
+  - Thành phố Đồng Nai: 12,725 km² theo hình vẽ (tên trên OpenStreetMap: "Thành phố Đồng Nai"); theo nguồn 12,737 km², lệch 0.1%
+  - Tỉnh Tây Ninh: 8,517 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Tây Ninh")
+  - Thành phố Hồ Chí Minh (trước 1/7/2025): 2,404 km² theo hình vẽ (tên trên OpenStreetMap: "Thành phố Hồ Chí Minh")
+  - Tỉnh Bình Dương (trước 1/7/2025): 2,691 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Bình Dương")
+  - Tỉnh Bà Rịa - Vũng Tàu (trước 1/7/2025): 31,186 km² theo hình vẽ (tên trên OpenStreetMap: "Tỉnh Bà Rịa - Vũng Tàu")
+  - Tổng các địa phương cũ: 36,282 km²; Thành phố Hồ Chí Minh mới: 36,253 km²; lệch 0.1%
+
+MỤC CẦN KIỂM CHỨNG (6):
+  - Thành phố Hồ Chí Minh
+  - Thành phố Đồng Nai
+  - Tỉnh Tây Ninh
+  - Thành phố Hồ Chí Minh (trước 1/7/2025)
+  - Tỉnh Bình Dương (trước 1/7/2025)
+  - Tỉnh Bà Rịa - Vũng Tàu (trước 1/7/2025)

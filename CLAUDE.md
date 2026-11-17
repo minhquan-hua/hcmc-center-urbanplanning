@@ -67,7 +67,8 @@ Quận 1 cũ, Thủ Thiêm và các khu liền kề (Quận 3, Quận 4, Bình T
 
 - Sa bàn TRUNG TÂM đã xong cả 8 giai đoạn và đang chạy công khai; chủ dự án đã thử trên điện thoại.
 - Việc nội dung còn mở của sa bàn trung tâm: duyệt các mục "cần kiểm chứng" (18 hình dạng phường, 15 dự án, 5 tuyến thủy), duyệt lời tour, hai trạng thái xếp tạm (Trung tâm Tài chính quốc tế, Nhà hát). Chưa ai bấm đúp thử `cap_nhat_du_lieu.bat` và `dua_len_mang.bat`.
-- Đang làm: SA BÀN VÙNG (xem mục dưới). Nhật ký chi tiết các giai đoạn cũ nằm ở `NHAT_KY.md`; chỉ đọc khi cần.
+- Đang làm: SA BÀN VÙNG (xem mục dưới). BƯỚC 1 (khung vùng) ĐÃ XONG ngày 17/11/2026, đã commit, CHƯA đưa lên mạng. Việc tiếp theo: bước 2 (hạ tầng vùng), làm ở phiên mới.
+- Cần chủ dự án duyệt sau bước 1: 6 mục "cần kiểm chứng" trong `data/vung/vung.csv` (thông tin sáp nhập); tên gọi "Thành phố Đồng Nai" (trực thuộc trung ương từ 30/4/2026, theo báo Đại biểu Nhân dân). Nhật ký chi tiết các giai đoạn cũ nằm ở `NHAT_KY.md`; chỉ đọc khi cần.
 
 ## Cấu trúc và ghi chú kỹ thuật cốt lõi
 
@@ -78,6 +79,10 @@ Quận 1 cũ, Thủ Thiêm và các khu liền kề (Quận 3, Quận 4, Bình T
 - Mỗi lớp trong `window.SaBan` có `trung(point)`, `boChon()`, `dangChon()`; ưu tiên nhấp: đường thủy > dự án > hành chính; dùng chung thẻ `#the`. Chỉ thêm lớp sau sự kiện `load` (`S.khiNenSanSang`).
 - Kiểm tra trong ứng dụng: khung trình duyệt bị ẩn thì bản đồ không vẽ, gọi `show_pane preview` trước; trình duyệt giữ bản cũ, tải lại bằng `fetch(url, {cache: 'reload'})` rồi `location.reload()`.
 - Tên biến, tên file trong mã dùng tiếng Việt không dấu.
+- Tầm nhìn (từ bước 1 sa bàn vùng): `S.tam()` trả `'trung-tam'` hoặc `'vung'`, `S.datTam()`, `S.khiDoiTam(f)`; nút `#chon-tam`. Sang tầm vùng thì `app.js` tự bỏ đánh dấu 5 ô lớp trung tâm (nhớ lại để bật lại), thoát tour, đổi giới hạn bản đồ, ẩn `#khoi-trung-tam` và hiện `#khoi-vung`. Lớp vùng mới chỉ cần nghe `S.khiDoiTam`.
+- `src/vung.js` + `data/vung/vung.csv` (mỗi dòng một tỉnh/thành; `nhom` = mới/cũ, `osm_id`, `thuoc`, `nhan_kinh_do`/`nhan_vi_do` là chỗ đặt tên trên bản đồ) -> `vung.geojson` do `xu_ly_vung` trong `cap_nhat.py` tạo (làm gọn khoảng 30 m).
+- Quyết định: ranh giới tỉnh ven biển trên OpenStreetMap gồm cả mặt biển tới Côn Đảo, nên các lớp vùng được chèn DƯỚI lớp `water` của bản đồ nền (chỉ đất liền có màu, không có đường ranh ngoài biển) và nhấp vào mặt nước thì bỏ qua. Vì vậy diện tích tính từ hình vẽ không so được với diện tích chính thức.
+- Lệnh Bash dài có heredoc hay lỗi dấu nháy trên máy này: ghi script ra file bằng công cụ Write rồi mới chạy.
 
 ## SA BÀN VÙNG: kế hoạch đã được chủ dự án duyệt (17/11/2026)
 

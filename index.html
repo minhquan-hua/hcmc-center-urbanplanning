@@ -18,11 +18,23 @@
     </div>
   </header>
 
+  <div class="chon-tam" id="chon-tam" role="group">
+    <button type="button" data-tam="vung" aria-pressed="false" data-chu="tam_vung">Toàn vùng</button>
+    <button type="button" data-tam="trung-tam" aria-pressed="true" data-chu="tam_trung_tam">Trung tâm</button>
+  </div>
+
   <section class="bang" id="bang">
     <button class="bang-tay-nam" id="nut-bang" type="button" aria-expanded="true">
       <span data-chu="lop_ban_do">Lớp bản đồ</span><span class="mui-ten" aria-hidden="true">▾</span>
     </button>
     <div class="bang-noi-dung">
+      <div id="khoi-vung" hidden>
+        <div class="dong tieu-de-muc"><span data-chu="vung_tieu_de">Ranh giới vùng</span></div>
+        <p class="ghi-chu" data-chu="vung_mo_ta">Thành phố Hồ Chí Minh sau sáp nhập và hai địa phương giáp ranh. Nét đứt: ranh giới ba địa phương cũ. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.</p>
+        <ul class="ds-du-an" id="ds-vung"></ul>
+        <p class="ghi-chu canh-bao" data-chu="vung_ranh_gioi">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.</p>
+      </div>
+      <div id="khoi-trung-tam">
       <label class="dong">
         <input type="checkbox" id="bat-3d" checked>
         <span data-chu="toa_nha_3d">Tòa nhà 3D</span>
@@ -81,6 +93,7 @@
       </div>
       <div class="dong tieu-de-muc"><span data-chu="che_do_hoc">Chế độ học (tour)</span></div>
       <div class="ds-tour" id="ds-tour"></div>
+      </div>
       <button id="nut-ve-dau" type="button" class="nut-phu" data-chu="ve_goc_nhin_dau">Về góc nhìn ban đầu</button>
       <button id="nut-gioi-thieu" type="button" class="nut-phu" data-chu="gioi_thieu_nut">Giới thiệu và nguồn dữ liệu</button>
       <p class="ghi-chu" data-chu="nguon_ban_do">Bản đồ nền: © OpenStreetMap (giấy phép ODbL), OpenMapTiles, OpenFreeMap.</p>
@@ -110,5 +123,6 @@
   <script src="src/giao_thong.js"></script>
   <script src="src/thuy.js"></script>
   <script src="src/tour.js"></script>
+  <script src="src/vung.js"></script>
 </body>
 </html>

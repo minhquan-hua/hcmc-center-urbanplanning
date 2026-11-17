@@ -187,6 +187,37 @@ label.dong input { width: 1.15rem; height: 1.15rem; accent-color: var(--nhan); }
 .ds-nguon { margin: 0 0 0.4rem; padding-left: 1.1rem; }
 .ds-nguon a { color: var(--nhan); }
 
+/* Nút chuyển tầm nhìn Toàn vùng / Trung tâm: điện thoại nằm dưới thanh trên, laptop nằm giữa thanh trên */
+.chon-tam {
+  position: fixed;
+  top: calc(3.7rem + env(safe-area-inset-top));
+  left: 0.75rem;
+  z-index: 2;
+  display: flex;
+  border: 1px solid var(--vien);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: var(--nen);
+  box-shadow: var(--bong);
+}
+.chon-tam button {
+  min-height: 2.4rem;
+  padding: 0 0.9rem;
+  border: 0;
+  background: var(--nen);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.chon-tam button + button { border-left: 1px solid var(--vien); }
+.chon-tam button[aria-pressed="true"] { background: var(--nhan); color: #fff; }
+body.dang-tour .chon-tam { display: none; }
+@media (min-width: 768px) {
+  .chon-tam { top: 0.4rem; left: 50%; transform: translateX(-50%); z-index: 4; box-shadow: none; }
+  .chon-tam button { min-height: 2.25rem; }
+}
+#khoi-vung .tieu-de-muc { border-top: 0; }
+.o-mau.net-dut { background: none; border: 2px dashed #22313f; border-radius: 0.2rem; opacity: 1; }
+
 /* Lớp giao thông */
 .giao-thong { padding: 0 0 0.6rem; }
 .canh-bao-mo-phong {
