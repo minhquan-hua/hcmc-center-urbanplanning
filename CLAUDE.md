@@ -65,7 +65,7 @@ Quận 1 cũ, Thủ Thiêm và các khu liền kề (Quận 3, Quận 4, Bình T
 
 ## Trạng thái (cập nhật 17/11/2026)
 
-- ĐANG LÀM (từ 17/11/2026): SA BÀN TÂY NAM BỘ, kế hoạch đã duyệt, xem mục cuối file. BƯỚC 1 (khung bản đồ + bản đồ nhỏ) ĐÃ DỰNG XONG và commit ngày 17/11/2026, CHƯA đưa lên mạng; đang chờ chủ dự án xem và duyệt. Bước tiếp theo: bước 2 (hạ tầng), làm ở phiên mới.
+- ĐANG LÀM (từ 17/11/2026): SA BÀN TÂY NAM BỘ, kế hoạch đã duyệt, xem mục cuối file. BƯỚC 1 (khung bản đồ + bản đồ nhỏ) ĐÃ DỰNG XONG và commit ngày 17/11/2026, CHƯA đưa lên mạng; chủ dự án ĐÃ DUYỆT ngày 17/11/2026 (đồng ý cả nhãn Hoàng Sa, Trường Sa, Hà Nội, TP.HCM trên bản đồ nhỏ). Bước tiếp theo: bước 2 (hạ tầng), làm ở phiên mới.
 - Sa bàn TRUNG TÂM đã xong cả 8 giai đoạn và đang chạy công khai; chủ dự án đã thử trên điện thoại.
 - Việc nội dung còn mở của sa bàn trung tâm: duyệt các mục "cần kiểm chứng" (18 hình dạng phường, 15 dự án, 5 tuyến thủy), duyệt lời tour, hai trạng thái xếp tạm (Trung tâm Tài chính quốc tế, Nhà hát). Chưa ai bấm đúp thử `cap_nhat_du_lieu.bat` và `dua_len_mang.bat`.
 - Đang làm: SA BÀN VÙNG (xem mục dưới). BƯỚC 1 (khung vùng) đã được chủ dự án duyệt ngày 17/11/2026. BƯỚC 2 (hạ tầng vùng, 27 mục) ĐÃ DỰNG XONG và commit ngày 17/11/2026, CHƯA đưa lên mạng; ĐANG DỪNG chờ chủ dự án xem bản đồ vùng rồi mới quyết bước 3-5.
@@ -152,7 +152,7 @@ Cần tra nguồn trước khi ghi (lời chủ dự án hoặc hiểu biết ch
 - Hòn Khoai: ngày 19/8/2025 khởi công Cảng tổng hợp lưỡng dụng Hòn Khoai, tuyến giao thông ra đảo và cao tốc Cà Mau - Đất Mũi, Bộ Quốc phòng làm chủ đầu tư (camau.gov.vn). Các nguồn chưa thống nhất số liệu quy mô; tra lại ở bước 2.
 
 Các bước (mỗi bước chủ dự án duyệt một lần; MỖI BƯỚC MỘT PHIÊN MỚI):
-1. Khung bản đồ Tây Nam Bộ: nút tầm thứ ba, ranh giới tỉnh mới và cũ (OpenStreetMap), đánh dấu 3 điểm; bản đồ nhỏ Việt Nam. ĐÃ DỰNG XONG 17/11/2026 (chủ dự án chọn vẽ cả Tây Ninh mới gồm Long An); chờ duyệt.
+1. Khung bản đồ Tây Nam Bộ: nút tầm thứ ba, ranh giới tỉnh mới và cũ (OpenStreetMap), đánh dấu 3 điểm; bản đồ nhỏ Việt Nam. ĐÃ DỰNG XONG 17/11/2026 (chủ dự án chọn vẽ cả Tây Ninh mới gồm Long An); ĐÃ DUYỆT 17/11/2026. Còn 2 mục "cần kiểm chứng" trong `data/tay_nam_bo/diem.csv` (Phú Quốc: chưa đọc toàn văn NQ 1654; Hòn Khoai: số liệu quy mô, tra lại ở bước 2).
 2. Hạ tầng: tra một lượt, gửi một danh sách để duyệt (cao tốc xương cá, đường ven biển, đường thủy chính và bến, cảng Hòn Khoai và đường ra cảng, tuyến ra Phú Quốc, sân bay và cảng trên đảo), mỗi mục có trạng thái; rồi dựng.
 3. Thẻ "Vị trí chiến lược" cho Cần Thơ, Hòn Khoai, Phú Quốc.
 4. Tour (1-2 tour).
