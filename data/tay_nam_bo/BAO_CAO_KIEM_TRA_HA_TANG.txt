@@ -1,0 +1,37 @@
+BÁO CÁO KIỂM TRA DỮ LIỆU HẠ TẦNG TÂY NAM BỘ
+Tạo lúc: 18/11/2026 17:08 (file này do máy tạo, đừng sửa tay)
+
+Số mục: 22. Có hình từ OpenStreetMap: 10.
+
+CẢNH BÁO: không có.
+
+CHỈ CÓ VỊ TRÍ HOẶC TUYẾN SƠ ĐỒ (3):
+  - Cảng tổng hợp lưỡng dụng Hòn Khoai
+  - Tuyến đường thủy TP.HCM - Cần Thơ - Cà Mau
+  - Tuyến đường thủy TP.HCM - An Giang - Kiên Lương
+
+CHỈ HIỆN TRONG DANH SÁCH, KHÔNG CÓ TRÊN BẢN ĐỒ (5):
+  - Cao tốc Hà Tiên - Rạch Giá - Bạc Liêu
+  - Đường ven biển Rạch Giá - Châu Thành (đường 3/2 nối dài)
+  - Đường ven biển Hòn Đất - Kiên Lương
+  - Đường bộ ven biển phía Đông Đồng bằng sông Cửu Long
+  - Tuyến giao thông ra đảo Hòn Khoai
+
+MỤC CẦN KIỂM CHỨNG (17):
+  - Cao tốc Cà Mau - Đất Mũi
+  - Cao tốc Mỹ An - Cao Lãnh
+  - Cao tốc Cao Lãnh - An Hữu
+  - Cao tốc Hà Tiên - Rạch Giá - Bạc Liêu
+  - Đường ven biển Rạch Giá - Châu Thành (đường 3/2 nối dài)
+  - Đường ven biển Hòn Đất - Kiên Lương
+  - Đường bộ ven biển phía Đông Đồng bằng sông Cửu Long
+  - Cảng tổng hợp lưỡng dụng Hòn Khoai
+  - Tuyến giao thông ra đảo Hòn Khoai
+  - Tàu cao tốc Rạch Giá - Phú Quốc
+  - Tàu và phà Hà Tiên - Phú Quốc
+  - Cảng Bãi Vòng (Phú Quốc)
+  - Cảng quốc tế An Thới (Phú Quốc)
+  - Bến tàu Rạch Giá
+  - Bến tàu Hà Tiên
+  - Tuyến đường thủy TP.HCM - Cần Thơ - Cà Mau
+  - Tuyến đường thủy TP.HCM - An Giang - Kiên Lương

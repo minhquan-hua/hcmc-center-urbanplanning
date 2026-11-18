@@ -131,12 +131,16 @@
 
     banDo.on('click', function (e) {
       if (S.tam() !== TAM) return;
+      // hạ tầng được ưu tiên nhấp trước điểm chiến lược và ranh giới
+      // (riêng khi nhấp đúng tâm chấm điểm chiến lược mà chỉ có tuyến chạy ngang qua, như Cần Thơ, thì chọn điểm)
+      var ht = S.htTnb && S.htTnb.trung(e.point);
+      if (ht && !(trungTamDiem(e.point) && !S.htTnb.trungDiem(e.point))) { S.htTnb.chon(ht); return; }
       var kq = trung(e.point);
-      if (kq) chon(kq.loai, kq.ma); else boChon();
+      if (kq) chon(kq.loai, kq.ma); else { boChon(); if (S.htTnb) S.htTnb.boChon(); }
     });
     banDo.on('mousemove', function (e) {
       if (S.tam() !== TAM) return;
-      banDo.getCanvas().style.cursor = trung(e.point) ? 'pointer' : '';
+      banDo.getCanvas().style.cursor = ((S.htTnb && S.htTnb.trung(e.point)) || trung(e.point)) ? 'pointer' : '';
     });
     datKy(ky);
   }
@@ -150,6 +154,11 @@
     if (banDo.getLayer('water') && banDo.queryRenderedFeatures(p, { layers: ['water'] }).length) return null;
     var kq = banDo.queryRenderedFeatures(p, { layers: ['tnb-nen'] });
     return kq.length ? { loai: 'tinh', ma: kq[0].properties.ma } : null;
+  }
+
+  function trungTamDiem(p) {
+    if (!sanSang) return false;
+    return banDo.queryRenderedFeatures([[p.x - 5, p.y - 5], [p.x + 5, p.y + 5]], { layers: ['tnb-diem'] }).length > 0;
   }
 
   function capNhatHienThi() {
@@ -236,6 +245,7 @@
     var muc = loai === 'tinh' ? tinh[ma] : diem[ma];
     if (!muc) return;
     if (loai === 'tinh' && muc.nhom !== nhomKy()) datKy(laMoi(muc) ? 'sau' : 'truoc');
+    if (S.htTnb) S.htTnb.boChon();
     boChon();
     dangChon = { loai: loai, ma: ma };
     datChon(true);

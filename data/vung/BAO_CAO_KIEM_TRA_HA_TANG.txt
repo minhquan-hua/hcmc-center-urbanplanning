@@ -1,11 +1,11 @@
 BÁO CÁO KIỂM TRA DỮ LIỆU HẠ TẦNG VÙNG
-Tạo lúc: 17/11/2026 18:44 (file này do máy tạo, đừng sửa tay)
+Tạo lúc: 18/11/2026 17:08 (file này do máy tạo, đừng sửa tay)
 
 Số mục: 27. Có hình từ OpenStreetMap: 23.
 
 CẢNH BÁO: không có.
 
-CHỈ CÓ VỊ TRÍ SƠ ĐỒ (1):
+CHỈ CÓ VỊ TRÍ HOẶC TUYẾN SƠ ĐỒ (1):
   - Cảng trung chuyển quốc tế Cần Giờ
 
 CHỈ HIỆN TRONG DANH SÁCH, KHÔNG CÓ TRÊN BẢN ĐỒ (2):

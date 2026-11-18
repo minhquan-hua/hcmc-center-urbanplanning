@@ -174,3 +174,17 @@ bdn_ten,Bản đồ nhỏ Việt Nam,Overview map of Việt Nam
 bdn_an,Ẩn bản đồ nhỏ,Hide overview map
 bdn_hien,Bản đồ nhỏ,Overview map
 bdn_khung,Khung đỏ: vùng đang xem,Red frame: area in view
+htt_tieu_de,Hạ tầng Tây Nam Bộ,Mekong Delta infrastructure
+htt_ha_tang,Hạ tầng Tây Nam Bộ,Mekong Delta infrastructure
+htt_cao_toc,cao tốc,expressway
+htt_tau_pha,"tàu, phà",ferry
+htt_duong_thuy,đường thủy,inland waterway
+htt_cang,"cảng, bến",port and terminal
+htt_cap,Cấp tin cậy nguồn,Source reliability
+htt_cap_a,A (văn bản hoặc cổng thông tin nhà nước),A (official document or government portal)
+htt_cap_b,B (báo chính thống),B (mainstream press)
+htt_cap_c,"C (trang doanh nghiệp, du lịch)",C (business or travel website)
+htt_so_do_diem,"Chấm rỗng chỉ là vị trí sơ đồ cho biết khu vực, không phải vị trí chính xác.","The hollow dot is a schematic location showing the general area, not the exact position."
+htt_so_do_tuyen,Đường chấm chỉ là sơ đồ nối các nơi tuyến đi qua theo nguồn; không phải luồng tàu chính xác.,The dotted line is a schematic linking the places named in the sources; it is not the exact navigation channel.
+htt_chu_giai,"Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chuỗi chấm: đường thủy (sơ đồ). Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.","Solid: completed. Dashed: not finished. Dotted: inland waterway (schematic). Hollow dot: schematic location. *: not on the map."
+htt_luu_y_chung,"Trạng thái tra ngày 17/11/2026 từ báo chí và văn bản, có thể đã thay đổi. Hình tuyến lấy từ OpenStreetMap, chỉ để tham khảo.","Status checked on 17 Nov 2026 from press reports and official documents and may have changed. Alignments are from OpenStreetMap and indicative only."

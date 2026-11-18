@@ -209,7 +209,7 @@
     var S = window.SaBan;
     // đang xem tour thì thoát tour trước
     if (S.tour && S.tour.trangThai().dangMo) S.tour.dong();
-    ['hanhChinh', 'duAn', 'thuy', 'vung', 'haTang', 'tnb'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
+    ['hanhChinh', 'duAn', 'thuy', 'vung', 'haTang', 'tnb', 'htTnb'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
     document.getElementById('the').hidden = true;
     var cu = tam;
     tam = moi;
@@ -276,7 +276,7 @@
   // ---------- Thẻ "Giới thiệu và nguồn dữ liệu" ----------
   function moGioiThieu() {
     var S = window.SaBan;
-    ['hanhChinh', 'duAn', 'thuy', 'vung', 'haTang', 'tnb'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
+    ['hanhChinh', 'duAn', 'thuy', 'vung', 'haTang', 'tnb', 'htTnb'].forEach(function (k) { if (S[k] && S[k].boChon) S[k].boChon(); });
     var nd = document.getElementById('the-noi-dung');
     nd.textContent = '';
     function them(the, lop, ma, macDinh) {
