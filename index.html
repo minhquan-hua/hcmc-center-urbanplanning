@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Sa bàn quy hoạch TP.HCM</title>
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap">
   <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
@@ -13,6 +16,10 @@
   <header class="thanh-tren">
     <h1 data-chu="tieu_de">Sa bàn quy hoạch TP.HCM</h1>
     <div class="nut-tren">
+      <button id="nut-bang-den" class="nut-bang-den" type="button" aria-haspopup="dialog" aria-controls="bang-den" title="Blackboard">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3.5" width="19" height="13" rx="1" fill="#1f2b26" stroke="#c08a52" stroke-width="1.6"/><path d="M6 8.5c1.5-1.2 3-1.2 4.5 0M6 11.5h7" stroke="#f4f1e6" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M8 16.5l-2 4.5M16 16.5l2 4.5" stroke="#c08a52" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span data-chu="bd_nut">Blackboard</span>
+      </button>
       <button id="nut-ngon-ngu" type="button" aria-label="Đổi ngôn ngữ" data-chu-nhan="nhan_doi_ngon_ngu">EN</button>
       <button id="nut-trinh-chieu" type="button" data-chu="trinh_chieu">Trình chiếu</button>
     </div>
@@ -198,6 +205,21 @@
     <button type="button" class="bdn-nut" id="bdn-nut" aria-expanded="true" aria-label="Ẩn bản đồ nhỏ">×</button>
   </div>
 
+  <!-- Blackboard: bảng đen đính poster (danh sách trong data/bang_den/bang_den.csv, mã trong src/bang_den.js) -->
+  <div class="bden" id="bang-den" hidden>
+    <div class="bden-khung" role="dialog" aria-modal="true" aria-labelledby="bden-tieu-de">
+      <div class="bden-mat">
+        <div class="bden-dau">
+          <button type="button" class="bden-ve" id="bden-ve" hidden data-chu="bd_ve_bang">← Về bảng</button>
+          <h2 class="bden-tieu-de" id="bden-tieu-de" data-chu="bd_tieu_de">Blackboard</h2>
+          <button type="button" class="bden-dong" id="bden-dong" aria-label="Đóng" data-chu-nhan="nhan_dong">×</button>
+        </div>
+        <div class="bden-than" id="bden-than"></div>
+      </div>
+      <div class="bden-khay" aria-hidden="true"><span class="bden-phan"></span><span class="bden-phan vang"></span><span class="bden-lau"></span></div>
+    </div>
+  </div>
+
   <div class="bao-loi" id="bao-loi" role="alert" hidden></div>
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
@@ -213,5 +235,6 @@
   <script src="src/tay_nam_bo.js"></script>
   <script src="src/ha_tang_tnb.js"></script>
   <script src="src/ban_do_nho.js"></script>
+  <script src="src/bang_den.js"></script>
 </body>
 </html>

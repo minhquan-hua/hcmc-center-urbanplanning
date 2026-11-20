@@ -1379,6 +1379,142 @@ def xu_ly_ha_tang_tnb(tai_lai):
     }, tai_lai)
 
 
+# ---------------------------------------------------------------- Blackboard (bảng đen đính poster)
+BD = GOC / 'data' / 'bang_den'
+BD_LOAI = {'.jpg': 'ảnh', '.jpeg': 'ảnh', '.png': 'ảnh', '.webp': 'ảnh', '.pdf': 'PDF', '.csv': 'bảng'}
+BD_TAM = ['chung', 'trung-tam', 'vung', 'tay-nam-bo']
+BD_FILE_RIENG = {'bang_den.csv', 'BAO_CAO_KIEM_TRA.txt'}
+BD_NANG_CANH_BAO = 10 * 1024 * 1024    # trên 10 MB: điện thoại tải chậm
+BD_NANG_LOI = 50 * 1024 * 1024         # trên 50 MB: GitHub cảnh báo, trên 100 MB GitHub chặn hẳn
+BD_ANH_NHO_NANG = 2 * 1024 * 1024      # ảnh dùng làm ảnh thu nhỏ nặng hơn 2 MB thì bảng tải chậm
+
+
+def tim_dung_ten(ten):
+    """Tìm file trong data/bang_den/ đúng cả chữ hoa, chữ thường (máy Windows không phân biệt,
+    nhưng website công khai trên GitHub thì có). Trả về (đường dẫn hoặc None, tên đúng nếu chỉ sai hoa/thường)."""
+    hien_tai = BD
+    for phan in ten.split('/'):
+        if not hien_tai.is_dir():
+            return None, None
+        cac_ten = {p.name: p for p in hien_tai.iterdir()}
+        if phan in cac_ten:
+            hien_tai = cac_ten[phan]
+            continue
+        gan = [n for n in cac_ten if n.lower() == phan.lower()]
+        return None, (gan[0] if gan else None)
+    return (hien_tai if hien_tai.is_file() else None), None
+
+
+def kiem_tra_bang_den():
+    print('\n=== BLACKBOARD (BẢNG ĐEN ĐÍNH POSTER) ===')
+    ds = doc_csv(BD / 'bang_den.csv', ['ma', 'tieu_de_vi', 'tep', 'tam', 'nguon_ten', 'ngay_cap_nhat', 'da_kiem_chung'])
+    loi, canh_bao, da_co, file_dung = [], [], set(), set()
+
+    def kiem_file(vt, cot, ten, chi_nhan_anh):
+        ten = ten.replace('\\', '/')
+        if ten.startswith('/') or '..' in ten.split('/'):
+            loi.append(f'{vt}: cột "{cot}" chỉ ghi tên file nằm trong data/bang_den/, ví dụ: so-do-metro.png')
+            return None
+        duoi = Path(ten).suffix.lower()
+        if duoi not in BD_LOAI or (chi_nhan_anh and BD_LOAI[duoi] != 'ảnh'):
+            nhan = 'ảnh JPG, PNG, WebP' if chi_nhan_anh else 'ảnh JPG, PNG, WebP, file PDF hoặc bảng CSV'
+            loi.append(f'{vt}: file "{ten}" ở cột "{cot}" phải là {nhan}. '
+                       f'File Word, Excel, PowerPoint: hãy lưu thành PDF (Excel có thể lưu thành CSV UTF-8).')
+            return None
+        duong, ten_dung = tim_dung_ten(ten)
+        if duong is None:
+            if ten_dung:
+                loi.append(f'{vt}: file "{ten}" sai chữ hoa/thường; tên thật là "{ten_dung}". '
+                           f'Máy Windows vẫn mở được nhưng website công khai sẽ không tìm thấy. Hãy sửa cho giống hệt.')
+            else:
+                loi.append(f'{vt}: không tìm thấy file data/bang_den/{ten}. Hãy chép file vào thư mục data/bang_den/ '
+                           f'hoặc sửa tên ở cột "{cot}" (nhớ ghi cả đuôi, ví dụ .png, .pdf).')
+            return None
+        file_dung.add(duong.resolve())
+        co = duong.stat().st_size
+        if co > BD_NANG_LOI:
+            loi.append(f'{vt}: file "{ten}" nặng {co / 1048576:.0f} MB, quá lớn để đưa lên GitHub. '
+                       f'Hãy nén hoặc chia nhỏ để mỗi file dưới 10 MB.')
+        elif co > BD_NANG_CANH_BAO:
+            canh_bao.append(f'{vt}: file "{ten}" nặng {co / 1048576:.0f} MB; điện thoại sẽ tải chậm. Nên giảm dưới 10 MB.')
+        return duong
+
+    for d in ds:
+        vt = f'bang_den.csv dòng {d["_dong"]}'
+        if not d['ma']:
+            loi.append(f'{vt}: thiếu mã ở cột "ma" (một chữ ngắn không dấu, ví dụ: so-do-metro)')
+        elif d['ma'] in da_co:
+            loi.append(f'{vt}: mã "{d["ma"]}" bị trùng với dòng khác')
+        da_co.add(d['ma'])
+        for c in ('tieu_de_vi', 'tep', 'nguon_ten', 'ngay_cap_nhat'):
+            if not d[c]:
+                loi.append(f'{vt}: thiếu nội dung ở cột "{c}"')
+        duong = kiem_file(vt, 'tep', d['tep'], False) if d['tep'] else None
+        if d.get('anh_nho'):
+            anh = kiem_file(vt, 'anh_nho', d['anh_nho'], True)
+            if anh and anh.stat().st_size > BD_ANH_NHO_NANG:
+                canh_bao.append(f'{vt}: ảnh thu nhỏ "{d["anh_nho"]}" nặng hơn 2 MB; nên dùng ảnh nhỏ hơn (khoảng 800 điểm ảnh chiều ngang).')
+        elif duong and BD_LOAI.get(duong.suffix.lower()) == 'ảnh' and duong.stat().st_size > BD_ANH_NHO_NANG:
+            canh_bao.append(f'{vt}: ảnh "{d["tep"]}" nặng hơn 2 MB và đang được dùng luôn làm ảnh thu nhỏ, bảng sẽ tải chậm '
+                            f'trên điện thoại. Nên thêm một ảnh nhỏ hơn ở cột "anh_nho".')
+        if duong and duong.suffix.lower() == '.csv':
+            try:
+                duong.read_bytes().decode('utf-8')
+            except UnicodeDecodeError:
+                canh_bao.append(f'{vt}: file "{d["tep"]}" không lưu kiểu CSV UTF-8. Website vẫn cố đọc, nhưng nếu chữ tiếng Việt '
+                                f'bị lỗi thì mở bằng Excel và lưu lại kiểu "CSV UTF-8 (Comma delimited)".')
+        tam = [x.strip().lower() for x in d['tam'].split('|') if x.strip()]
+        if not tam or any(x not in BD_TAM for x in tam):
+            loi.append(f'{vt}: cột "tam" phải là một trong: {", ".join(BD_TAM)} (nhiều tầm thì ngăn bằng dấu |, ví dụ: vung|tay-nam-bo)')
+        if d.get('kinh_do') or d.get('vi_do'):
+            try:
+                x, y = float(d.get('kinh_do', '')), float(d.get('vi_do', ''))
+                if not (100 <= x <= 111 and 4 <= y <= 17):
+                    loi.append(f'{vt}: tọa độ nằm ngoài vùng bản đồ (kinh độ 100-111, vĩ độ 4-17). '
+                               f'Có thể đã đảo kinh độ và vĩ độ: ở TP.HCM kinh độ khoảng 106,7 và vĩ độ khoảng 10,8.')
+            except ValueError:
+                loi.append(f'{vt}: "kinh_do" và "vi_do" phải là con số dùng dấu chấm, ví dụ 106.7135 và 10.7790; '
+                           f'không ghim vị trí thì để trống cả hai')
+        if d.get('thu_phong'):
+            try:
+                if not 4 <= float(d['thu_phong']) <= 19:
+                    loi.append(f'{vt}: "thu_phong" phải từ 4 (xa) tới 19 (rất gần); để trống thì website tự chọn')
+            except ValueError:
+                loi.append(f'{vt}: "thu_phong" phải là con số, ví dụ 15; để trống thì website tự chọn')
+        if d.get('nguon') and not d['nguon'].startswith('http'):
+            loi.append(f'{vt}: cột "nguon" phải để trống hoặc là đường link bắt đầu bằng http')
+        if d['da_kiem_chung'] not in KIEM_CHUNG_HOP_LE:
+            loi.append(f'{vt}: cột "da_kiem_chung" phải là "có" hoặc "cần kiểm chứng"')
+    if loi:
+        raise LoiDuLieu('File data/bang_den/bang_den.csv có lỗi:\n  - ' + '\n  - '.join(loi))
+
+    # File nằm trong thư mục mà không poster nào dùng: vẫn bị đưa lên mạng, ai cũng tải được
+    thua = sorted(str(p.relative_to(BD)).replace('\\', '/') for p in BD.rglob('*')
+                  if p.is_file() and p.resolve() not in file_dung and p.name not in BD_FILE_RIENG)
+    for t in thua:
+        canh_bao.append(f'File "{t}" nằm trong data/bang_den/ nhưng không poster nào dùng. File này vẫn được đưa lên '
+                        f'website công khai; nếu không cần thì xóa đi.')
+
+    can_kc = [d['tieu_de_vi'] for d in ds if d['da_kiem_chung'] != 'có']
+    bao_cao = [
+        'BÁO CÁO KIỂM TRA BLACKBOARD (BẢNG ĐEN ĐÍNH POSTER)',
+        f'Tạo lúc: {time.strftime("%d/%m/%Y %H:%M")} (file này do máy tạo, đừng sửa tay)',
+        '',
+        f'Số poster: {len(ds)}. ' + ', '.join(
+            f'{n}: {sum(1 for d in ds if BD_LOAI.get(Path(d["tep"]).suffix.lower()) == n)}' for n in ('ảnh', 'PDF', 'bảng')) + '.',
+        'Theo tầm: ' + ', '.join(f'{t}: {sum(1 for d in ds if t in d["tam"].split("|"))}' for t in BD_TAM) + '.',
+        f'Có ghim vị trí trên bản đồ: {sum(1 for d in ds if d.get("kinh_do"))}.',
+        '',
+        f'CẢNH BÁO ({len(canh_bao)}):', *[f'  - {s}' for s in canh_bao],
+        '',
+        f'POSTER CẦN KIỂM CHỨNG ({len(can_kc)}):', *[f'  - {s}' for s in can_kc],
+        '',
+    ]
+    (BD / 'BAO_CAO_KIEM_TRA.txt').write_text('\n'.join(bao_cao), encoding='utf-8')
+    print('\n' + '\n'.join(bao_cao))
+    return len(canh_bao)
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -1395,6 +1531,7 @@ def main():
         so_canh_bao += kiem_tra_vi_sao()
         so_canh_bao += xu_ly_tay_nam_bo('--tai-lai' in sys.argv)
         so_canh_bao += xu_ly_ha_tang_tnb('--tai-lai' in sys.argv)
+        so_canh_bao += kiem_tra_bang_den()
     except LoiDuLieu as e:
         print(f'\nDỪNG LẠI: {e}')
         return 1

@@ -46,7 +46,19 @@
   }
 
   // ---------- Đọc file CSV (chịu được dấu phẩy trong ngoặc kép, file lưu từ Excel) ----------
+  // docHang trả về các dòng dạng mảng (dòng đầu là tên cột); docCSV trả về mỗi dòng một đối tượng theo tên cột
   function docCSV(vanBan) {
+    var dong = docHang(vanBan);
+    if (!dong.length) return [];
+    var cot = dong[0].map(function (x) { return x.trim(); });
+    return dong.slice(1).map(function (d) {
+      var muc = {};
+      cot.forEach(function (ten, k) { muc[ten] = (d[k] || '').trim(); });
+      return muc;
+    });
+  }
+
+  function docHang(vanBan) {
     vanBan = vanBan.replace(/^﻿/, '');
     // Excel ở Việt Nam đôi khi lưu bằng dấu chấm phẩy thay cho dấu phẩy
     var dongDau = vanBan.split(/\r?\n/)[0] || '';
@@ -69,13 +81,7 @@
     }
     o.push(chu);
     if (o.some(function (x) { return x.trim() !== ''; })) dong.push(o);
-    if (!dong.length) return [];
-    var cot = dong[0].map(function (x) { return x.trim(); });
-    return dong.slice(1).map(function (d) {
-      var muc = {};
-      cot.forEach(function (ten, k) { muc[ten] = (d[k] || '').trim(); });
-      return muc;
-    });
+    return dong;
   }
 
   // ---------- Ngôn ngữ ----------
@@ -365,12 +371,16 @@
     tenHC: tenHC,
     banDo: banDo,
     docCSV: docCSV,
+    docHang: docHang,
     chu: chu,
     baoLoi: baoLoi,
     datBang: datBang,
     ngonNgu: function () { return ngonNgu; },
     tam: function () { return tam; },
     datTam: datTam,
+    // các tầm đang hiện trên website và khung giới hạn bản đồ của từng tầm
+    cacTam: function () { return CAC_TAM.slice(); },
+    gioiHanTam: function (t) { return t === 'vung' ? GIOI_HAN_VUNG : t === 'tay-nam-bo' ? GIOI_HAN_TNB : GIOI_HAN; },
     khiDoiTam: function (f) { nguoiNgheTam.push(f); },
     khiDoiNgonNgu: function (f) { nguoiNghe.push(f); },
     khiNenSanSang: function (f) { if (nenDaSanSang) f(); else banDo.once('load', f); }

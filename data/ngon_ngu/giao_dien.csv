@@ -190,3 +190,27 @@ htt_luu_y_chung,"Trạng thái tra ngày 17/11/2026 từ báo chí và văn bả
 nhan_ban_do,Bản đồ,Map
 nhan_doi_ngon_ngu,Đổi ngôn ngữ,Change language
 nhan_dong,Đóng,Close
+bd_nut,Blackboard,Blackboard
+bd_tieu_de,Blackboard,Blackboard
+bd_huong_dan,Bấm vào một poster để xem đầy đủ.,Tap a poster to see it in full.
+bd_so_poster,{n} poster,{n} posters
+bd_trong,Chưa có poster nào cho tầm này.,No posters for this view yet.
+bd_dang_tai,Đang tải…,Loading…
+bd_ve_bang,← Về bảng,← Back to board
+bd_loai_anh,Ảnh,Image
+bd_loai_pdf,PDF,PDF
+bd_loai_bang,Bảng số liệu,Data table
+bd_co_vi_tri,Có vị trí trên bản đồ,Has a location on the map
+bd_xem_ban_do,Xem vị trí trên bản đồ,Show on the map
+bd_mo_tep,Mở file gốc,Open original file
+bd_tai_ve,Tải về,Download
+bd_mo_pdf,Mở PDF trong thẻ mới,Open the PDF in a new tab
+bd_pdf_the_moi,Trình duyệt này mở PDF trong một thẻ mới.,This browser opens PDFs in a new tab.
+bd_goi_y_anh,Bấm vào ảnh để phóng to hoặc thu nhỏ.,Tap the image to zoom in or out.
+bd_gioi_han_dong,Chỉ hiện {n} dòng đầu. Tải file về để xem đủ.,Showing the first {n} rows only. Download the file to see them all.
+bd_nguon,Nguồn,Source
+bd_cap_nhat,Cập nhật,Updated
+bd_khong_tim_thay,Không tìm thấy file,File not found
+bd_canh_bao,Một số poster chưa hiện được hoặc còn lỗi:,Some posters could not be shown or have problems:
+bd_mo_poster,Mở poster,Open poster
+bd_bo_ghim,Bỏ ghim,Remove pin

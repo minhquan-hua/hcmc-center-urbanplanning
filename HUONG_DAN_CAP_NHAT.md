@@ -189,12 +189,56 @@ Việc hay làm nhất là **sửa lời dẫn và câu hỏi**: mở `buoc.csv`
 3. Mở cửa sổ lệnh trong thư mục dự án và chạy `py scripts\cap_nhat.py --tai-lai` để tải ranh giới phường mới từ OpenStreetMap. Việc này cần mạng và có thể mất vài phút.
 4. Đọc phần "CẢNH BÁO" trong kết quả. Không có cảnh báo nghĩa là bảng gộp khớp với ranh giới.
 
+## Thêm poster lên bảng đen (nút "Blackboard")
+
+Nút "Blackboard" ở thanh trên cùng mở một tấm bảng đen có các poster được ghim lên. Bấm vào poster thì xem được file đầy đủ.
+
+**Điều cần biết trước:**
+
+- Trên website không có nút tải lên. Chỉ bạn thêm poster được, bằng cách chép file vào thư mục rồi đưa lên mạng. Sinh viên chỉ xem.
+- Kho trên GitHub là công khai: mọi file trong `data/bang_den/` ai cũng tải về được, kể cả file không gắn vào poster nào. Chỉ đặt vào đó những file bạn có quyền chia sẻ.
+- Loại file nhận: ảnh **JPG, PNG, WebP**; **PDF**; bảng **CSV**. File Word, PowerPoint: lưu thành PDF. File Excel: lưu thành PDF, hoặc lưu kiểu "CSV UTF-8" nếu muốn hiện thành bảng.
+- Mỗi file nên nhẹ hơn 10 MB (điện thoại tải nhanh). File nặng hơn 50 MB sẽ không đưa lên được.
+
+**Các bước thêm một poster:**
+
+1. **Đặt tên file:** dùng chữ thường, không dấu, nối bằng gạch ngang, có đuôi. Ví dụ `so-do-metro-so-1.png`, `bai-giang-thu-thiem.pdf`.
+2. **Chép file** vào thư mục `data/bang_den/`.
+3. **(Không bắt buộc) Ảnh thu nhỏ cho file PDF hoặc CSV:** mở file, bấm `Windows + Shift + S` để chụp trang đầu, dán vào Paint rồi lưu thành ảnh PNG (ví dụ `bai-giang-thu-thiem-anh-nho.png`) trong cùng thư mục. Không có ảnh thu nhỏ thì bảng hiện biểu tượng PDF hoặc CSV. Với poster là ảnh, website tự dùng chính ảnh đó.
+4. **Mở `data/bang_den/bang_den.csv` bằng Excel** và thêm một dòng ở cuối:
+
+| Cột | Ghi gì | Bắt buộc? |
+|---|---|---|
+| `ma` | Mã ngắn không dấu, không trùng dòng khác. Ví dụ `so-do-metro-1` | Có |
+| `tieu_de_vi` | Tiêu đề tiếng Việt hiện dưới poster | Có |
+| `tieu_de_en` | Tiêu đề tiếng Anh. Để trống thì hiện tiếng Việt | Không |
+| `tep` | Tên file đúng y hệt, kể cả chữ hoa/thường và đuôi. Ví dụ `so-do-metro-so-1.png` | Có |
+| `anh_nho` | Tên ảnh thu nhỏ ở bước 3 | Không |
+| `tam` | Poster hiện ở tầm nào: `trung-tam`, `vung`, `tay-nam-bo`, hoặc `chung` (mọi tầm). Nhiều tầm thì ngăn bằng dấu `\|`, ví dụ `vung\|tay-nam-bo` | Có |
+| `kinh_do`, `vi_do` | Muốn ghim poster vào một điểm trên bản đồ thì ghi tọa độ (dùng dấu chấm). Lấy bằng cách nhấp chuột phải trên Google Maps: số đầu là **vĩ độ**, số sau là **kinh độ**. Không ghim thì để trống cả hai | Không |
+| `thu_phong` | Độ gần khi bay tới điểm ghim: 4 (rất xa) tới 19 (rất gần). Để trống thì website tự chọn | Không |
+| `mo_ta_vi`, `mo_ta_en` | Vài câu giới thiệu poster | Không |
+| `nguon_ten`, `nguon_ten_en` | Tên nguồn (tác giả, cơ quan, bài báo). Tài liệu bạn tự làm thì ghi ví dụ "Bài giảng của giảng viên" | `nguon_ten`: có |
+| `nguon` | Đường link nguồn, bắt đầu bằng http. Không có thì để trống | Không |
+| `ngay_cap_nhat` | Ngày bạn thêm hoặc sửa poster, ví dụ `25/11/2026` | Có |
+| `da_kiem_chung` | `có`, hoặc `cần kiểm chứng` (poster sẽ có nhãn đỏ) | Có |
+
+5. **Lưu** kiểu **CSV UTF-8 (Comma delimited)**.
+6. **Bấm đúp `cap_nhat_du_lieu.bat`** rồi đọc phần "BLACKBOARD" ở cuối. Nó báo nếu sai tên file, sai chữ hoa/thường, file quá nặng, hoặc có file thừa trong thư mục.
+7. **Xem thử:** bấm đúp `xem_thu.bat`, bấm Ctrl + F5, bấm nút "Blackboard". Poster mới nằm cuối bảng; thứ tự trên bảng theo thứ tự dòng trong file.
+8. **Đưa lên mạng:** bấm đúp `dua_len_mang.bat`.
+
+**Bỏ một poster:** xóa dòng của nó trong `bang_den.csv`, xóa luôn file trong `data/bang_den/` (nếu không, file vẫn nằm trên mạng), rồi làm lại bước 6-8.
+
+**Ba poster mẫu** (tên bắt đầu bằng "MẪU") chỉ để thử. Khi có poster thật, xóa ba dòng mẫu và các file `mau-so-do.png`, `mau-tai-lieu.pdf`, `mau-tai-lieu-anh-nho.png`, `mau-bang.csv`.
+
 ## Những file do máy tạo, đừng sửa tay
 
 - `data/hanh_chinh/*.geojson`: hình dạng ranh giới
 - `data/hanh_chinh/goc_osm/`: dữ liệu thô tải từ OpenStreetMap
 - `data/hanh_chinh/BAO_CAO_KIEM_TRA.txt`: kết quả kiểm tra lần chạy gần nhất, kèm danh sách mục cần kiểm chứng
 - `data/du_an/du_an.geojson`, `data/du_an/goc_osm/`, `data/du_an/BAO_CAO_KIEM_TRA.txt`: tương tự, cho lớp dự án
+- `data/bang_den/BAO_CAO_KIEM_TRA.txt`: kết quả kiểm tra các poster trên bảng đen
 
 ## Khi website báo lỗi
 
