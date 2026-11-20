@@ -18,7 +18,15 @@
   var KHUNG_TNB = [[103.4, 8.35], [107.0, 11.8]];
   var GIOI_HAN_TNB = [[100.0, 4.0], [110.5, 16.0]]; // rộng theo chiều dọc để điện thoại vẫn thấy trọn vùng
   var THU_NHO_NHAT_TNB = 5.5;
-  var CAC_TAM = ['trung-tam', 'vung', 'tay-nam-bo'];
+  // Tầm Tây Nam Bộ đang làm dở: bản công khai tạm ẩn, chỉ hiện khi xem thử trên máy (localhost).
+  // Khi đưa Tây Nam Bộ lên mạng (bước 5) thì đổi CONG_KHAI_TNB thành true.
+  var CONG_KHAI_TNB = false;
+  var HIEN_TNB = CONG_KHAI_TNB || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  var CAC_TAM = HIEN_TNB ? ['trung-tam', 'vung', 'tay-nam-bo'] : ['trung-tam', 'vung'];
+  if (!HIEN_TNB) {
+    var nutTnb = document.querySelector('#chon-tam button[data-tam="tay-nam-bo"]');
+    if (nutTnb) nutTnb.parentNode.removeChild(nutTnb);
+  }
   // Các ô bật/tắt lớp chi tiết chỉ dùng ở tầm trung tâm
   var O_TRUNG_TAM = ['bat-3d', 'bat-hanh-chinh', 'bat-du-an', 'bat-giao-thong', 'bat-thuy'];
 
@@ -297,6 +305,7 @@
     var ds = document.createElement('ul');
     ds.className = 'ds-nguon';
     ['gt_nguon_nen', 'gt_nguon_hanh_chinh', 'gt_nguon_du_an', 'gt_nguon_giao_thong', 'gt_nguon_vung', 'gt_nguon_tnb'].forEach(function (ma) {
+      if (ma === 'gt_nguon_tnb' && !HIEN_TNB) return;
       var li = document.createElement('li');
       li.textContent = chu(ma) || ma;
       ds.appendChild(li);
