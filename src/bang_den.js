@@ -39,7 +39,8 @@
   function t(ma, macDinh) { return S.chu(ma) || macDinh || ma; }
   function en() { return S.ngonNgu() === 'en'; }
   function loi(vi, enChu) { return { vi: vi, en: enChu }; }
-  function chuLoi(l) { return en() && l.en ? l.en : l.vi; }
+  // lời báo lỗi dành cho chủ dự án: khi xem tiếng Anh vẫn kèm bản tiếng Việt
+  function chuLoi(l) { return en() && l.en ? l.en + '\n' + l.vi : l.vi; }
   function el(the, lopCss, chu) {
     var e = document.createElement(the);
     if (lopCss) e.className = lopCss;

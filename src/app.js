@@ -35,13 +35,17 @@
   var tam = 'trung-tam'; // 'trung-tam', 'vung' hoặc 'tay-nam-bo'
   var nguoiNgheTam = [];
   var nhoO = {};         // trạng thái các ô lớp trung tâm trước khi rời tầm trung tâm
-  var ngonNgu = 'vi';
-  try { ngonNgu = localStorage.getItem('ngon_ngu') === 'en' ? 'en' : 'vi'; } catch (e) {}
+  // Mặc định tiếng Anh (chủ dự án chọn 20/11/2026); người xem bấm nút VI thì nhớ lựa chọn.
+  // Khoá lưu đổi tên ('ngon_ngu_2') để lựa chọn cũ, lưu khi tiếng Việt còn là mặc định, không giữ lại.
+  var KHOA_NGON_NGU = 'ngon_ngu_2';
+  var ngonNgu = 'en';
+  try { ngonNgu = localStorage.getItem(KHOA_NGON_NGU) === 'vi' ? 'vi' : 'en'; } catch (e) {}
 
   // ---------- Báo lỗi dễ hiểu ----------
+  // Lỗi dữ liệu là việc của chủ dự án: khi xem tiếng Anh vẫn kèm bản tiếng Việt bên dưới
   function baoLoi(loiVi, loiEn) {
     var o = document.getElementById('bao-loi');
-    o.textContent = ngonNgu === 'en' && loiEn ? loiEn : loiVi;
+    o.textContent = ngonNgu === 'en' && loiEn ? loiEn + '\n\n' + loiVi : loiVi;
     o.hidden = false;
   }
 
@@ -269,7 +273,7 @@
 
   document.getElementById('nut-ngon-ngu').addEventListener('click', function () {
     ngonNgu = ngonNgu === 'vi' ? 'en' : 'vi';
-    try { localStorage.setItem('ngon_ngu', ngonNgu); } catch (e) {}
+    try { localStorage.setItem(KHOA_NGON_NGU, ngonNgu); } catch (e) {}
     apDungNgonNgu();
   });
 
