@@ -217,8 +217,8 @@
     }
 
     nd.appendChild(el('h3', null, t('nguon', 'Nguồn')));
-    dongNguon(nd, v.nguon_ten, v.nguon);
-    dongNguon(nd, v.nguon_2_ten, v.nguon_2);
+    dongNguon(nd, S.cot(v, 'nguon_ten'), v.nguon);
+    dongNguon(nd, S.cot(v, 'nguon_2_ten'), v.nguon_2);
     var d = el('div', 'the-dong-tt');
     d.appendChild(el('span', 'the-nhan', t('vung_thong_tin', 'Thông tin sáp nhập')));
     var co = v.da_kiem_chung === 'có';

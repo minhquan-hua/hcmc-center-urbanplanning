@@ -49,7 +49,7 @@
     if (m.nguon) {
       var p = el('p', 'the-nguon');
       p.appendChild(document.createTextNode(t('nguon', 'Nguồn') + ': '));
-      var a = el('a', null, m.nguon_ten || m.nguon);
+      var a = el('a', null, S.cot(m, 'nguon_ten') || m.nguon);
       a.href = m.nguon; a.target = '_blank'; a.rel = 'noopener';
       p.appendChild(a);
       khung.appendChild(p);

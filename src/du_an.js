@@ -278,12 +278,11 @@
       d.da_kiem_chung === 'có' ? t('da_kiem_chung', 'đã kiểm chứng') : t('can_kiem_chung', 'cần kiểm chứng')));
     nd.appendChild(hang);
 
-    if (d.moc_thoi_gian_vi) nd.appendChild(dongTT(t('moc_thoi_gian', 'Mốc thời gian'), d.moc_thoi_gian_vi));
-    if (d.mo_ta_vi) nd.appendChild(dongTT(t('mo_ta', 'Mô tả'), d.mo_ta_vi));
-    if (d.chu_dau_tu) nd.appendChild(dongTT(t('chu_dau_tu', 'Chủ đầu tư / nguồn vốn'), d.chu_dau_tu));
-    if (d.van_ban) nd.appendChild(dongTT(t('van_ban', 'Văn bản'), d.van_ban));
-    if (d.ghi_chu_vi) nd.appendChild(dongTT(t('luu_y', 'Lưu ý'), d.ghi_chu_vi));
-    if (en()) nd.appendChild(el('p', 'ghi-chu', 'Details are currently available in Vietnamese only.'));
+    if (d.moc_thoi_gian_vi) nd.appendChild(dongTT(t('moc_thoi_gian', 'Mốc thời gian'), S.cot(d, 'moc_thoi_gian')));
+    if (d.mo_ta_vi) nd.appendChild(dongTT(t('mo_ta', 'Mô tả'), S.cot(d, 'mo_ta')));
+    if (d.chu_dau_tu) nd.appendChild(dongTT(t('chu_dau_tu', 'Chủ đầu tư / nguồn vốn'), S.cot(d, 'chu_dau_tu')));
+    if (d.van_ban) nd.appendChild(dongTT(t('van_ban', 'Văn bản'), S.cot(d, 'van_ban')));
+    if (d.ghi_chu_vi) nd.appendChild(dongTT(t('luu_y', 'Lưu ý'), S.cot(d, 'ghi_chu')));
 
     nd.appendChild(el('h3', null, t('nguon', 'Nguồn')));
     var dsNguon = el('ul', 'ds-nguon');

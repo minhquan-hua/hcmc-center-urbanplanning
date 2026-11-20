@@ -1,5 +1,5 @@
 ma,vi,en
-tieu_de,Sa bàn quy hoạch TP.HCM,Ho Chi Minh City Planning Model
+tieu_de,Sa bàn quy hoạch TP.HCM,Hồ Chí Minh City Planning Model
 trinh_chieu,Trình chiếu,Present
 lop_ban_do,Lớp bản đồ,Map layers
 toa_nha_3d,Tòa nhà 3D,3D buildings
@@ -97,10 +97,10 @@ sap_co,sắp có,coming soon
 ve_goc_nhin_dau,Về góc nhìn ban đầu,Reset view
 gioi_thieu_nut,Giới thiệu và nguồn dữ liệu,About and data sources
 gioi_thieu,Giới thiệu,About
-gt_muc_dich,"Website học tập giúp sinh viên quy hoạch và kiến trúc tìm hiểu khu trung tâm TP.HCM: Quận 1 cũ, Thủ Thiêm và các khu liền kề. Đây không phải tài liệu quy hoạch chính thức.","A learning website that helps planning and architecture students explore central Ho Chi Minh City: former District 1, Thủ Thiêm and adjacent areas. It is not an official planning document."
+gt_muc_dich,"Website học tập giúp sinh viên quy hoạch và kiến trúc tìm hiểu khu trung tâm TP.HCM: Quận 1 cũ, Thủ Thiêm và các khu liền kề. Đây không phải tài liệu quy hoạch chính thức.","A learning website that helps planning and architecture students explore central Hồ Chí Minh City: former District 1, Thủ Thiêm and adjacent areas. It is not an official planning document."
 gt_nguon_tieu_de,Nguồn dữ liệu,Data sources
 gt_nguon_nen,"Bản đồ nền, đường, tòa nhà, sông, hình dạng công trình và tuyến đường thủy: © những người đóng góp cho OpenStreetMap, giấy phép ODbL; ô bản đồ từ OpenFreeMap và OpenMapTiles.","Base map, roads, buildings, rivers, project shapes and waterway routes: © OpenStreetMap contributors, ODbL licence; tiles by OpenFreeMap and OpenMapTiles."
-gt_nguon_hanh_chinh,"Việc gộp phường: Nghị quyết 1685/NQ-UBTVQH15 ngày 16/6/2025. Ranh giới cũ là bản lưu OpenStreetMap ngày 1/5/2025.","Ward mergers: Resolution 1685/NQ-UBTVQH15 of 16 June 2025. Former boundaries are an OpenStreetMap snapshot of 1 May 2025."
+gt_nguon_hanh_chinh,Việc gộp phường: Nghị quyết 1685/NQ-UBTVQH15 ngày 16/6/2025. Ranh giới cũ là bản lưu OpenStreetMap ngày 1/5/2025.,Ward mergers: Resolution 1685/NQ-UBTVQH15 of 16 June 2025. Former boundaries are an OpenStreetMap snapshot of 1 May 2025.
 gt_nguon_du_an,Dự án quy hoạch và tuyến đường thủy: báo chí và cổng thông tin nhà nước; link nguồn nằm trong thẻ của từng mục.,Planning projects and waterway routes: press and government portals; source links are in each item's card.
 gt_nguon_giao_thong,Mô phỏng giao thông: mạng đường từ OpenStreetMap; các con số xem trong mục Giao thông đường bộ.,Traffic illustration: road network from OpenStreetMap; see the numbers under Road traffic.
 gt_luu_y_tieu_de,Lưu ý khi sử dụng,Please note
@@ -111,7 +111,7 @@ nguon_ban_do,"Bản đồ nền: © OpenStreetMap (giấy phép ODbL), OpenMapTi
 tam_vung,Toàn vùng,Region
 tam_trung_tam,Trung tâm,Centre
 vung_tieu_de,Ranh giới vùng,Regional boundaries
-vung_mo_ta,Thành phố Hồ Chí Minh sau sáp nhập và hai địa phương giáp ranh. Nét đứt: ranh giới ba địa phương cũ. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.,Ho Chi Minh City after the merger and its two neighbours. Dashed lines: the three former units. Tap the map or a name below for details.
+vung_mo_ta,Thành phố Hồ Chí Minh sau sáp nhập và hai địa phương giáp ranh. Nét đứt: ranh giới ba địa phương cũ. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.,Hồ Chí Minh City after the merger and its two neighbours. Dashed lines: the three former units. Tap the map or a name below for details.
 vung_ranh_gioi,"Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.","Boundaries are indicative, from OpenStreetMap, not legal limits. Sea boundaries are not drawn."
 vung_ranh_gioi_cu,"Ranh giới cũ: bản lưu OpenStreetMap ngày 1/5/2025, chỉ để tham khảo.","Former boundary: OpenStreetMap snapshot of 1 May 2025, indicative only."
 vung_loai_moi,Đơn vị cấp tỉnh hiện nay,Current province-level unit
@@ -132,25 +132,25 @@ ht_khu_cong_nghiep,khu công nghiệp,industrial park
 ht_tt_phe_duyet,"đã phê duyệt, chưa khởi công","approved, not started"
 ht_tt_chu_truong,"chủ trương, quy hoạch",planned (policy stage)
 ht_tuyen,tuyến,routes
-ht_lt_tieu_de,Kết nối sân bay Long Thành - TP.HCM,Long Thanh Airport - HCMC links
+ht_lt_tieu_de,Kết nối sân bay Long Thành - TP.HCM,Long Thành Airport - HCMC links
 ht_duong_bo_hoa,Đường bộ,Road
 ht_duong_sat_hoa,Đường sắt và metro,Rail and metro
 ht_lt_chi_hien,Chỉ hiện các tuyến này,Show only these routes
-ht_lt_thuoc,Thuộc nhóm kết nối sân bay Long Thành - TP.HCM.,Part of the Long Thanh Airport - HCMC links.
+ht_lt_thuoc,Thuộc nhóm kết nối sân bay Long Thành - TP.HCM.,Part of the Long Thành Airport - HCMC links.
 ht_dang_hien,Đang hiện,Showing
 ht_luu_y,Lưu ý,Note
 ht_khong_hinh,Chưa có hướng tuyến hay vị trí đáng tin để vẽ; chỉ hiện trong danh sách.,No reliable alignment or location to draw yet; listed only.
 ht_so_do,Chấm rỗng chỉ là vị trí sơ đồ cho biết khu vực; chưa có hướng tuyến hay ranh giới đáng tin để vẽ.,The hollow dot is a schematic location only; no reliable alignment or boundary to draw yet.
-ht_hinh_osm,"Hình vẽ lấy từ OpenStreetMap do cộng đồng vẽ; với công trình chưa xây đây là hướng tuyến hoặc ranh dự kiến, có thể khác thiết kế cuối cùng.","Shape from OpenStreetMap (community-drawn); for unbuilt works it is an indicative alignment or outline and may differ from the final design."
+ht_hinh_osm,"Hình vẽ lấy từ OpenStreetMap do cộng đồng vẽ; với công trình chưa xây đây là hướng tuyến hoặc ranh dự kiến, có thể khác thiết kế cuối cùng.",Shape from OpenStreetMap (community-drawn); for unbuilt works it is an indicative alignment or outline and may differ from the final design.
 ht_chu_giai,"Nét liền: đã hoàn thành. Nét đứt: chưa xong. Vạch trắng ở giữa: metro, đường sắt. Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.","Solid: completed. Dashed: not finished. White centre stripe: metro, railway. Hollow dot: schematic location. *: not on the map."
 ht_luu_y_chung,"Hướng tuyến chưa xây lấy từ OpenStreetMap, chỉ để tham khảo. Trạng thái tra ngày 17/11/2026 từ báo chí, có thể đã thay đổi.","Unbuilt alignments are from OpenStreetMap, indicative only. Status checked on 17 Nov 2026 from press reports and may have changed."
 vs_nut,Vì sao sáp nhập?,Why the merger?
 vs_tieu_de,Vì sao sáp nhập?,Why the merger?
-vs_mo_dau,"Từ 1/7/2025, TP.HCM, Bình Dương và Bà Rịa - Vũng Tàu hợp nhất thành Thành phố Hồ Chí Minh. Dưới đây là lý do nêu trong văn bản chính thức và các góc nhìn có dẫn nguồn.","From 1 July 2025, Ho Chi Minh City, Binh Duong and Ba Ria - Vung Tau merged into Ho Chi Minh City. Below: reasons stated in official documents, and sourced viewpoints (content in Vietnamese)."
+vs_mo_dau,"Từ 1/7/2025, TP.HCM, Bình Dương và Bà Rịa - Vũng Tàu hợp nhất thành Thành phố Hồ Chí Minh. Dưới đây là lý do nêu trong văn bản chính thức và các góc nhìn có dẫn nguồn.","From 1 July 2025, Hồ Chí Minh City, Bình Dương and Bà Rịa - Vũng Tàu merged into Hồ Chí Minh City. Below: reasons stated in official documents, and sourced viewpoints."
 vs_nhom_chinh_thuc,Văn bản và phát biểu chính thức,Official documents and statements
 vs_nhom_goc_nhin,Góc nhìn nghiên cứu và chuyên gia,Research and expert viewpoints
-vs_nhom_cau_hoi,"Câu hỏi gợi mở: Long Thành, Cái Mép, Cần Giờ","Open questions: Long Thanh, Cai Mep, Can Gio"
-vs_cau_hoi_luu_y,"Website chỉ đặt câu hỏi để thảo luận, không khẳng định câu trả lời.","This site only poses questions for discussion; it does not assert answers."
+vs_nhom_cau_hoi,"Câu hỏi gợi mở: Long Thành, Cái Mép, Cần Giờ","Open questions: Long Thành, Cái Mép, Cần Giờ"
+vs_cau_hoi_luu_y,"Website chỉ đặt câu hỏi để thảo luận, không khẳng định câu trả lời.",This site only poses questions for discussion; it does not assert answers.
 vs_cap_tieu_de,Cấp tin cậy của nguồn,Source reliability levels
 vs_cap_a,A · văn bản chính thức,A · official documents
 vs_cap_b,"B · phát biểu lãnh đạo, đề án qua báo tường thuật","B · leaders' statements, plans as reported by the press"
@@ -159,17 +159,17 @@ vs_cap_d,D · ý kiến chuyên gia trên báo chính thống,D · expert opinio
 vs_luu_y,"Các ý kiến là của người được dẫn, không phải của website. Hãy đọc bài gốc trước khi trích dẫn.","Opinions belong to the people cited, not to this site. Read the original before quoting."
 tam_tnb,Tây Nam Bộ,Mekong Delta
 tnb_tieu_de,Ranh giới Tây Nam Bộ,Mekong Delta boundaries
-tnb_mo_ta,"Các tỉnh, thành Tây Nam Bộ và tỉnh Tây Ninh mới (gồm Long An cũ). Màu: tỉnh, thành sau sáp nhập. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.","Provinces of the Mekong Delta plus the new Tây Ninh Province (which includes the former Long An). Colours show the provinces after the merger. Tap the map or a name below for details."
+tnb_mo_ta,"Các tỉnh, thành Tây Nam Bộ và tỉnh Tây Ninh mới (gồm Long An cũ). Màu: tỉnh, thành sau sáp nhập. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.",Provinces of the Mekong Delta plus the new Tây Ninh Province (which includes the former Long An). Colours show the provinces after the merger. Tap the map or a name below for details.
 tnb_sau,Sau sáp nhập,After merger
 tnb_truoc,Trước sáp nhập,Before merger
 tnb_mo_ta_sau,"Từ 1/7/2025: 6 đơn vị cấp tỉnh (1 thành phố, 5 tỉnh).","Since 1 July 2025: 6 province-level units (1 city, 5 provinces)."
-tnb_mo_ta_truoc,"Trước 1/7/2025: 14 đơn vị cấp tỉnh. Cùng màu là các địa phương đã hợp nhất với nhau.","Before 1 July 2025: 14 province-level units. Units sharing a colour were later merged."
+tnb_mo_ta_truoc,Trước 1/7/2025: 14 đơn vị cấp tỉnh. Cùng màu là các địa phương đã hợp nhất với nhau.,Before 1 July 2025: 14 province-level units. Units sharing a colour were later merged.
 tnb_diem_tieu_de,Ba vị trí chiến lược,Three strategic locations
 tnb_diem_ghi_chu,Phân tích chi tiết từng vị trí sẽ bổ sung ở bước sau.,A detailed analysis of each location will be added later.
 tnb_loai_diem,Vị trí chiến lược,Strategic location
 tnb_vi_tri,Vị trí trên bản đồ,Map position
 tnb_ranh_gioi,"Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.","Boundaries are indicative, from OpenStreetMap, not legal limits. Sea boundaries are not drawn."
-gt_nguon_tnb,"Ranh giới Tây Nam Bộ: OpenStreetMap (ranh giới cũ là bản lưu ngày 1/5/2025); thông tin sáp nhập theo Nghị quyết 202/2025/QH15 của Quốc hội.","Mekong Delta boundaries: OpenStreetMap (former boundaries are a snapshot of 1 May 2025); merger information from National Assembly Resolution 202/2025/QH15."
+gt_nguon_tnb,Ranh giới Tây Nam Bộ: OpenStreetMap (ranh giới cũ là bản lưu ngày 1/5/2025); thông tin sáp nhập theo Nghị quyết 202/2025/QH15 của Quốc hội.,Mekong Delta boundaries: OpenStreetMap (former boundaries are a snapshot of 1 May 2025); merger information from National Assembly Resolution 202/2025/QH15.
 bdn_ten,Bản đồ nhỏ Việt Nam,Overview map of Việt Nam
 bdn_an,Ẩn bản đồ nhỏ,Hide overview map
 bdn_hien,Bản đồ nhỏ,Overview map
@@ -186,5 +186,8 @@ htt_cap_b,B (báo chính thống),B (mainstream press)
 htt_cap_c,"C (trang doanh nghiệp, du lịch)",C (business or travel website)
 htt_so_do_diem,"Chấm rỗng chỉ là vị trí sơ đồ cho biết khu vực, không phải vị trí chính xác.","The hollow dot is a schematic location showing the general area, not the exact position."
 htt_so_do_tuyen,Đường chấm chỉ là sơ đồ nối các nơi tuyến đi qua theo nguồn; không phải luồng tàu chính xác.,The dotted line is a schematic linking the places named in the sources; it is not the exact navigation channel.
-htt_chu_giai,"Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chuỗi chấm: đường thủy (sơ đồ). Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.","Solid: completed. Dashed: not finished. Dotted: inland waterway (schematic). Hollow dot: schematic location. *: not on the map."
-htt_luu_y_chung,"Trạng thái tra ngày 17/11/2026 từ báo chí và văn bản, có thể đã thay đổi. Hình tuyến lấy từ OpenStreetMap, chỉ để tham khảo.","Status checked on 17 Nov 2026 from press reports and official documents and may have changed. Alignments are from OpenStreetMap and indicative only."
+htt_chu_giai,Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chuỗi chấm: đường thủy (sơ đồ). Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.,Solid: completed. Dashed: not finished. Dotted: inland waterway (schematic). Hollow dot: schematic location. *: not on the map.
+htt_luu_y_chung,"Trạng thái tra ngày 17/11/2026 từ báo chí và văn bản, có thể đã thay đổi. Hình tuyến lấy từ OpenStreetMap, chỉ để tham khảo.",Status checked on 17 Nov 2026 from press reports and official documents and may have changed. Alignments are from OpenStreetMap and indicative only.
+nhan_ban_do,Bản đồ,Map
+nhan_doi_ngon_ngu,Đổi ngôn ngữ,Change language
+nhan_dong,Đóng,Close

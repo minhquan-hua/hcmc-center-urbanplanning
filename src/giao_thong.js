@@ -400,8 +400,9 @@
     nd.appendChild(el('p', 'ghi-chu canh-bao', t('gt_canh_bao', 'Mô phỏng minh họa cho mục đích học tập, không phải số liệu thực.')));
     dsGiaDinh.forEach(function (g) {
       var muc = el('div', 'the-muc');
-      muc.appendChild(el('h3', null, g.gia_tri + ' ' + g.don_vi));
-      muc.appendChild(el('p', null, g.mo_ta_vi));
+      var donVi = S.cot(g, 'don_vi');
+      muc.appendChild(el('h3', null, donVi === '×' ? g.gia_tri + '×' : g.gia_tri + ' ' + donVi));
+      muc.appendChild(el('p', null, S.cot(g, 'mo_ta')));
       var nhan = el('p', 'the-hang-nhan');
       var coNguon = g.loai_nguon === 'số liệu công bố';
       nhan.appendChild(el('span', 'nhan-kc ' + (coNguon ? 'da' : 'can'),
@@ -414,7 +415,6 @@
       muc.appendChild(nhan);
       nd.appendChild(muc);
     });
-    if (en()) nd.appendChild(el('p', 'ghi-chu', 'Descriptions are currently available in Vietnamese only.'));
     document.getElementById('the').hidden = false;
     if (window.matchMedia('(max-width: 767px)').matches) S.datBang(false);
   }

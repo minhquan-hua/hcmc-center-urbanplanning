@@ -338,10 +338,9 @@
     if (d.noi_long_thanh === 'có') {
       nd.appendChild(el('p', 'ghi-chu', t('ht_lt_thuoc', 'Thuộc nhóm kết nối sân bay Long Thành - TP.HCM.')));
     }
-    mucThe(nd, t('moc_thoi_gian', 'Mốc thời gian'), d.moc_thoi_gian_vi);
-    mucThe(nd, t('mo_ta', 'Mô tả'), d.mo_ta_vi);
-    mucThe(nd, t('ht_luu_y', 'Lưu ý'), d.ghi_chu_vi);
-    if (en()) nd.appendChild(el('p', 'ghi-chu', 'Details are currently available in Vietnamese only.'));
+    mucThe(nd, t('moc_thoi_gian', 'Mốc thời gian'), S.cot(d, 'moc_thoi_gian'));
+    mucThe(nd, t('mo_ta', 'Mô tả'), S.cot(d, 'mo_ta'));
+    mucThe(nd, t('ht_luu_y', 'Lưu ý'), S.cot(d, 'ghi_chu'));
 
     nd.appendChild(el('h3', null, t('nguon', 'Nguồn')));
     var dsNguon = el('ul', 'ds-nguon');

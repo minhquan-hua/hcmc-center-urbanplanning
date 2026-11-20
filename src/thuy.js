@@ -272,9 +272,8 @@
     hang.appendChild(el('span', 'nhan-kc ' + (d.da_kiem_chung === 'có' ? 'da' : 'can'),
       d.da_kiem_chung === 'có' ? t('da_kiem_chung', 'đã kiểm chứng') : t('can_kiem_chung', 'cần kiểm chứng')));
     nd.appendChild(hang);
-    if (d.mo_ta_vi) nd.appendChild(muc(t('mo_ta', 'Mô tả'), d.mo_ta_vi));
-    if (d.ghi_chu_vi) nd.appendChild(muc(t('luu_y', 'Lưu ý'), d.ghi_chu_vi));
-    if (en()) nd.appendChild(el('p', 'ghi-chu', 'Details are currently available in Vietnamese only.'));
+    if (d.mo_ta_vi) nd.appendChild(muc(t('mo_ta', 'Mô tả'), S.cot(d, 'mo_ta')));
+    if (d.ghi_chu_vi) nd.appendChild(muc(t('luu_y', 'Lưu ý'), S.cot(d, 'ghi_chu')));
     nd.appendChild(el('h3', null, t('nguon', 'Nguồn')));
     var dsNguon = el('ul', 'ds-nguon');
     d.nguon.split('|').forEach(function (u) {

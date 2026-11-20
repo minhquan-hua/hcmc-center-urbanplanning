@@ -82,7 +82,7 @@
     });
     hinh.cu.features.forEach(function (f) {
       f.properties.nhan = f.properties.ten.replace(/^Phường\s+/, function (m) {
-        return /^Phường\s+\d/.test(f.properties.ten) ? 'P.' : '';
+        return /^Phường\s+\d/.test(f.properties.ten) ? (en() ? 'Ward ' : 'P.') : '';
       });
     });
     if (banDo.getSource('hc-moi')) banDo.getSource('hc-moi').setData(hinh.moi);
@@ -168,7 +168,7 @@
       var o = el('span', 'o-mau');
       o.style.background = MAU[k];
       li.appendChild(o);
-      li.appendChild(el('span', null, k));
+      li.appendChild(el('span', null, S.tenHC(k)));
       ds.appendChild(li);
     });
   }
@@ -229,16 +229,16 @@
     if (!p) return;
     nd.appendChild(el('p', 'the-loai', t('loai_phuong_moi', 'Phường mới (từ 1/7/2025)')));
     nd.appendChild(el('h2', null, tenMoi(p)));
-    nd.appendChild(dong(t('truoc_day_thuoc', 'Trước đây thuộc'), p.khu_cu));
+    nd.appendChild(dong(t('truoc_day_thuoc', 'Trước đây thuộc'), S.tenHC(p.khu_cu)));
 
     nd.appendChild(el('h3', null, t('gop_tu', 'Được gộp từ')));
     var ds = el('ul', 'ds-gop');
     gop.filter(function (g) { return g.phuong_moi === p.ma; }).forEach(function (g) {
       var li = el('li');
       var ten = /^Phường\s/.test(g.phuong_cu) ? g.phuong_cu : 'Phường ' + g.phuong_cu;
-      li.appendChild(el('span', null, ten));
+      li.appendChild(el('span', null, S.tenHC(ten)));
       li.appendChild(el('span', 'phan ' + (g.phan === 'toàn bộ' ? 'tron' : 'chia'), t(MA_PHAN[g.phan], g.phan)));
-      if (g.ghi_chu && !en()) li.appendChild(el('small', null, g.ghi_chu));
+      if (g.ghi_chu) li.appendChild(el('small', null, S.cot(g, 'ghi_chu')));
       ds.appendChild(li);
     });
     nd.appendChild(ds);
@@ -262,8 +262,8 @@
     if (!f) return;
     var tt = f.properties;
     nd.appendChild(el('p', 'the-loai', t('loai_phuong_cu', 'Phường cũ (trước 1/7/2025)')));
-    nd.appendChild(el('h2', null, tt.ten));
-    nd.appendChild(dong(t('thuoc', 'Thuộc'), tt.quan_cu));
+    nd.appendChild(el('h2', null, S.tenHC(tt.ten)));
+    nd.appendChild(dong(t('thuoc', 'Thuộc'), S.tenHC(tt.quan_cu)));
     nd.appendChild(el('h3', null, t('nay_thuoc', 'Từ 1/7/2025 thuộc')));
     var ds = el('ul', 'ds-gop');
     gop.filter(function (g) {

@@ -293,11 +293,11 @@
       nd.appendChild(el('h2', null, ten(d)));
       nd.appendChild(el('p', 'the-ghi-chu', (en() && d.mo_ta_en) ? d.mo_ta_en : d.mo_ta_vi));
       nd.appendChild(el('h3', null, t('nguon', 'Nguồn')));
-      dongNguon(nd, d.nguon_ten, d.nguon);
-      dongNguon(nd, d.nguon_2_ten, d.nguon_2);
+      dongNguon(nd, S.cot(d, 'nguon_ten'), d.nguon);
+      dongNguon(nd, S.cot(d, 'nguon_2_ten'), d.nguon_2);
       if (d.vi_tri) {
         nd.appendChild(el('h3', null, t('tnb_vi_tri', 'Vị trí trên bản đồ')));
-        dongNguon(nd, d.vi_tri_ten, d.vi_tri);
+        dongNguon(nd, S.cot(d, 'vi_tri_ten'), d.vi_tri);
       }
       nhanKiemChung(nd, t('tnb_loai_diem', 'Vị trí chiến lược'), d.da_kiem_chung === 'có');
       nd.appendChild(el('p', 'ghi-chu', t('ngay_cap_nhat', 'Cập nhật') + ': ' + d.ngay_cap_nhat));
@@ -324,8 +324,8 @@
       nd.appendChild(ul2);
     }
     nd.appendChild(el('h3', null, t('nguon', 'Nguồn')));
-    dongNguon(nd, v.nguon_ten, v.nguon);
-    dongNguon(nd, v.nguon_2_ten, v.nguon_2);
+    dongNguon(nd, S.cot(v, 'nguon_ten'), v.nguon);
+    dongNguon(nd, S.cot(v, 'nguon_2_ten'), v.nguon_2);
     nhanKiemChung(nd, t('vung_thong_tin', 'Thông tin sáp nhập'), v.da_kiem_chung === 'có');
     nd.appendChild(el('p', 'ghi-chu', laMoi(v)
       ? t('tnb_ranh_gioi', 'Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý.')

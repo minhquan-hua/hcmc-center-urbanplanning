@@ -83,6 +83,11 @@
       var v = chu(el.getAttribute('data-chu'));
       if (v) el.textContent = v;
     });
+    // Nhãn đọc cho trình đọc màn hình (aria-label)
+    document.querySelectorAll('[data-chu-nhan]').forEach(function (el) {
+      var v = chu(el.getAttribute('data-chu-nhan'));
+      if (v) el.setAttribute('aria-label', v);
+    });
     var tieuDe = chu('tieu_de');
     if (tieuDe) document.title = tieuDe;
     // Nút hiện ngôn ngữ sẽ chuyển sang
@@ -314,8 +319,27 @@
     document.getElementById('the').hidden = true;
   });
 
+  // Lấy chữ theo ngôn ngữ: cột "<goc>_en" khi xem tiếng Anh, nếu trống thì "<goc>_vi" (hoặc "<goc>")
+  function cot(d, goc) {
+    if (!d) return '';
+    var vi = (goc + '_vi') in d ? d[goc + '_vi'] : d[goc];
+    return (ngonNgu === 'en' && d[goc + '_en']) ? d[goc + '_en'] : (vi || '');
+  }
+
+  // Tên đơn vị hành chính cũ khi xem tiếng Anh: "Phường Bến Nghé" -> "Bến Nghé Ward", "Quận 1" -> "District 1"
+  function tenHC(s) {
+    if (!s || ngonNgu !== 'en') return s;
+    var m;
+    if ((m = /^Phường\s+(.+)$/.exec(s))) return /^\d/.test(m[1]) ? 'Ward ' + m[1] : m[1] + ' Ward';
+    if ((m = /^Quận\s+(.+)$/.exec(s))) return /^\d/.test(m[1]) ? 'District ' + m[1] : m[1] + ' District';
+    if ((m = /^Thành phố\s+(.+)$/.exec(s))) return m[1] + ' City';
+    return s;
+  }
+
   // Phần dùng chung cho các lớp bản đồ (src/hanh_chinh.js và các giai đoạn sau)
   window.SaBan = {
+    cot: cot,
+    tenHC: tenHC,
     banDo: banDo,
     docCSV: docCSV,
     chu: chu,
