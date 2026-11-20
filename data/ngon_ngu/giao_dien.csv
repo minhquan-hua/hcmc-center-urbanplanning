@@ -86,6 +86,8 @@ th_thuoc_tuyen,Thuộc tuyến,Route
 th_vi_tri_osm,Vị trí lấy từ OpenStreetMap.,Location from OpenStreetMap.
 th_tau_minh_hoa,"Tàu chạy trên bản đồ là minh họa: số tàu ({so}) và tốc độ ({toc} km/h) là giả định, không phải lịch chạy thật.","Boats on the map are illustrative: the number of boats ({so}) and speed ({toc} km/h) are assumptions, not real schedules."
 che_do_hoc,Chế độ học (tour),Learning mode (tours)
+cum_ranh_gioi,Ranh giới,Boundaries
+cum_ha_tang,Hạ tầng,Infrastructure
 tour_buoc,bước,steps
 tour_cau_hoi,Câu hỏi gợi mở,Question to think about
 tour_thoat,Thoát,Exit
@@ -110,7 +112,6 @@ gt_luu_y_mo_phong,"Xe và tàu chạy trên bản đồ là mô phỏng minh h�
 nguon_ban_do,"Bản đồ nền: © OpenStreetMap (giấy phép ODbL), OpenMapTiles, OpenFreeMap.","Base map: © OpenStreetMap (ODbL licence), OpenMapTiles, OpenFreeMap."
 tam_vung,Toàn vùng,Region
 tam_trung_tam,Trung tâm,Centre
-vung_tieu_de,Ranh giới vùng,Regional boundaries
 vung_mo_ta,Thành phố Hồ Chí Minh sau sáp nhập và hai địa phương giáp ranh. Nét đứt: ranh giới ba địa phương cũ. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.,Hồ Chí Minh City after the merger and its two neighbours. Dashed lines: the three former units. Tap the map or a name below for details.
 vung_ranh_gioi,"Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.","Boundaries are indicative, from OpenStreetMap, not legal limits. Sea boundaries are not drawn."
 vung_ranh_gioi_cu,"Ranh giới cũ: bản lưu OpenStreetMap ngày 1/5/2025, chỉ để tham khảo.","Former boundary: OpenStreetMap snapshot of 1 May 2025, indicative only."
@@ -120,7 +121,6 @@ vung_gop_tu,Được hợp nhất từ,Merged from
 vung_nay_thuoc,Từ 1/7/2025 thuộc,Since 1 July 2025 part of
 vung_thong_tin,Thông tin sáp nhập,Merger information
 gt_nguon_vung,Ranh giới vùng (tầm Toàn vùng): OpenStreetMap; thông tin sáp nhập theo Nghị quyết 202/2025/QH15 của Quốc hội.,Regional boundaries (Region view): OpenStreetMap; merger information from National Assembly Resolution 202/2025/QH15.
-ht_tieu_de,Hạ tầng vùng,Regional infrastructure
 ht_ha_tang,Hạ tầng vùng,Regional infrastructure
 ht_metro,metro,metro
 ht_duong_sat,đường sắt,railway
@@ -158,7 +158,6 @@ vs_cap_c,"C · nghiên cứu, viện nghiên cứu quốc tế","C · research, 
 vs_cap_d,D · ý kiến chuyên gia trên báo chính thống,D · expert opinion in mainstream press
 vs_luu_y,"Các ý kiến là của người được dẫn, không phải của website. Hãy đọc bài gốc trước khi trích dẫn.","Opinions belong to the people cited, not to this site. Read the original before quoting."
 tam_tnb,Tây Nam Bộ,Mekong Delta
-tnb_tieu_de,Ranh giới Tây Nam Bộ,Mekong Delta boundaries
 tnb_mo_ta,"Các tỉnh, thành Tây Nam Bộ và tỉnh Tây Ninh mới (gồm Long An cũ). Màu: tỉnh, thành sau sáp nhập. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.",Provinces of the Mekong Delta plus the new Tây Ninh Province (which includes the former Long An). Colours show the provinces after the merger. Tap the map or a name below for details.
 tnb_sau,Sau sáp nhập,After merger
 tnb_truoc,Trước sáp nhập,Before merger
@@ -166,6 +165,7 @@ tnb_mo_ta_sau,"Từ 1/7/2025: 6 đơn vị cấp tỉnh (1 thành phố, 5 tỉn
 tnb_mo_ta_truoc,Trước 1/7/2025: 14 đơn vị cấp tỉnh. Cùng màu là các địa phương đã hợp nhất với nhau.,Before 1 July 2025: 14 province-level units. Units sharing a colour were later merged.
 tnb_diem_tieu_de,Ba vị trí chiến lược,Three strategic locations
 tnb_diem_ghi_chu,Phân tích chi tiết từng vị trí sẽ bổ sung ở bước sau.,A detailed analysis of each location will be added later.
+tnb_tour_sau,Tour Tây Nam Bộ sẽ bổ sung ở bước sau.,Mekong Delta tours will be added later.
 tnb_loai_diem,Vị trí chiến lược,Strategic location
 tnb_vi_tri,Vị trí trên bản đồ,Map position
 tnb_ranh_gioi,"Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.","Boundaries are indicative, from OpenStreetMap, not legal limits. Sea boundaries are not drawn."
@@ -174,7 +174,6 @@ bdn_ten,Bản đồ nhỏ Việt Nam,Overview map of Việt Nam
 bdn_an,Ẩn bản đồ nhỏ,Hide overview map
 bdn_hien,Bản đồ nhỏ,Overview map
 bdn_khung,Khung đỏ: vùng đang xem,Red frame: area in view
-htt_tieu_de,Hạ tầng Tây Nam Bộ,Mekong Delta infrastructure
 htt_ha_tang,Hạ tầng Tây Nam Bộ,Mekong Delta infrastructure
 htt_cao_toc,cao tốc,expressway
 htt_tau_pha,"tàu, phà",ferry

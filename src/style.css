@@ -215,7 +215,6 @@ body.dang-tour .chon-tam { display: none; }
   .chon-tam { top: 0.4rem; left: 50%; transform: translateX(-50%); z-index: 4; box-shadow: none; }
   .chon-tam button { min-height: 2.25rem; }
 }
-#khoi-vung .tieu-de-muc { border-top: 0; }
 .o-mau.net-dut { background: none; border: 2px dashed #22313f; border-radius: 0.2rem; opacity: 1; }
 
 /* Lớp giao thông */
@@ -388,16 +387,41 @@ body.dang-tour .chon-tam { display: none; }
   .bao-loi { left: auto; right: 0.9rem; max-width: 28rem; }
 }
 
-.ht-tieu-de { margin-top: 0.6rem; }
-#khoi-vung .ht-tieu-de { border-top: 1px solid var(--vien); }
 .ht-tom-tat { margin: 0.15rem 0; font-size: 0.8rem; }
 #ht-long-thanh .nut-loc { margin-top: 0.3rem; }
 #ht-long-thanh .nut-loc { text-decoration: none; color: var(--chu); }
 .tour-nut-the { display: block; width: 100%; margin: 0.7rem 0 0; }
 
 /* Tây Nam Bộ */
-#khoi-tay-nam-bo > .tieu-de-muc:first-child { border-top: 0; }
-#khoi-tay-nam-bo .chon-ky { margin: 0.2rem 0 0.4rem; }
+#tnb-chon-ky { margin: 0.2rem 0 0.4rem; }
+
+/* Ba cụm trong bảng lớp: Tour, Ranh giới, Hạ tầng; mỗi cụm mở/đóng riêng */
+.cum { margin-top: 0.5rem; }
+.cum-nut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 2.6rem;
+  padding: 0 0.7rem;
+  border: 1px solid var(--vien);
+  border-radius: 0.5rem;
+  background: #f2f5f8;
+  font-weight: 650;
+  font-size: 0.92rem;
+  text-align: left;
+}
+.cum-mui-ten { transition: transform 0.15s; }
+.cum-nut[aria-expanded="false"] .cum-mui-ten { transform: rotate(-90deg); }
+.cum-noi-dung { padding: 0.2rem 0 0.2rem; }
+/* dòng đầu tiên trong cụm không cần đường kẻ trên (đã có viền của tiêu đề cụm) */
+.cum-noi-dung > div > .dong:first-child,
+.dau-bang > .dong:first-child { border-top: 0; }
+.cum-noi-dung .ds-tour { padding-top: 0.4rem; }
+.cum-noi-dung #tnb-chon-ky { margin-top: 0.5rem; }
+.dau-bang .nut-vi-sao { margin: 0; }
+.cum + .nut-phu { margin-top: 0.9rem; }
 .o-mau.o-diem { border-radius: 50%; opacity: 1; box-shadow: 0 0 0 2px #fff inset; }
 @media (max-width: 420px) { .chon-tam button { padding: 0 0.6rem; font-size: 0.82rem; } }
 

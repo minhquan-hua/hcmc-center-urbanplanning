@@ -231,9 +231,10 @@
     document.querySelectorAll('#chon-tam button').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-tam') === tam));
     });
-    document.getElementById('khoi-vung').hidden = tam !== 'vung';
-    document.getElementById('khoi-tay-nam-bo').hidden = tam !== 'tay-nam-bo';
-    document.getElementById('khoi-trung-tam').hidden = tam !== 'trung-tam';
+    // trong bảng lớp, mỗi khối có data-khoi chỉ hiện ở đúng tầm của nó
+    document.querySelectorAll('#bang [data-khoi]').forEach(function (k) {
+      k.hidden = k.getAttribute('data-khoi') !== tam;
+    });
     banDo.stop();
     if (tam !== 'trung-tam') {
       // tắt các lớp chi tiết, nhớ lại để bật lại khi về trung tâm
@@ -277,6 +278,19 @@
   });
   // Trên điện thoại: thu bảng lại lúc đầu để thấy bản đồ
   if (window.matchMedia('(max-width: 767px)').matches) datBang(false);
+
+  // Ba cụm trong bảng (Tour, Ranh giới, Hạ tầng), mỗi cụm mở/đóng riêng.
+  // Laptop: mở sẵn cả ba; điện thoại: đóng cả ba cho gọn. Không nhớ sau khi tải lại trang.
+  var cumDongLucDau = window.matchMedia('(max-width: 767px)').matches;
+  document.querySelectorAll('#bang .cum-nut').forEach(function (nut) {
+    var noiDung = document.getElementById(nut.getAttribute('aria-controls'));
+    function datCum(mo) {
+      nut.setAttribute('aria-expanded', String(mo));
+      noiDung.hidden = !mo;
+    }
+    datCum(!cumDongLucDau);
+    nut.addEventListener('click', function () { datCum(nut.getAttribute('aria-expanded') !== 'true'); });
+  });
 
   var nutTrinhChieu = document.getElementById('nut-trinh-chieu');
   nutTrinhChieu.addEventListener('click', function () {

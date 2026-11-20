@@ -29,112 +29,150 @@
       <span data-chu="lop_ban_do">Lớp bản đồ</span><span class="mui-ten" aria-hidden="true">▾</span>
     </button>
     <div class="bang-noi-dung">
-      <div id="khoi-vung" hidden>
-        <button id="nut-vi-sao" type="button" class="nut-phu nut-vi-sao" data-chu="vs_nut">Vì sao sáp nhập?</button>
-        <div class="dong tieu-de-muc"><span data-chu="vung_tieu_de">Ranh giới vùng</span></div>
-        <p class="ghi-chu" data-chu="vung_mo_ta">Thành phố Hồ Chí Minh sau sáp nhập và hai địa phương giáp ranh. Nét đứt: ranh giới ba địa phương cũ. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.</p>
-        <ul class="ds-du-an" id="ds-vung"></ul>
-        <p class="ghi-chu canh-bao" data-chu="vung_ranh_gioi">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.</p>
-        <div class="dong tieu-de-muc ht-tieu-de"><span data-chu="ht_tieu_de">Hạ tầng vùng</span></div>
-        <div class="du-an">
-          <div id="ht-long-thanh"></div>
-          <p class="nhan-loc" data-chu="loc_theo_loai">Lọc theo loại</p>
-          <div class="hang-loc" id="ht-loc-nhom"></div>
-          <p class="nhan-loc" data-chu="loc_theo_trang_thai">Lọc theo trạng thái</p>
-          <div class="hang-loc" id="ht-loc-trang-thai"></div>
-          <p class="ghi-chu" id="ht-dem"></p>
-          <ul class="ds-du-an" id="ds-ha-tang"></ul>
-          <p class="ghi-chu" data-chu="ht_chu_giai">Nét liền: đã hoàn thành. Nét đứt: chưa xong. Vạch trắng ở giữa: metro, đường sắt. Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.</p>
-          <p class="ghi-chu canh-bao" data-chu="ht_luu_y_chung">Hướng tuyến chưa xây lấy từ OpenStreetMap, chỉ để tham khảo. Trạng thái tra ngày 17/11/2026 từ báo chí, có thể đã thay đổi.</p>
-        </div>
-        <div class="dong tieu-de-muc"><span data-chu="che_do_hoc">Chế độ học (tour)</span></div>
-        <div class="ds-tour" id="ds-tour-vung"></div>
+      <!-- Mỗi khối có data-khoi chỉ hiện ở một tầm (app.js bật/tắt khi đổi tầm). -->
+      <!-- Phần luôn hiện ở đầu bảng, ngoài ba cụm -->
+      <div class="dau-bang" data-khoi="trung-tam">
+        <label class="dong">
+          <input type="checkbox" id="bat-3d" checked>
+          <span data-chu="toa_nha_3d">Tòa nhà 3D</span>
+        </label>
       </div>
-      <div id="khoi-tay-nam-bo" hidden>
-        <div class="dong tieu-de-muc"><span data-chu="tnb_tieu_de">Ranh giới Tây Nam Bộ</span></div>
-        <div class="chon-ky" id="tnb-chon-ky" role="group">
-          <button type="button" data-ky="truoc" aria-pressed="false" data-chu="tnb_truoc">Trước sáp nhập</button>
-          <button type="button" data-ky="sau" aria-pressed="true" data-chu="tnb_sau">Sau sáp nhập</button>
-        </div>
-        <p class="ghi-chu" id="tnb-mo-ta-ky"></p>
-        <p class="ghi-chu" data-chu="tnb_mo_ta">Các tỉnh, thành Tây Nam Bộ và tỉnh Tây Ninh mới (gồm Long An cũ).</p>
-        <ul class="ds-du-an" id="ds-tnb"></ul>
-        <p class="ghi-chu canh-bao" data-chu="tnb_ranh_gioi">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.</p>
-        <div class="dong tieu-de-muc ht-tieu-de"><span data-chu="tnb_diem_tieu_de">Ba vị trí chiến lược</span></div>
+      <div class="dau-bang" data-khoi="vung" hidden>
+        <button id="nut-vi-sao" type="button" class="nut-phu nut-vi-sao" data-chu="vs_nut">Vì sao sáp nhập?</button>
+      </div>
+      <div class="dau-bang" data-khoi="tay-nam-bo" hidden>
+        <div class="dong tieu-de-muc"><span data-chu="tnb_diem_tieu_de">Ba vị trí chiến lược</span></div>
         <ul class="ds-du-an" id="ds-tnb-diem"></ul>
         <p class="ghi-chu" data-chu="tnb_diem_ghi_chu">Phân tích chi tiết từng vị trí sẽ bổ sung ở bước sau.</p>
-        <div class="dong tieu-de-muc ht-tieu-de"><span data-chu="htt_tieu_de">Hạ tầng Tây Nam Bộ</span></div>
-        <div class="du-an">
-          <p class="nhan-loc" data-chu="loc_theo_loai">Lọc theo loại</p>
-          <div class="hang-loc" id="htt-loc-nhom"></div>
-          <p class="nhan-loc" data-chu="loc_theo_trang_thai">Lọc theo trạng thái</p>
-          <div class="hang-loc" id="htt-loc-trang-thai"></div>
-          <p class="ghi-chu" id="htt-dem"></p>
-          <ul class="ds-du-an" id="ds-htt"></ul>
-          <p class="ghi-chu" data-chu="htt_chu_giai">Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chuỗi chấm: đường thủy (sơ đồ). Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.</p>
-          <p class="ghi-chu canh-bao" data-chu="htt_luu_y_chung">Trạng thái tra ngày 17/11/2026 từ báo chí và văn bản, có thể đã thay đổi. Hình tuyến lấy từ OpenStreetMap, chỉ để tham khảo.</p>
+      </div>
+
+      <!-- Cụm 1: tour -->
+      <section class="cum">
+        <button type="button" class="cum-nut" aria-expanded="true" aria-controls="cum-tour">
+          <span data-chu="che_do_hoc">Chế độ học (tour)</span><span class="cum-mui-ten" aria-hidden="true">▾</span>
+        </button>
+        <div class="cum-noi-dung" id="cum-tour">
+          <div data-khoi="trung-tam"><div class="ds-tour" id="ds-tour"></div></div>
+          <div data-khoi="vung" hidden><div class="ds-tour" id="ds-tour-vung"></div></div>
+          <div data-khoi="tay-nam-bo" hidden><p class="ghi-chu" data-chu="tnb_tour_sau">Tour Tây Nam Bộ sẽ bổ sung ở bước sau.</p></div>
         </div>
-      </div>
-      <div id="khoi-trung-tam">
-      <label class="dong">
-        <input type="checkbox" id="bat-3d" checked>
-        <span data-chu="toa_nha_3d">Tòa nhà 3D</span>
-      </label>
-      <label class="dong">
-        <input type="checkbox" id="bat-hanh-chinh" checked>
-        <span data-chu="lop_hanh_chinh">Ranh giới hành chính</span>
-      </label>
-      <div class="hanh-chinh" id="khoi-hanh-chinh">
-        <div class="chon-ky" role="group">
-          <button type="button" data-ky="truoc" aria-pressed="false" data-chu="truoc_2025">Trước 2025</button>
-          <button type="button" data-ky="sau" aria-pressed="true" data-chu="sau_2025">Sau 2025</button>
+      </section>
+
+      <!-- Cụm 2: ranh giới -->
+      <section class="cum">
+        <button type="button" class="cum-nut" aria-expanded="true" aria-controls="cum-ranh-gioi">
+          <span data-chu="cum_ranh_gioi">Ranh giới</span><span class="cum-mui-ten" aria-hidden="true">▾</span>
+        </button>
+        <div class="cum-noi-dung" id="cum-ranh-gioi">
+          <div data-khoi="trung-tam">
+            <label class="dong">
+              <input type="checkbox" id="bat-hanh-chinh" checked>
+              <span data-chu="lop_hanh_chinh">Ranh giới hành chính</span>
+            </label>
+            <div class="hanh-chinh" id="khoi-hanh-chinh">
+              <div class="chon-ky" role="group">
+                <button type="button" data-ky="truoc" aria-pressed="false" data-chu="truoc_2025">Trước 2025</button>
+                <button type="button" data-ky="sau" aria-pressed="true" data-chu="sau_2025">Sau 2025</button>
+              </div>
+              <p class="ghi-chu" id="mo-ta-ky"></p>
+              <ul class="chu-giai" id="chu-giai"></ul>
+              <p class="ghi-chu canh-bao" data-chu="ranh_gioi_tham_khao">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý.</p>
+            </div>
+          </div>
+          <div data-khoi="vung" hidden>
+            <p class="ghi-chu" data-chu="vung_mo_ta">Thành phố Hồ Chí Minh sau sáp nhập và hai địa phương giáp ranh. Nét đứt: ranh giới ba địa phương cũ. Nhấp vào bản đồ hoặc tên bên dưới để xem chi tiết.</p>
+            <ul class="ds-du-an" id="ds-vung"></ul>
+            <p class="ghi-chu canh-bao" data-chu="vung_ranh_gioi">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.</p>
+          </div>
+          <div data-khoi="tay-nam-bo" hidden>
+            <div class="chon-ky" id="tnb-chon-ky" role="group">
+              <button type="button" data-ky="truoc" aria-pressed="false" data-chu="tnb_truoc">Trước sáp nhập</button>
+              <button type="button" data-ky="sau" aria-pressed="true" data-chu="tnb_sau">Sau sáp nhập</button>
+            </div>
+            <p class="ghi-chu" id="tnb-mo-ta-ky"></p>
+            <p class="ghi-chu" data-chu="tnb_mo_ta">Các tỉnh, thành Tây Nam Bộ và tỉnh Tây Ninh mới (gồm Long An cũ).</p>
+            <ul class="ds-du-an" id="ds-tnb"></ul>
+            <p class="ghi-chu canh-bao" data-chu="tnb_ranh_gioi">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý. Không vẽ phần ranh giới trên biển.</p>
+          </div>
         </div>
-        <p class="ghi-chu" id="mo-ta-ky"></p>
-        <ul class="chu-giai" id="chu-giai"></ul>
-        <p class="ghi-chu canh-bao" data-chu="ranh_gioi_tham_khao">Ranh giới tham khảo từ OpenStreetMap, không phải địa giới pháp lý.</p>
-      </div>
-      <label class="dong">
-        <input type="checkbox" id="bat-du-an" checked>
-        <span data-chu="lop_du_an">Dự án quy hoạch</span>
-      </label>
-      <div class="du-an" id="khoi-du-an">
-        <p class="nhan-loc" data-chu="loc_theo_loai">Lọc theo loại</p>
-        <div class="hang-loc" id="loc-loai"></div>
-        <p class="nhan-loc" data-chu="loc_theo_trang_thai">Lọc theo trạng thái</p>
-        <div class="hang-loc" id="loc-trang-thai"></div>
-        <p class="ghi-chu" id="dem-du-an"></p>
-        <ul class="ds-du-an" id="ds-du-an"></ul>
-        <p class="ghi-chu" data-chu="chu_giai_du_an">Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chấm rỗng: vị trí sơ đồ.</p>
-      </div>
-      <label class="dong">
-        <input type="checkbox" id="bat-giao-thong">
-        <span data-chu="lop_duong_bo">Giao thông đường bộ</span>
-      </label>
-      <div class="giao-thong" id="khoi-giao-thong" hidden>
-        <p class="canh-bao-mo-phong" data-chu="gt_canh_bao">Mô phỏng minh họa cho mục đích học tập, không phải số liệu thực.</p>
-        <div class="chon-ky" id="gt-chon-ky" role="group">
-          <button type="button" data-ky="cao" aria-pressed="true" data-chu="gt_cao_diem">Giờ cao điểm</button>
-          <button type="button" data-ky="thap" aria-pressed="false" data-chu="gt_thap_diem">Giờ thấp điểm</button>
+      </section>
+
+      <!-- Cụm 3: hạ tầng -->
+      <section class="cum">
+        <button type="button" class="cum-nut" aria-expanded="true" aria-controls="cum-ha-tang">
+          <span data-chu="cum_ha_tang">Hạ tầng</span><span class="cum-mui-ten" aria-hidden="true">▾</span>
+        </button>
+        <div class="cum-noi-dung" id="cum-ha-tang">
+          <div data-khoi="trung-tam">
+            <label class="dong">
+              <input type="checkbox" id="bat-du-an" checked>
+              <span data-chu="lop_du_an">Dự án quy hoạch</span>
+            </label>
+            <div class="du-an" id="khoi-du-an">
+              <p class="nhan-loc" data-chu="loc_theo_loai">Lọc theo loại</p>
+              <div class="hang-loc" id="loc-loai"></div>
+              <p class="nhan-loc" data-chu="loc_theo_trang_thai">Lọc theo trạng thái</p>
+              <div class="hang-loc" id="loc-trang-thai"></div>
+              <p class="ghi-chu" id="dem-du-an"></p>
+              <ul class="ds-du-an" id="ds-du-an"></ul>
+              <p class="ghi-chu" data-chu="chu_giai_du_an">Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chấm rỗng: vị trí sơ đồ.</p>
+            </div>
+            <label class="dong">
+              <input type="checkbox" id="bat-giao-thong">
+              <span data-chu="lop_duong_bo">Giao thông đường bộ</span>
+            </label>
+            <div class="giao-thong" id="khoi-giao-thong" hidden>
+              <p class="canh-bao-mo-phong" data-chu="gt_canh_bao">Mô phỏng minh họa cho mục đích học tập, không phải số liệu thực.</p>
+              <div class="chon-ky" id="gt-chon-ky" role="group">
+                <button type="button" data-ky="cao" aria-pressed="true" data-chu="gt_cao_diem">Giờ cao điểm</button>
+                <button type="button" data-ky="thap" aria-pressed="false" data-chu="gt_thap_diem">Giờ thấp điểm</button>
+              </div>
+              <p class="nhan-loc" data-chu="gt_kich_ban">Kịch bản</p>
+              <div class="ds-kich-ban" id="gt-kich-ban"></div>
+              <p class="ghi-chu" id="gt-mo-ta"></p>
+              <ul class="chu-giai" id="gt-chu-giai"></ul>
+              <div id="gt-thong-ke"></div>
+              <button type="button" class="nut-phu" id="gt-xem-gia-dinh" data-chu="gt_xem_gia_dinh">Xem các con số mô phỏng dùng</button>
+            </div>
+            <label class="dong">
+              <input type="checkbox" id="bat-thuy">
+              <span data-chu="lop_duong_thuy">Giao thông thủy</span>
+            </label>
+            <div class="giao-thong" id="khoi-thuy" hidden>
+              <p class="canh-bao-mo-phong" data-chu="th_canh_bao">Tuyến và bến là thật; tàu chạy trên bản đồ là minh họa cho mục đích học tập, không phải lịch chạy thật.</p>
+              <ul class="ds-du-an" id="th-ds-tuyen"></ul>
+              <p class="ghi-chu" data-chu="th_chu_giai">Chấm viền màu: bến hoặc cảng. Chấm đặc: tàu minh họa. Nhấp vào tuyến hoặc bến để xem chi tiết.</p>
+            </div>
+          </div>
+          <div data-khoi="vung" hidden>
+            <div class="du-an">
+              <div id="ht-long-thanh"></div>
+              <p class="nhan-loc" data-chu="loc_theo_loai">Lọc theo loại</p>
+              <div class="hang-loc" id="ht-loc-nhom"></div>
+              <p class="nhan-loc" data-chu="loc_theo_trang_thai">Lọc theo trạng thái</p>
+              <div class="hang-loc" id="ht-loc-trang-thai"></div>
+              <p class="ghi-chu" id="ht-dem"></p>
+              <ul class="ds-du-an" id="ds-ha-tang"></ul>
+              <p class="ghi-chu" data-chu="ht_chu_giai">Nét liền: đã hoàn thành. Nét đứt: chưa xong. Vạch trắng ở giữa: metro, đường sắt. Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.</p>
+              <p class="ghi-chu canh-bao" data-chu="ht_luu_y_chung">Hướng tuyến chưa xây lấy từ OpenStreetMap, chỉ để tham khảo. Trạng thái tra ngày 17/11/2026 từ báo chí, có thể đã thay đổi.</p>
+            </div>
+          </div>
+          <div data-khoi="tay-nam-bo" hidden>
+            <div class="du-an">
+              <p class="nhan-loc" data-chu="loc_theo_loai">Lọc theo loại</p>
+              <div class="hang-loc" id="htt-loc-nhom"></div>
+              <p class="nhan-loc" data-chu="loc_theo_trang_thai">Lọc theo trạng thái</p>
+              <div class="hang-loc" id="htt-loc-trang-thai"></div>
+              <p class="ghi-chu" id="htt-dem"></p>
+              <ul class="ds-du-an" id="ds-htt"></ul>
+              <p class="ghi-chu" data-chu="htt_chu_giai">Nét liền: đã hoàn thành. Nét đứt: chưa xong. Chuỗi chấm: đường thủy (sơ đồ). Chấm rỗng: vị trí sơ đồ. Dấu *: chưa có trên bản đồ.</p>
+              <p class="ghi-chu canh-bao" data-chu="htt_luu_y_chung">Trạng thái tra ngày 17/11/2026 từ báo chí và văn bản, có thể đã thay đổi. Hình tuyến lấy từ OpenStreetMap, chỉ để tham khảo.</p>
+            </div>
+          </div>
         </div>
-        <p class="nhan-loc" data-chu="gt_kich_ban">Kịch bản</p>
-        <div class="ds-kich-ban" id="gt-kich-ban"></div>
-        <p class="ghi-chu" id="gt-mo-ta"></p>
-        <ul class="chu-giai" id="gt-chu-giai"></ul>
-        <div id="gt-thong-ke"></div>
-        <button type="button" class="nut-phu" id="gt-xem-gia-dinh" data-chu="gt_xem_gia_dinh">Xem các con số mô phỏng dùng</button>
-      </div>
-      <label class="dong">
-        <input type="checkbox" id="bat-thuy">
-        <span data-chu="lop_duong_thuy">Giao thông thủy</span>
-      </label>
-      <div class="giao-thong" id="khoi-thuy" hidden>
-        <p class="canh-bao-mo-phong" data-chu="th_canh_bao">Tuyến và bến là thật; tàu chạy trên bản đồ là minh họa cho mục đích học tập, không phải lịch chạy thật.</p>
-        <ul class="ds-du-an" id="th-ds-tuyen"></ul>
-        <p class="ghi-chu" data-chu="th_chu_giai">Chấm viền màu: bến hoặc cảng. Chấm đặc: tàu minh họa. Nhấp vào tuyến hoặc bến để xem chi tiết.</p>
-      </div>
-      <div class="dong tieu-de-muc"><span data-chu="che_do_hoc">Chế độ học (tour)</span></div>
-      <div class="ds-tour" id="ds-tour"></div>
-      </div>
+      </section>
+
+      <!-- Phần luôn hiện ở cuối bảng -->
       <button id="nut-ve-dau" type="button" class="nut-phu" data-chu="ve_goc_nhin_dau">Về góc nhìn ban đầu</button>
       <button id="nut-gioi-thieu" type="button" class="nut-phu" data-chu="gioi_thieu_nut">Giới thiệu và nguồn dữ liệu</button>
       <p class="ghi-chu" data-chu="nguon_ban_do">Bản đồ nền: © OpenStreetMap (giấy phép ODbL), OpenMapTiles, OpenFreeMap.</p>
