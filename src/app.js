@@ -20,7 +20,7 @@
   var THU_NHO_NHAT_TNB = 5.5;
   // Tầm Tây Nam Bộ đang làm dở: bản công khai tạm ẩn, chỉ hiện khi xem thử trên máy (localhost).
   // Khi đưa Tây Nam Bộ lên mạng (bước 5) thì đổi CONG_KHAI_TNB thành true.
-  var CONG_KHAI_TNB = false;
+  var CONG_KHAI_TNB = true;
   var HIEN_TNB = CONG_KHAI_TNB || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
   var CAC_TAM = HIEN_TNB ? ['trung-tam', 'vung', 'tay-nam-bo'] : ['trung-tam', 'vung'];
   if (!HIEN_TNB) {
